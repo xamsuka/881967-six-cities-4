@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const Main = (props) => {
-  const {countPlaces} = props;
+  const {countPlaces, onSectionTypeChange} = props;
 
   return (
     <React.Fragment>
@@ -64,7 +64,7 @@ const Main = (props) => {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <ul className="locations__list tabs__list">
+              <ul className="locations__list tabs__list" onClick={onSectionTypeChange}>
                 <li className="locations__item">
                   <a className="locations__item-link tabs__item" href="#">
                     <span>Paris</span>
@@ -391,6 +391,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   countPlaces: PropTypes.number.isRequired,
+  onSectionTypeChange: PropTypes.func.isRequired,
 };
 
 export default Main;
