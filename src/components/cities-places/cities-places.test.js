@@ -1,11 +1,6 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import MainComponent from './main';
-
-Enzyme.configure({
-  Adapter: new Adapter(),
-});
+import renderer from 'react-test-renderer';
+import CitiesPlaces from './cities-places.jsx';
 
 const citiesPlaces = [
   {
@@ -50,14 +45,11 @@ const citiesPlaces = [
   }
 ];
 
-Enzyme.configure({adapter: new Adapter()});
+const cityName = `Paris`;
 
-describe(`<MainComponent />`, () => {
-  test(`simulate click evets`, () => {
-    const three = shallow(<MainComponent citiesPlaces = {citiesPlaces} />);
+test(`<CitiesPlaces /> render`, () => {
+  const three = renderer
+    .create(<CitiesPlaces citiesPlaces = {citiesPlaces} cityName = {cityName} />).toJSON();
 
-    const sectionTypesElement = three.find(`.locations__list`);
-
-    expect(sectionTypesElement.simulate(`click`)).toBe(1);
-  });
+  expect(three).toMatchSnapshot();
 });
