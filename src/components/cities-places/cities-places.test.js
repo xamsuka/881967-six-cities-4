@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MainComponent from './main';
+import CitiesPlaces from './cities-places.jsx';
 
 const citiesPlaces = [
   {
@@ -45,9 +45,11 @@ const citiesPlaces = [
   }
 ];
 
-test(`Main render`, () => {
-  const tree = renderer
-    .create(<MainComponent citiesPlaces = {citiesPlaces} />).toJSON();
+const cityName = `Paris`;
 
-  expect(tree).toMatchSnapshot();
+test(`<CitiesPlaces /> render`, () => {
+  const three = renderer
+    .create(<CitiesPlaces citiesPlaces = {citiesPlaces} cityName = {cityName} />).toJSON();
+
+  expect(three).toMatchSnapshot();
 });
