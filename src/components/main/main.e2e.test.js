@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import MainComponent from './main';
+import Main from './main';
 
 Enzyme.configure({
   Adapter: new Adapter(),
@@ -54,10 +54,26 @@ Enzyme.configure({adapter: new Adapter()});
 
 describe(`<MainComponent />`, () => {
   test(`simulate click evets`, () => {
-    const three = shallow(<MainComponent citiesPlaces = {citiesPlaces} />);
+    const onSecltionCityChange = Main.prototype._sectionTypeChangeHandler = jest.fn();
+
+    const three = shallow(<Main citiesPlaces = {citiesPlaces} />);
 
     const sectionTypesElement = three.find(`.locations__list`);
 
-    expect(sectionTypesElement.simulate(`click`)).toBe(1);
+    sectionTypesElement.props().onClick();
+
+    expect(onSecltionCityChange).toHaveBeenCalledTimes(1);
+  });
+
+  test(`Change state component Main to Cologne `, () => {
+    // const onSecltionCityChange = Main.prototype._sectionTypeChangeHandler = jest.fn();
+
+    const three = shallow(<Main citiesPlaces = {citiesPlaces} />);
+
+    const sectionTypesElement = three.find(`.locations__list`).at(1);
+
+    sectionTypesElement.props().onClick();
+
+    expect(three.state.currentCity).to.equal(`Cologne`);
   });
 });
