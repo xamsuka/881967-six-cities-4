@@ -64,16 +64,4 @@ describe(`<MainComponent />`, () => {
 
     expect(onSecltionCityChange).toHaveBeenCalledTimes(1);
   });
-
-  test(`Change state component Main to Cologne `, () => {
-    // const onSecltionCityChange = Main.prototype._sectionTypeChangeHandler = jest.fn();
-
-    const three = shallow(<Main citiesPlaces = {citiesPlaces} />);
-
-    const sectionTypesElement = three.find(`.locations__list`).at(1);
-
-    sectionTypesElement.props().onClick();
-
-    expect(three.state.currentCity).to.equal(`Cologne`);
-  });
 });

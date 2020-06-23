@@ -1,12 +1,28 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
+import {Route, BrowserRouter, Switch} from 'react-router-dom';
 
-const App = (props) => {
-  const {citiesPlaces} = props;
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const {citiesPlaces} = this.props;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Main citiesPlaces = {citiesPlaces} />;
+          </Route>
+          <Route exact path="/dev-offer">
 
-  return <Main citiesPlaces = {citiesPlaces} />;
-};
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 App.propTypes = {
   citiesPlaces: PropTypes.arrayOf(PropTypes.shape({
