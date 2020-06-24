@@ -1,71 +1,29 @@
 import React, {PureComponent} from "react";
+import PropertyGallart from '../property-gallary/property-gallary.jsx';
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
   }
   render() {
+    const {place} = this.props;
+    const {id, photos, title, isPremium, type, isFavorite, price} = place;
+
+    const favoriteClass = isFavorite ? `property__bookmark-button--active` : ``;
+
     return (
       <main className="page__main page__main--property">
         <section className="property">
-          <div className="property__gallery-container container">
-            <div className="property__gallery">
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/room.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/apartment-01.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/apartment-02.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/apartment-03.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/studio-01.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-              <div className="property__image-wrapper">
-                <img
-                  className="property__image"
-                  src="img/apartment-01.jpg"
-                  alt="Photo studio"
-                />
-              </div>
-            </div>
-          </div>
+          <PropertyGallart photos = {photos} />
           <div className="property__container container">
             <div className="property__wrapper">
-              <div className="property__mark">
-                <span>Premium</span>
-              </div>
+              {isPremium ? <div className="property__mark"><span>Premium</span></div> : ``}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  Beautiful &amp; luxurious studio at great location
+                  {title}
                 </h1>
                 <button
-                  className="property__bookmark-button button"
+                  className={`property__bookmark-button ${favoriteClass} button`}
                   type="button"
                 >
                   <svg

@@ -50,7 +50,7 @@ class PlaceCard extends PureComponent {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{title}</a>
+            <a href="/offer/1" target="_blank">{title}</a>
           </h2>
           <p className="place-card__type">{type}</p>
         </div>
