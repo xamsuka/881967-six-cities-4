@@ -50,7 +50,7 @@ class PlaceCard extends PureComponent {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{title}</a>
+            <a href="/offer" target="_blank">{title}</a>
           </h2>
           <p className="place-card__type">{type}</p>
         </div>
@@ -75,7 +75,7 @@ PlaceCard.propTypes = {
     price: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
     infoOwner: PropTypes.shape({
-      avatart: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       isSuper: PropTypes.bool.isRequired,
     }).isRequired

@@ -18,7 +18,7 @@ const citiesPlaces = [
     price: 250,
     features: [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Washing machine`],
     infoOwner: {
-      avatart: `https://api.adorable.io/avatars/285/abott@adorable.png`,
+      avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
       name: `Vladimir`,
       isSuper: false,
     }
@@ -38,7 +38,7 @@ const citiesPlaces = [
     price: 100,
     features: [`Wifi`, `Heating`, `Kitchen`],
     infoOwner: {
-      avatart: `https://api.adorable.io/avatars/285/abott@adorable.png`,
+      avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
       name: `Vlad`,
       isSuper: false,
     }

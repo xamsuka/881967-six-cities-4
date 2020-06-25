@@ -87,7 +87,8 @@ exports[`<PlaceCard /> render 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer"
+        target="_blank"
       >
         Очень красивый и уютный дом
       </a>
