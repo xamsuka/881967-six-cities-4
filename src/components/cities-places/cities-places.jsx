@@ -75,7 +75,7 @@ CitiesPlaces.propTypes = {
     price: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
     infoOwner: PropTypes.shape({
-      avatart: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       isSuper: PropTypes.bool.isRequired,
     }).isRequired

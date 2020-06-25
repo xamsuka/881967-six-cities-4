@@ -12,16 +12,16 @@ const placeOffer = {
   description: `Описание у всех одинаковое, потому что лень придумывать.`,
   isPremium: true,
   isFavorite: true,
-  type: `apartment`,
+  type: `Apartment`,
   rating: 5,
   countDedrooms: 4,
   maxGuests: 6,
   price: 250,
   features: [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Washing machine`],
   infoOwner: {
-    avatart: `https://api.adorable.io/avatars/285/abott@adorable.png`,
+    avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
     name: `Vladimir`,
-    isSuper: false,
+    isSuper: true,
   }
 };
 
@@ -33,6 +33,7 @@ class App extends PureComponent {
 
   render() {
     const {citiesPlaces} = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -64,7 +65,7 @@ App.propTypes = {
     price: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
     infoOwner: PropTypes.shape({
-      avatart: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       isSuper: PropTypes.bool.isRequired,
     }).isRequired

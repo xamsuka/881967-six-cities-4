@@ -1,6 +1,6 @@
 import {getRandomNumber} from '../utils/util.js';
 
-const TYPE_HOUSE = [`apartment`, `room`, `house`, `hotel`];
+const TYPE_HOUSE = [`Apartment`, `Room`, `House`, `Hotel`];
 const CITYES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
 const PHOTOS = [
   `https://i.pinimg.com/originals/43/72/2c/43722ce8f9f3d043bd1fdb9a93436e3b.jpg`,
@@ -32,7 +32,7 @@ const generateOffer = (index) => {
     price: getRandomNumber(20, 1500),
     features: FEATURES.slice().slice(0, getRandomNumber(1, FEATURES.length)),
     infoOwner: {
-      avatart: `https://api.adorable.io/avatars/285/abott@adorable.png`,
+      avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
       name: `Vladimir`,
       isSuper: Boolean(getRandomNumber(0, 1))
     }

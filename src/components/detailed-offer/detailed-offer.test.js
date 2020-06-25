@@ -1,16 +1,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import PlaceCard from './place-card.jsx';
+import DetailedOffer from './detailed-offer.jsx';
 
-const place = {
+const placeOffer = {
   id: 0,
   city: `Paris`,
-  photos: [`https://canadskaya-izba.ru/img/doma/karkas2.jpg`],
+  photos: [`https://canadskaya-izba.ru/img/doma/karkas2.jpg`, `https://www.krasdom.com/galfotobig/584.jpg`, `https://www.krasdom.com/galfotobig/561.jpg`, `https://www.artis21.ru/upload/iblock/f16/f164e862e34e212180e03f76c9226ee7.jpg`],
   title: `Очень красивый и уютный дом`,
   description: `Описание у всех одинаковое, потому что лень придумывать.`,
-  isPremium: false,
-  isFavorite: false,
-  type: `apartment`,
+  isPremium: true,
+  isFavorite: true,
+  type: `Apartment`,
   rating: 5,
   countDedrooms: 4,
   maxGuests: 6,
@@ -19,13 +19,13 @@ const place = {
   infoOwner: {
     avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
     name: `Vladimir`,
-    isSuper: false,
+    isSuper: true,
   }
 };
 
-test(`<PlaceCard /> render`, () => {
+test(`<DetailedOffer /> render`, () => {
   const three = renderer
-    .create(<PlaceCard place = {place} onMouseOver = {() => {}} />).toJSON();
+    .create(<DetailedOffer place = {placeOffer} />).toJSON();
 
   expect(three).toMatchSnapshot();
 });

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PropertyGallary /> render 1`] = `
+<div
+  className="property__gallery-container container"
+>
+  <div
+    className="property__gallery"
+  >
+    <div
+      className="property__image-wrapper"
+    >
+      <img
+        alt="Photo studio"
+        className="property__image"
+        src="https://canadskaya-izba.ru/img/doma/karkas2.jpg"
+      />
+    </div>
+  </div>
+</div>
+`;
