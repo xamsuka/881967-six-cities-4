@@ -35,7 +35,8 @@ const generateOffer = (index) => {
       avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
       name: `Vladimir`,
       isSuper: Boolean(getRandomNumber(0, 1))
-    }
+    },
+    cords: [getRandomNumber(50, 55), getRandomNumber(1, 5)],
   };
 };
 
