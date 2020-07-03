@@ -11,8 +11,10 @@ const PHOTOS = [
   `https://tipdoma.com/wp-content/uploads/2019/06/info1.png`,
   `https://krov-torg.ru/wp-content/uploads/2018/03/64-1024x679.jpg`,
 ];
-const TITLE = [`Очень красивый и уютный дом`, `Обычный дом на ночь`, `Элитный дом, денег точно не хватит`, `Стандартные аппартаменты на 2-4 человека`, `Дешёвая комната на ночь`, `Люкс котедж`];
+const TITLES = [`Очень красивый и уютный дом`, `Обычный дом на ночь`, `Элитный дом, денег точно не хватит`, `Стандартные аппартаменты на 2-4 человека`, `Дешёвая комната на ночь`, `Люкс котедж`];
 const FEATURES = [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Baby seat`];
+
+const NAME_USERS = [`Max`, `Nix`, `Oleg`, `Vladimir`, `Georg`, `Artur`, `Vlad`];
 
 export const countPlaces = getRandomNumber(0, 500);
 
@@ -21,7 +23,7 @@ const generateOffer = (index) => {
     id: index,
     city: CITYES[getRandomNumber(0, CITYES.length)],
     photos: [PHOTOS[getRandomNumber(0, PHOTOS.length)]],
-    title: TITLE[getRandomNumber(0, TITLE.length)],
+    title: TITLES[getRandomNumber(0, TITLES.length)],
     description: `Описание у всех одинаковое, потому что лень придумывать.`,
     isPremium: Boolean(getRandomNumber(0, 1)),
     isFavorite: Boolean(getRandomNumber(0, 1)),
@@ -40,8 +42,26 @@ const generateOffer = (index) => {
   };
 };
 
+const generateReview = (index) => {
+  return {
+    id: index,
+    user: {
+      id: index,
+      userAvatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
+      userName: NAME_USERS[getRandomNumber(0, NAME_USERS.length)],
+    },
+    rating: getRandomNumber(0, 5),
+    text: `Всё очень круть!`,
+    date: `April 2020`,
+  };
+};
+
 const generateOffers = (count) => {
   return new Array(count).fill(``).map((value, index) => generateOffer(index));
 };
 
-export {generateOffers};
+const generateReviews = (count) => {
+  return new Array(count).fill(``).map((value, index) => generateReview(index));
+};
+
+export {generateOffers, generateReviews};

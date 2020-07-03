@@ -2,6 +2,8 @@ import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
+import {reviews} from '../../index.js';
+
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
@@ -96,7 +98,7 @@ class DetailedOffer extends PureComponent {
                 </div>
               </div>
 
-              <Reviews />
+              <Reviews reviews = {reviews} />
 
             </div>
           </div>
