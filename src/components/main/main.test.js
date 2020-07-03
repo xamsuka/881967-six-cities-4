@@ -1,6 +1,9 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import MainComponent from './main';
+
+Enzyme.configure({adapter: new Adapter()});
 
 const citiesPlaces = [
   {
@@ -21,7 +24,8 @@ const citiesPlaces = [
       avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
       name: `Vladimir`,
       isSuper: false,
-    }
+    },
+    coords: [55, 20]
   },
   {
     id: 1,
@@ -41,13 +45,23 @@ const citiesPlaces = [
       avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
       name: `Vlad`,
       isSuper: false,
-    }
+    },
+    coords: [55, 20]
   }
 ];
 
 test(`Main render`, () => {
-  const tree = renderer
-    .create(<MainComponent citiesPlaces = {citiesPlaces} />).toJSON();
+  // const tree = renderer
+  //   .create(<MainComponent citiesPlaces = {citiesPlaces} />).toJSON();
 
-  expect(tree).toMatchSnapshot();
+  // expect(tree).toMatchSnapshot();
+
+  const div = global.document.createElement(`div`);
+
+  global.document.body.appendChild(div);
+
+  const main = mount(<MainComponent citiesPlaces = {citiesPlaces} />, {attachTo: div});
+
+  expect(main).toMatchSnapshot();
+
 });
