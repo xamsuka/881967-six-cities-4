@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CitiesPlaces from '../cities-places/cities-places.jsx';
 import City from '../city/city.jsx';
+import Map from '../map/map.jsx';
 import {CITIES} from '../../const.js';
 
 class Main extends PureComponent {
@@ -103,7 +104,9 @@ class Main extends PureComponent {
               <div className="cities__places-container container">
                 <CitiesPlaces citiesPlaces = {citiesRender} cityName ={this.state.currentCity} />
                 <div className="cities__right-section">
-                  <section className="cities__map map" />
+                  <section className="cities__map map">
+                    <Map pins = {citiesRender} />
+                  </section>
                 </div>
               </div>
             </div>

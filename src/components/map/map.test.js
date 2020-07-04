@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import App from './app';
+import Map from './map.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -50,13 +50,13 @@ const citiesPlaces = [
   }
 ];
 
-test(`App render`, () => {
+
+test(`<Map /> render`, () => {
   const div = global.document.createElement(`div`);
 
   global.document.body.appendChild(div);
 
-  const app = mount(<App citiesPlaces = {citiesPlaces} />, {attachTo: div});
+  const app = mount(<Map pins = {citiesPlaces} />, {attachTo: div});
 
   expect(app).toMatchSnapshot();
-
 });
