@@ -55,7 +55,7 @@ class Map extends PureComponent {
   }
 
   render() {
-    return (<div id="map"></div>);
+    return (<div id="map" />);
   }
 }
 

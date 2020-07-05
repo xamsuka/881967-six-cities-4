@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
 
 class Review extends PureComponent {
@@ -25,7 +26,7 @@ class Review extends PureComponent {
         </div>
         <div className="reviews__info">
 
-          <ReviewsRating />
+          <ReviewsRating rating = {review.rating} />
 
           <p className="reviews__text">
             {review.text}
@@ -37,5 +38,19 @@ class Review extends PureComponent {
       </li>);
   }
 }
+
+Review.propTypes = {
+  review: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      userAvatar: PropTypes.string.isRequired,
+      userName: PropTypes.string.isRequired,
+    }),
+    rating: PropTypes.oneOf([1, 2, 3, 4, 5]),
+    text: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+  })
+};
 
 export default Review;

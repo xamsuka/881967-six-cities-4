@@ -28,7 +28,7 @@ const generateOffer = (index) => {
     isPremium: Boolean(getRandomNumber(0, 1)),
     isFavorite: Boolean(getRandomNumber(0, 1)),
     type: TYPE_HOUSE[getRandomNumber(0, TYPE_HOUSE.length)],
-    rating: getRandomNumber(0, 5),
+    rating: getRandomNumber(1, 5),
     countDedrooms: getRandomNumber(0, 6),
     maxGuests: getRandomNumber(0, 5),
     price: getRandomNumber(20, 1500),
@@ -50,7 +50,7 @@ const generateReview = (index) => {
       userAvatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
       userName: NAME_USERS[getRandomNumber(0, NAME_USERS.length)],
     },
-    rating: getRandomNumber(0, 5),
+    rating: getRandomNumber(1, 5),
     text: `Всё очень круть!`,
     date: `April 2020`,
   };

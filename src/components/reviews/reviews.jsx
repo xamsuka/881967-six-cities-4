@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
+import PropTypes from 'prop-types';
 import FeedbackForm from "../feedback-form/feedback-form.jsx";
 import Review from '../review/review.jsx';
-import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
 
 class Reviews extends PureComponent {
   constructor(props) {
@@ -30,5 +30,19 @@ class Reviews extends PureComponent {
     );
   }
 }
+
+Reviews.propTypes = {
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      userAvatar: PropTypes.string.isRequired,
+      userName: PropTypes.string.isRequired,
+    }),
+    rating: PropTypes.oneOf([1, 2, 3, 4, 5]),
+    text: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+  }))
+};
 
 export default Reviews;

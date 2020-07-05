@@ -17,7 +17,7 @@ class CitiesPlaces extends PureComponent {
     const {citiesPlaces, cityName} = this.props;
 
     const placeCards = citiesPlaces.map((place) => {
-      return <PlaceCard place={place} onMouseOver={this._overMouseCardHandler} key={place.id} />;
+      return <PlaceCard place={place} onMouseOver={this._overMouseCardHandler} key={place.id} variant = {`cities`} />;
     });
 
     const countPlaces = placeCards.length;
