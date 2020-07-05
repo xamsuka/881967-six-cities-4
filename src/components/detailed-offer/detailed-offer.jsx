@@ -110,7 +110,7 @@ class DetailedOffer extends PureComponent {
             </div>
           </div>
           <section className="property__map map">
-            <Map pins = {[]} />
+            <Map pins = {otherPlaces} />
           </section>
         </section>
         <div className="container">
