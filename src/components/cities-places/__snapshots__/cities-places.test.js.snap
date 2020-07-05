@@ -80,7 +80,7 @@ exports[`<CitiesPlaces /> render 1`] = `
     >
       
       <div
-        className="cities__image-wrapper place-card__image-wrapper"
+        className="place-card__image-wrapper"
       >
         <a
           href="#"
@@ -179,7 +179,7 @@ exports[`<CitiesPlaces /> render 1`] = `
     >
       
       <div
-        className="cities__image-wrapper place-card__image-wrapper"
+        className="place-card__image-wrapper"
       >
         <a
           href="#"

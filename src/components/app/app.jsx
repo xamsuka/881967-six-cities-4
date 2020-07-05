@@ -19,6 +19,7 @@ class App extends PureComponent {
           <Route exact path="/">
             <Main citiesPlaces = {citiesPlaces} />;
           </Route>
+          {/* <Route path='/offer/:id' component={DetailedOffer}/> */}
           <Route exact path="/offer">
             <DetailedOffer place = {placeOffer} otherPlaces = {citiesPlaces.slice().slice(0, 3)} />
           </Route>

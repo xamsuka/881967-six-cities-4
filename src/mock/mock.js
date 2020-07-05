@@ -16,8 +16,6 @@ const FEATURES = [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `
 
 const NAME_USERS = [`Max`, `Nix`, `Oleg`, `Vladimir`, `Georg`, `Artur`, `Vlad`];
 
-export const countPlaces = getRandomNumber(0, 500);
-
 const generateOffer = (index) => {
   return {
     id: index,

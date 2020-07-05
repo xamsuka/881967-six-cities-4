@@ -8,7 +8,11 @@ import {CITIES} from '../../const.js';
 class Main extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {currentCity: `Paris`};
+
+    this.state = {
+      currentCity: `Paris`
+    };
+
     this._sectionTypeChangeHandler = this._sectionTypeChangeHandler.bind(this);
   }
 
@@ -33,7 +37,6 @@ class Main extends PureComponent {
     const citiesRender = citiesPlaces.filter((place) => {
       return place.city === this.state.currentCity;
     });
-
 
     return (
       <React.Fragment>

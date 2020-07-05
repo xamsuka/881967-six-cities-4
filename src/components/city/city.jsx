@@ -5,6 +5,7 @@ class City extends PureComponent {
   constructor(props) {
     super(props);
   }
+
   render() {
     const {cityName, currentCity} = this.props;
 

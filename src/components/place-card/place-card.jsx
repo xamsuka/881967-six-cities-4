@@ -77,6 +77,7 @@ PlaceCard.propTypes = {
     }).isRequired
   }).isRequired,
   onMouseOver: PropTypes.func.isRequired,
+  variant: PropTypes.oneOf(Object.keys(VARIANT_CARD_CLASS)).isRequired,
 };
 
 export default PlaceCard;

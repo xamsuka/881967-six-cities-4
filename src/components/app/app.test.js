@@ -1,9 +1,6 @@
 import React from 'react';
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import App from './app';
-
-Enzyme.configure({adapter: new Adapter()});
+import renderer from 'react-test-renderer';
+import App from './app.jsx';
 
 const citiesPlaces = [
   {
@@ -51,11 +48,11 @@ const citiesPlaces = [
 ];
 
 test(`App render`, () => {
-  const div = global.document.createElement(`div`);
-
-  global.document.body.appendChild(div);
-
-  const app = mount(<App citiesPlaces = {citiesPlaces} />, {attachTo: div});
+  const app = renderer
+    .create(<App citiesPlaces = {citiesPlaces} />, {
+      createNodeMock: () => {
+        return {};
+      }}).toJSON();
 
   expect(app).toMatchSnapshot();
 
