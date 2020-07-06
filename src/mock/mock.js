@@ -48,7 +48,7 @@ const generateReview = (index) => {
       userAvatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
       userName: NAME_USERS[getRandomNumber(0, NAME_USERS.length)],
     },
-    rating: getRandomNumber(1, 5),
+    rating: getRandomNumber(1, 5) + 1,
     text: `Всё очень круть!`,
     date: `April 2020`,
   };

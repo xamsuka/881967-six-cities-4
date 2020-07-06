@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import App from './components/app/app.jsx';
-import {generateOffers, generateReviews} from './mock/mock.js';
+import {generateOffers} from './mock/mock.js';
 
 const offers = generateOffers(50);
-const reviews = generateReviews(10);
 
 const rootElement = document.querySelector(`#root`);
 
@@ -37,5 +36,3 @@ const init = () => {
 };
 
 init();
-
-export {reviews};

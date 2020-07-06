@@ -4,8 +4,9 @@ import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
 import Map from '../map/map.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
-import {reviews} from '../../index.js';
+import {generateReviews} from '../../mock/mock.js';
 
+const reviews = generateReviews(10);
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
@@ -18,7 +19,7 @@ class DetailedOffer extends PureComponent {
     const {avatar: ownerAvatar, name: ownerName, isSuper} = infoOwner || {};
 
     const placeCardsNear = otherPlaces.map((placeNear) => {
-      return <PlaceCard place={placeNear} onMouseOver={this._overMouseCardHandler} key={`${placeNear.id} ${placeNear.description}`} variant = {`near`} />;
+      return <PlaceCard place={placeNear} onMouseOver={() => {}} key={`${placeNear.id} ${placeNear.description}`} variant = {`near`} />;
     });
 
     const favoriteClass = isFavorite ? `property__bookmark-button--active` : ``;
@@ -128,27 +129,29 @@ class DetailedOffer extends PureComponent {
   }
 }
 
+const placeType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  city: PropTypes.string.isRequired,
+  photos: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  isPremium: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  countDedrooms: PropTypes.number.isRequired,
+  maxGuests: PropTypes.number.isRequired,
+  price: PropTypes.number.isRequired,
+  features: PropTypes.array.isRequired,
+  infoOwner: PropTypes.shape({
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    isSuper: PropTypes.bool.isRequired,
+  }).isRequired
+});
+
 DetailedOffer.propTypes = {
-  otherPlaces: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    city: PropTypes.string.isRequired,
-    photos: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    countDedrooms: PropTypes.number.isRequired,
-    maxGuests: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    features: PropTypes.array.isRequired,
-    infoOwner: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      isSuper: PropTypes.bool.isRequired,
-    }).isRequired
-  }).isRequired).isRequired,
+  otherPlaces: PropTypes.arrayOf(placeType.isRequired).isRequired,
   place: PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.string.isRequired,
