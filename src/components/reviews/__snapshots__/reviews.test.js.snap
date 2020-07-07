@@ -11,7 +11,7 @@ exports[`<Reviews /> render 1`] = `
     <span
       className="reviews__amount"
     >
-      1
+      2
     </span>
   </h2>
   <ul
@@ -30,14 +30,14 @@ exports[`<Reviews /> render 1`] = `
             alt="Reviews avatar"
             className="reviews__avatar user__avatar"
             height={54}
-            src="img/avatar-max.jpg"
+            src="https://api.adorable.io/avatars/285/abott@adorable.png"
             width={54}
           />
         </div>
         <span
           className="reviews__user-name"
         >
-          Max
+          Vlad
         </span>
       </div>
       <div
@@ -52,7 +52,7 @@ exports[`<Reviews /> render 1`] = `
             <span
               style={
                 Object {
-                  "width": "50%",
+                  "width": "100%",
                 }
               }
             />
@@ -66,13 +66,72 @@ exports[`<Reviews /> render 1`] = `
         <p
           className="reviews__text"
         >
-          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+          Всё очень круть!
         </p>
         <time
           className="reviews__time"
           dateTime="2019-04-24"
         >
-          April 2019
+          April 2020
+        </time>
+      </div>
+    </li>
+    <li
+      className="reviews__item"
+    >
+      <div
+        className="reviews__user user"
+      >
+        <div
+          className="reviews__avatar-wrapper user__avatar-wrapper"
+        >
+          <img
+            alt="Reviews avatar"
+            className="reviews__avatar user__avatar"
+            height={54}
+            src="https://api.adorable.io/avatars/285/abott@adorable.png"
+            width={54}
+          />
+        </div>
+        <span
+          className="reviews__user-name"
+        >
+          Viktor
+        </span>
+      </div>
+      <div
+        className="reviews__info"
+      >
+        <div
+          className="reviews__rating rating"
+        >
+          <div
+            className="reviews__stars rating__stars"
+          >
+            <span
+              style={
+                Object {
+                  "width": "80%",
+                }
+              }
+            />
+            <span
+              className="visually-hidden"
+            >
+              Rating
+            </span>
+          </div>
+        </div>
+        <p
+          className="reviews__text"
+        >
+          Пойдёт!
+        </p>
+        <time
+          className="reviews__time"
+          dateTime="2019-04-24"
+        >
+          April 2021
         </time>
       </div>
     </li>

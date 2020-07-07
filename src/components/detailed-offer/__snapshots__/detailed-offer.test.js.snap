@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<DetailedOffer /> render 1`] = `
+exports[`DetailedOffer first render 1`] = `
 <main
   className="page__main page__main--property"
 >
@@ -240,7 +240,7 @@ exports[`<DetailedOffer /> render 1`] = `
             <span
               className="reviews__amount"
             >
-              1
+              10
             </span>
           </h2>
           <ul
@@ -259,7 +259,479 @@ exports[`<DetailedOffer /> render 1`] = `
                     alt="Reviews avatar"
                     className="reviews__avatar user__avatar"
                     height={54}
-                    src="img/avatar-max.jpg"
+                    src="https://api.adorable.io/avatars/285/abott@adorable.png"
+                    width={54}
+                  />
+                </div>
+                <span
+                  className="reviews__user-name"
+                >
+                  Georg
+                </span>
+              </div>
+              <div
+                className="reviews__info"
+              >
+                <div
+                  className="reviews__rating rating"
+                >
+                  <div
+                    className="reviews__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "40%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <p
+                  className="reviews__text"
+                >
+                  Всё очень круть!
+                </p>
+                <time
+                  className="reviews__time"
+                  dateTime="2019-04-24"
+                >
+                  April 2020
+                </time>
+              </div>
+            </li>
+            <li
+              className="reviews__item"
+            >
+              <div
+                className="reviews__user user"
+              >
+                <div
+                  className="reviews__avatar-wrapper user__avatar-wrapper"
+                >
+                  <img
+                    alt="Reviews avatar"
+                    className="reviews__avatar user__avatar"
+                    height={54}
+                    src="https://api.adorable.io/avatars/285/abott@adorable.png"
+                    width={54}
+                  />
+                </div>
+                <span
+                  className="reviews__user-name"
+                >
+                  Vlad
+                </span>
+              </div>
+              <div
+                className="reviews__info"
+              >
+                <div
+                  className="reviews__rating rating"
+                >
+                  <div
+                    className="reviews__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "80%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <p
+                  className="reviews__text"
+                >
+                  Всё очень круть!
+                </p>
+                <time
+                  className="reviews__time"
+                  dateTime="2019-04-24"
+                >
+                  April 2020
+                </time>
+              </div>
+            </li>
+            <li
+              className="reviews__item"
+            >
+              <div
+                className="reviews__user user"
+              >
+                <div
+                  className="reviews__avatar-wrapper user__avatar-wrapper"
+                >
+                  <img
+                    alt="Reviews avatar"
+                    className="reviews__avatar user__avatar"
+                    height={54}
+                    src="https://api.adorable.io/avatars/285/abott@adorable.png"
+                    width={54}
+                  />
+                </div>
+                <span
+                  className="reviews__user-name"
+                >
+                  Vladimir
+                </span>
+              </div>
+              <div
+                className="reviews__info"
+              >
+                <div
+                  className="reviews__rating rating"
+                >
+                  <div
+                    className="reviews__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "80%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <p
+                  className="reviews__text"
+                >
+                  Всё очень круть!
+                </p>
+                <time
+                  className="reviews__time"
+                  dateTime="2019-04-24"
+                >
+                  April 2020
+                </time>
+              </div>
+            </li>
+            <li
+              className="reviews__item"
+            >
+              <div
+                className="reviews__user user"
+              >
+                <div
+                  className="reviews__avatar-wrapper user__avatar-wrapper"
+                >
+                  <img
+                    alt="Reviews avatar"
+                    className="reviews__avatar user__avatar"
+                    height={54}
+                    src="https://api.adorable.io/avatars/285/abott@adorable.png"
+                    width={54}
+                  />
+                </div>
+                <span
+                  className="reviews__user-name"
+                >
+                  Nix
+                </span>
+              </div>
+              <div
+                className="reviews__info"
+              >
+                <div
+                  className="reviews__rating rating"
+                >
+                  <div
+                    className="reviews__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "20%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <p
+                  className="reviews__text"
+                >
+                  Всё очень круть!
+                </p>
+                <time
+                  className="reviews__time"
+                  dateTime="2019-04-24"
+                >
+                  April 2020
+                </time>
+              </div>
+            </li>
+            <li
+              className="reviews__item"
+            >
+              <div
+                className="reviews__user user"
+              >
+                <div
+                  className="reviews__avatar-wrapper user__avatar-wrapper"
+                >
+                  <img
+                    alt="Reviews avatar"
+                    className="reviews__avatar user__avatar"
+                    height={54}
+                    src="https://api.adorable.io/avatars/285/abott@adorable.png"
+                    width={54}
+                  />
+                </div>
+                <span
+                  className="reviews__user-name"
+                >
+                  Vladimir
+                </span>
+              </div>
+              <div
+                className="reviews__info"
+              >
+                <div
+                  className="reviews__rating rating"
+                >
+                  <div
+                    className="reviews__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "60%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <p
+                  className="reviews__text"
+                >
+                  Всё очень круть!
+                </p>
+                <time
+                  className="reviews__time"
+                  dateTime="2019-04-24"
+                >
+                  April 2020
+                </time>
+              </div>
+            </li>
+            <li
+              className="reviews__item"
+            >
+              <div
+                className="reviews__user user"
+              >
+                <div
+                  className="reviews__avatar-wrapper user__avatar-wrapper"
+                >
+                  <img
+                    alt="Reviews avatar"
+                    className="reviews__avatar user__avatar"
+                    height={54}
+                    src="https://api.adorable.io/avatars/285/abott@adorable.png"
+                    width={54}
+                  />
+                </div>
+                <span
+                  className="reviews__user-name"
+                >
+                  Vlad
+                </span>
+              </div>
+              <div
+                className="reviews__info"
+              >
+                <div
+                  className="reviews__rating rating"
+                >
+                  <div
+                    className="reviews__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <p
+                  className="reviews__text"
+                >
+                  Всё очень круть!
+                </p>
+                <time
+                  className="reviews__time"
+                  dateTime="2019-04-24"
+                >
+                  April 2020
+                </time>
+              </div>
+            </li>
+            <li
+              className="reviews__item"
+            >
+              <div
+                className="reviews__user user"
+              >
+                <div
+                  className="reviews__avatar-wrapper user__avatar-wrapper"
+                >
+                  <img
+                    alt="Reviews avatar"
+                    className="reviews__avatar user__avatar"
+                    height={54}
+                    src="https://api.adorable.io/avatars/285/abott@adorable.png"
+                    width={54}
+                  />
+                </div>
+                <span
+                  className="reviews__user-name"
+                >
+                  Artur
+                </span>
+              </div>
+              <div
+                className="reviews__info"
+              >
+                <div
+                  className="reviews__rating rating"
+                >
+                  <div
+                    className="reviews__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "80%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <p
+                  className="reviews__text"
+                >
+                  Всё очень круть!
+                </p>
+                <time
+                  className="reviews__time"
+                  dateTime="2019-04-24"
+                >
+                  April 2020
+                </time>
+              </div>
+            </li>
+            <li
+              className="reviews__item"
+            >
+              <div
+                className="reviews__user user"
+              >
+                <div
+                  className="reviews__avatar-wrapper user__avatar-wrapper"
+                >
+                  <img
+                    alt="Reviews avatar"
+                    className="reviews__avatar user__avatar"
+                    height={54}
+                    src="https://api.adorable.io/avatars/285/abott@adorable.png"
+                    width={54}
+                  />
+                </div>
+                <span
+                  className="reviews__user-name"
+                >
+                  Vladimir
+                </span>
+              </div>
+              <div
+                className="reviews__info"
+              >
+                <div
+                  className="reviews__rating rating"
+                >
+                  <div
+                    className="reviews__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "40%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <p
+                  className="reviews__text"
+                >
+                  Всё очень круть!
+                </p>
+                <time
+                  className="reviews__time"
+                  dateTime="2019-04-24"
+                >
+                  April 2020
+                </time>
+              </div>
+            </li>
+            <li
+              className="reviews__item"
+            >
+              <div
+                className="reviews__user user"
+              >
+                <div
+                  className="reviews__avatar-wrapper user__avatar-wrapper"
+                >
+                  <img
+                    alt="Reviews avatar"
+                    className="reviews__avatar user__avatar"
+                    height={54}
+                    src="https://api.adorable.io/avatars/285/abott@adorable.png"
                     width={54}
                   />
                 </div>
@@ -281,7 +753,7 @@ exports[`<DetailedOffer /> render 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "50%",
+                          "width": "40%",
                         }
                       }
                     />
@@ -295,13 +767,72 @@ exports[`<DetailedOffer /> render 1`] = `
                 <p
                   className="reviews__text"
                 >
-                  A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+                  Всё очень круть!
                 </p>
                 <time
                   className="reviews__time"
                   dateTime="2019-04-24"
                 >
-                  April 2019
+                  April 2020
+                </time>
+              </div>
+            </li>
+            <li
+              className="reviews__item"
+            >
+              <div
+                className="reviews__user user"
+              >
+                <div
+                  className="reviews__avatar-wrapper user__avatar-wrapper"
+                >
+                  <img
+                    alt="Reviews avatar"
+                    className="reviews__avatar user__avatar"
+                    height={54}
+                    src="https://api.adorable.io/avatars/285/abott@adorable.png"
+                    width={54}
+                  />
+                </div>
+                <span
+                  className="reviews__user-name"
+                >
+                  Artur
+                </span>
+              </div>
+              <div
+                className="reviews__info"
+              >
+                <div
+                  className="reviews__rating rating"
+                >
+                  <div
+                    className="reviews__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "80%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <p
+                  className="reviews__text"
+                >
+                  Всё очень круть!
+                </p>
+                <time
+                  className="reviews__time"
+                  dateTime="2019-04-24"
+                >
+                  April 2020
                 </time>
               </div>
             </li>
@@ -472,7 +1003,11 @@ exports[`<DetailedOffer /> render 1`] = `
     </div>
     <section
       className="property__map map"
-    />
+    >
+      <div
+        id="map"
+      />
+    </section>
   </section>
   <div
     className="container"
@@ -490,9 +1025,18 @@ exports[`<DetailedOffer /> render 1`] = `
       >
         <article
           className="near-places__card place-card"
+          data-id={0}
+          onMouseOver={[Function]}
         >
           <div
-            className="near-places__image-wrapper place-card__image-wrapper"
+            className="place-card__mark"
+          >
+            <span>
+              Premium
+            </span>
+          </div>
+          <div
+            className="place-card__image-wrapper"
           >
             <a
               href="#"
@@ -501,7 +1045,7 @@ exports[`<DetailedOffer /> render 1`] = `
                 alt="Place image"
                 className="place-card__image"
                 height={200}
-                src="img/room.jpg"
+                src="https://canadskaya-izba.ru/img/doma/karkas2.jpg"
                 width={260}
               />
             </a>
@@ -518,7 +1062,8 @@ exports[`<DetailedOffer /> render 1`] = `
                 <b
                   className="place-card__price-value"
                 >
-                  €80
+                  €
+                  250
                 </b>
                 <span
                   className="place-card__price-text"
@@ -528,194 +1073,6 @@ exports[`<DetailedOffer /> render 1`] = `
               </div>
               <button
                 className="place-card__bookmark-button place-card__bookmark-button--active button"
-                type="button"
-              >
-                <svg
-                  className="place-card__bookmark-icon"
-                  height={19}
-                  width={18}
-                >
-                  <use
-                    xlinkHref="#icon-bookmark"
-                  />
-                </svg>
-                <span
-                  className="visually-hidden"
-                >
-                  In bookmarks
-                </span>
-              </button>
-            </div>
-            <div
-              className="place-card__rating rating"
-            >
-              <div
-                className="place-card__stars rating__stars"
-              >
-                <span
-                  style={
-                    Object {
-                      "width": "80%",
-                    }
-                  }
-                />
-                <span
-                  className="visually-hidden"
-                >
-                  Rating
-                </span>
-              </div>
-            </div>
-            <h2
-              className="place-card__name"
-            >
-              <a
-                href="#"
-              >
-                Wood and stone place
-              </a>
-            </h2>
-            <p
-              className="place-card__type"
-            >
-              Private room
-            </p>
-          </div>
-        </article>
-        <article
-          className="near-places__card place-card"
-        >
-          <div
-            className="near-places__image-wrapper place-card__image-wrapper"
-          >
-            <a
-              href="#"
-            >
-              <img
-                alt="Place image"
-                className="place-card__image"
-                height={200}
-                src="img/apartment-02.jpg"
-                width={260}
-              />
-            </a>
-          </div>
-          <div
-            className="place-card__info"
-          >
-            <div
-              className="place-card__price-wrapper"
-            >
-              <div
-                className="place-card__price"
-              >
-                <b
-                  className="place-card__price-value"
-                >
-                  €132
-                </b>
-                <span
-                  className="place-card__price-text"
-                >
-                  / night
-                </span>
-              </div>
-              <button
-                className="place-card__bookmark-button button"
-                type="button"
-              >
-                <svg
-                  className="place-card__bookmark-icon"
-                  height={19}
-                  width={18}
-                >
-                  <use
-                    xlinkHref="#icon-bookmark"
-                  />
-                </svg>
-                <span
-                  className="visually-hidden"
-                >
-                  To bookmarks
-                </span>
-              </button>
-            </div>
-            <div
-              className="place-card__rating rating"
-            >
-              <div
-                className="place-card__stars rating__stars"
-              >
-                <span
-                  style={
-                    Object {
-                      "width": "80%",
-                    }
-                  }
-                />
-                <span
-                  className="visually-hidden"
-                >
-                  Rating
-                </span>
-              </div>
-            </div>
-            <h2
-              className="place-card__name"
-            >
-              <a
-                href="#"
-              >
-                Canal View Prinsengracht
-              </a>
-            </h2>
-            <p
-              className="place-card__type"
-            >
-              Apartment
-            </p>
-          </div>
-        </article>
-        <article
-          className="near-places__card place-card"
-        >
-          <div
-            className="near-places__image-wrapper place-card__image-wrapper"
-          >
-            <a
-              href="#"
-            >
-              <img
-                alt="Place image"
-                className="place-card__image"
-                height={200}
-                src="img/apartment-03.jpg"
-                width={260}
-              />
-            </a>
-          </div>
-          <div
-            className="place-card__info"
-          >
-            <div
-              className="place-card__price-wrapper"
-            >
-              <div
-                className="place-card__price"
-              >
-                <b
-                  className="place-card__price-value"
-                >
-                  €180
-                </b>
-                <span
-                  className="place-card__price-text"
-                >
-                  / night
-                </span>
-              </div>
-              <button
-                className="place-card__bookmark-button button"
                 type="button"
               >
                 <svg
@@ -758,9 +1115,220 @@ exports[`<DetailedOffer /> render 1`] = `
               className="place-card__name"
             >
               <a
-                href="#"
+                href="/offer"
+                target="_blank"
               >
-                Nice, cozy, warm big bed apartment
+                Очень красивый и уютный дом
+              </a>
+            </h2>
+            <p
+              className="place-card__type"
+            >
+              Apartment
+            </p>
+          </div>
+        </article>
+        <article
+          className="near-places__card place-card"
+          data-id={1}
+          onMouseOver={[Function]}
+        >
+          <div
+            className="place-card__mark"
+          >
+            <span>
+              Premium
+            </span>
+          </div>
+          <div
+            className="place-card__image-wrapper"
+          >
+            <a
+              href="#"
+            >
+              <img
+                alt="Place image"
+                className="place-card__image"
+                height={200}
+                src="https://canadskaya-izba.ru/img/doma/karkas2.jpg"
+                width={260}
+              />
+            </a>
+          </div>
+          <div
+            className="place-card__info"
+          >
+            <div
+              className="place-card__price-wrapper"
+            >
+              <div
+                className="place-card__price"
+              >
+                <b
+                  className="place-card__price-value"
+                >
+                  €
+                  250
+                </b>
+                <span
+                  className="place-card__price-text"
+                >
+                  / night
+                </span>
+              </div>
+              <button
+                className="place-card__bookmark-button place-card__bookmark-button--active button"
+                type="button"
+              >
+                <svg
+                  className="place-card__bookmark-icon"
+                  height={19}
+                  width={18}
+                >
+                  <use
+                    xlinkHref="#icon-bookmark"
+                  />
+                </svg>
+                <span
+                  className="visually-hidden"
+                >
+                  To bookmarks
+                </span>
+              </button>
+            </div>
+            <div
+              className="place-card__rating rating"
+            >
+              <div
+                className="place-card__stars rating__stars"
+              >
+                <span
+                  style={
+                    Object {
+                      "width": "100%",
+                    }
+                  }
+                />
+                <span
+                  className="visually-hidden"
+                >
+                  Rating
+                </span>
+              </div>
+            </div>
+            <h2
+              className="place-card__name"
+            >
+              <a
+                href="/offer"
+                target="_blank"
+              >
+                Очень красивый и уютный дом
+              </a>
+            </h2>
+            <p
+              className="place-card__type"
+            >
+              Apartment
+            </p>
+          </div>
+        </article>
+        <article
+          className="near-places__card place-card"
+          data-id={2}
+          onMouseOver={[Function]}
+        >
+          <div
+            className="place-card__mark"
+          >
+            <span>
+              Premium
+            </span>
+          </div>
+          <div
+            className="place-card__image-wrapper"
+          >
+            <a
+              href="#"
+            >
+              <img
+                alt="Place image"
+                className="place-card__image"
+                height={200}
+                src="https://canadskaya-izba.ru/img/doma/karkas2.jpg"
+                width={260}
+              />
+            </a>
+          </div>
+          <div
+            className="place-card__info"
+          >
+            <div
+              className="place-card__price-wrapper"
+            >
+              <div
+                className="place-card__price"
+              >
+                <b
+                  className="place-card__price-value"
+                >
+                  €
+                  250
+                </b>
+                <span
+                  className="place-card__price-text"
+                >
+                  / night
+                </span>
+              </div>
+              <button
+                className="place-card__bookmark-button place-card__bookmark-button--active button"
+                type="button"
+              >
+                <svg
+                  className="place-card__bookmark-icon"
+                  height={19}
+                  width={18}
+                >
+                  <use
+                    xlinkHref="#icon-bookmark"
+                  />
+                </svg>
+                <span
+                  className="visually-hidden"
+                >
+                  To bookmarks
+                </span>
+              </button>
+            </div>
+            <div
+              className="place-card__rating rating"
+            >
+              <div
+                className="place-card__stars rating__stars"
+              >
+                <span
+                  style={
+                    Object {
+                      "width": "100%",
+                    }
+                  }
+                />
+                <span
+                  className="visually-hidden"
+                >
+                  Rating
+                </span>
+              </div>
+            </div>
+            <h2
+              className="place-card__name"
+            >
+              <a
+                href="/offer"
+                target="_blank"
+              >
+                Очень красивый и уютный дом
               </a>
             </h2>
             <p

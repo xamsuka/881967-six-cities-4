@@ -25,7 +25,7 @@ const place = {
 
 test(`<PlaceCard /> render`, () => {
   const three = renderer
-    .create(<PlaceCard place = {place} onMouseOver = {() => {}} />).toJSON();
+    .create(<PlaceCard place = {place} onMouseOver = {() => {}} variant = {`cities`} />).toJSON();
 
   expect(three).toMatchSnapshot();
 });

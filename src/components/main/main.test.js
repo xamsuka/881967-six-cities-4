@@ -1,9 +1,8 @@
 import React from 'react';
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import renderer from 'react-test-renderer';
 import MainComponent from './main';
 
-Enzyme.configure({adapter: new Adapter()});
+jest.mock(`leaflet`);
 
 const citiesPlaces = [
   {
@@ -51,17 +50,8 @@ const citiesPlaces = [
 ];
 
 test(`Main render`, () => {
-  // const tree = renderer
-  //   .create(<MainComponent citiesPlaces = {citiesPlaces} />).toJSON();
+  const tree = renderer
+    .create(<MainComponent citiesPlaces = {citiesPlaces} />).toJSON();
 
-  // expect(tree).toMatchSnapshot();
-
-  const div = global.document.createElement(`div`);
-
-  global.document.body.appendChild(div);
-
-  const main = mount(<MainComponent citiesPlaces = {citiesPlaces} />, {attachTo: div});
-
-  expect(main).toMatchSnapshot();
-
+  expect(tree).toMatchSnapshot();
 });
