@@ -54,14 +54,14 @@ Enzyme.configure({adapter: new Adapter()});
 
 describe(`<MainComponent />`, () => {
   test(`simulate click evets`, () => {
-    const onSecltionCityChange = Main.prototype._sectionTypeChangeHandler = jest.fn();
+    const onChangeCurrentCity = jest.fn();
 
-    const three = shallow(<Main citiesPlaces = {citiesPlaces} />);
+    const three = shallow(<Main citiesPlaces = {citiesPlaces} currentCity = {`Paris`} onChangeCurrentCity = {onChangeCurrentCity} />);
 
     const sectionTypesElement = three.find(`.locations__list`);
 
     sectionTypesElement.props().onClick();
 
-    expect(onSecltionCityChange).toHaveBeenCalledTimes(1);
+    expect(onChangeCurrentCity).toHaveBeenCalledTimes(1);
   });
 });

@@ -51,7 +51,7 @@ const citiesPlaces = [
 
 test(`Main render`, () => {
   const tree = renderer
-    .create(<MainComponent citiesPlaces = {citiesPlaces} />).toJSON();
+    .create(<MainComponent citiesPlaces = {citiesPlaces} currentCity = {`Paris`} onChangeCurrentCity = {() => {}} />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

@@ -86,11 +86,37 @@ const otherPlaces = [
   }
 ];
 
+const reviews = [
+  {
+    id: 0,
+    user: {
+      id: 0,
+      userAvatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
+      userName: `Vlad`,
+    },
+    rating: 5,
+    text: `Всё очень круть!`,
+    date: `April 2020`,
+  },
+  {
+    id: 1,
+    user: {
+      id: 1,
+      userAvatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
+      userName: `Viktor`,
+    },
+    rating: 5,
+    text: `Всё очень круть!`,
+    date: `April 2020`,
+  },
+];
+
 test(`DetailedOffer first render`, () => {
   const three = renderer
     .create(<DetailedOffer
       place = {placeOffer}
       otherPlaces = {otherPlaces}
+      reviews = {reviews}
     />).toJSON();
 
   expect(three).toMatchSnapshot();
