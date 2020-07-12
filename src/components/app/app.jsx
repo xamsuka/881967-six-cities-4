@@ -1,8 +1,11 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
+import {ActionCreator} from '../../reducer.js';
+import {reviews} from '../../mock/mock.js';
 
 class App extends PureComponent {
   constructor(props) {
@@ -10,18 +13,19 @@ class App extends PureComponent {
   }
 
   render() {
-    const {citiesPlaces} = this.props;
-    const {placeOffer} = this.props;
+    const {citiesPlaces, placeOffer, currentCity, onChangeCurrentCity, getOffers} = this.props;
+
+    getOffers();
 
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Main citiesPlaces = {citiesPlaces} />;
+            <Main citiesPlaces = {citiesPlaces} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} />;
           </Route>
           {/* <Route path='/offer/:id' component={DetailedOffer}/> */}
           <Route exact path="/offer">
-            <DetailedOffer place = {placeOffer} otherPlaces = {citiesPlaces.slice().slice(0, 3)} />
+            <DetailedOffer place = {placeOffer} otherPlaces = {citiesPlaces.slice().slice(0, 3)} reviews = {reviews} />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -51,6 +55,25 @@ App.propTypes = {
     }).isRequired
   }).isRequired).isRequired,
   placeOffer: PropTypes.any,
+  currentCity: PropTypes.oneOf([`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`]).isRequired,
+  onChangeCurrentCity: PropTypes.func.isRequired,
+  getOffers: PropTypes.func.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  citiesPlaces: state.offers,
+  placeOffer: state.placeOffer,
+  currentCity: state.city,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onChangeCurrentCity: (evt) => {
+    dispatch(ActionCreator.changeCities(evt));
+  },
+  getOffers: () => {
+    dispatch(ActionCreator.getOffers());
+  }
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

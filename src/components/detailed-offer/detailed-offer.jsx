@@ -4,9 +4,6 @@ import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
 import Map from '../map/map.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
-import {generateReviews} from '../../mock/mock.js';
-
-const reviews = generateReviews(10);
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
@@ -14,7 +11,7 @@ class DetailedOffer extends PureComponent {
   }
 
   render() {
-    const {place, otherPlaces} = this.props;
+    const {place, otherPlaces, reviews} = this.props;
     const {photos, title, description, isPremium, type, rating, countDedrooms, maxGuests, isFavorite, price, features, infoOwner} = place;
     const {avatar: ownerAvatar, name: ownerName, isSuper} = infoOwner || {};
 
@@ -172,6 +169,7 @@ DetailedOffer.propTypes = {
       isSuper: PropTypes.bool.isRequired,
     }).isRequired
   }).isRequired,
+  reviews: PropTypes.array.isRequired,
 };
 
 export default DetailedOffer;

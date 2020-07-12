@@ -8,34 +8,17 @@ import {CITIES} from '../../const.js';
 class Main extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      currentCity: `Paris`
-    };
-
-    this._sectionTypeChangeHandler = this._sectionTypeChangeHandler.bind(this);
-  }
-
-  _sectionTypeChangeHandler(evt) {
-    const cityTraget = evt.target;
-    const cityName = cityTraget.textContent;
-
-    if (cityTraget.tagName === `SPAN` || cityTraget.tagName === `A`) {
-      this.setState({
-        currentCity: cityName,
-      });
-    }
   }
 
   render() {
-    const {citiesPlaces} = this.props;
+    const {citiesPlaces, currentCity, onChangeCurrentCity} = this.props;
 
     const cityesElements = CITIES.map((city) => {
-      return <City cityName = {city} currentCity = {this.state.currentCity} key={city} />;
+      return <City cityName = {city} currentCity = {currentCity} key={city} />;
     });
 
     const citiesRender = citiesPlaces.filter((place) => {
-      return place.city === this.state.currentCity;
+      return place.city === currentCity;
     });
 
     return (
@@ -98,14 +81,14 @@ class Main extends PureComponent {
             <h1 className="visually-hidden">Cities</h1>
             <div className="tabs">
               <section className="locations container">
-                <ul className="locations__list tabs__list" onClick={this._sectionTypeChangeHandler}>
+                <ul className="locations__list tabs__list" onClick={onChangeCurrentCity}>
                   {cityesElements}
                 </ul>
               </section>
             </div>
             <div className="cities">
               <div className="cities__places-container container">
-                <CitiesPlaces citiesPlaces = {citiesRender} cityName ={this.state.currentCity} />
+                <CitiesPlaces citiesPlaces = {citiesRender} cityName ={currentCity} />
                 <div className="cities__right-section">
                   <section className="cities__map map">
                     <Map pins = {citiesRender} />
@@ -122,6 +105,8 @@ class Main extends PureComponent {
 
 Main.propTypes = {
   citiesPlaces: PropTypes.array.isRequired,
+  currentCity: PropTypes.oneOf([`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldor`]).isRequired,
+  onChangeCurrentCity: PropTypes.func.isRequired,
 };
 
 export default Main;
