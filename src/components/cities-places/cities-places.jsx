@@ -2,9 +2,6 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import VariantSort from '../variant-sort/variant-sort.jsx';
-import {withSort} from '../with-sort/with-sort.jsx';
-
-const WrappedVariantSort = withSort(VariantSort);
 
 class CitiesPlaces extends PureComponent {
   constructor(props) {
@@ -40,21 +37,7 @@ class CitiesPlaces extends PureComponent {
               <use xlinkHref="#icon-arrow-select" />
             </svg>
           </span>
-          <WrappedVariantSort />
-          {/* <ul className="places__options places__options--custom places__options--close">
-            <li className="places__option places__option--active" tabIndex={0}>
-              Popular
-            </li>
-            <li className="places__option" tabIndex={0}>
-              Price: low to high
-            </li>
-            <li className="places__option" tabIndex={0}>
-              Price: high to low
-            </li>
-            <li className="places__option" tabIndex={0}>
-              Top rated first
-            </li>
-          </ul> */}
+          <VariantSort />
         </form>
         <div className="cities__places-list places__list tabs__content">
           {placeCards}

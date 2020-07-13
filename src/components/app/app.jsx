@@ -5,7 +5,30 @@ import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {ActionCreator} from '../../reducer.js';
-import {reviews} from '../../mock/mock.js';
+import {SortTypes} from '../../const.js';
+
+const sortedOffers = (offers, currentSort) => {
+  const sortOffers = offers.slice();
+
+  switch (currentSort) {
+    case SortTypes.POPULAR:
+      return offers;
+    case SortTypes.PRICE_LOW_TO_HIGHT:
+      return sortOffers.sort((a, b) => {
+        return a.price - b.price;
+      });
+    case SortTypes.PRICE_HIGHT_TO_LOW:
+      return sortOffers.sort((a, b) => {
+        return b.price - a.price;
+      });
+    case SortTypes.TOP_RATED_FIRST:
+      return sortOffers.sort((a, b) => {
+        return a.rating - b.rating;
+      });
+  }
+
+  return offers;
+};
 
 class App extends PureComponent {
   constructor(props) {
@@ -13,20 +36,19 @@ class App extends PureComponent {
   }
 
   render() {
-    const {citiesPlaces, placeOffer, currentCity, onChangeCurrentCity, getOffers} = this.props;
+    const {citiesPlaces, currentCity, onChangeCurrentCity, getOffers, currentSort} = this.props;
 
     getOffers();
+
+    const sortedCityPlaces = sortedOffers(citiesPlaces, currentSort);
 
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Main citiesPlaces = {citiesPlaces} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} />;
+            <Main citiesPlaces = {sortedCityPlaces} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} />;
           </Route>
-          {/* <Route path='/offer/:id' component={DetailedOffer}/> */}
-          <Route exact path="/offer">
-            <DetailedOffer place = {placeOffer} otherPlaces = {citiesPlaces.slice().slice(0, 3)} reviews = {reviews} />
-          </Route>
+          <Route path='/offer/:id' component={DetailedOffer}/>
         </Switch>
       </BrowserRouter>
     );
@@ -54,16 +76,16 @@ App.propTypes = {
       isSuper: PropTypes.bool.isRequired,
     }).isRequired
   }).isRequired).isRequired,
-  placeOffer: PropTypes.any,
   currentCity: PropTypes.oneOf([`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`]).isRequired,
   onChangeCurrentCity: PropTypes.func.isRequired,
   getOffers: PropTypes.func.isRequired,
+  currentSort: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   citiesPlaces: state.offers,
-  placeOffer: state.placeOffer,
   currentCity: state.city,
+  currentSort: state.currentSort,
 });
 
 const mapDispatchToProps = (dispatch) => ({

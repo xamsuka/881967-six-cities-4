@@ -1,9 +1,11 @@
 import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
 import Map from '../map/map.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
+import {reviews} from '../../mock/mock.js';
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
@@ -11,7 +13,11 @@ class DetailedOffer extends PureComponent {
   }
 
   render() {
-    const {place, otherPlaces, reviews} = this.props;
+    const {offers} = this.props;
+    const {id} = this.props.match.params;
+    const place = offers[id];
+    const otherPlaces = offers.slice().slice(0, 3);
+
     const {photos, title, description, isPremium, type, rating, countDedrooms, maxGuests, isFavorite, price, features, infoOwner} = place;
     const {avatar: ownerAvatar, name: ownerName, isSuper} = infoOwner || {};
 
@@ -126,30 +132,8 @@ class DetailedOffer extends PureComponent {
   }
 }
 
-const placeType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  city: PropTypes.string.isRequired,
-  photos: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  isPremium: PropTypes.bool.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  type: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  countDedrooms: PropTypes.number.isRequired,
-  maxGuests: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
-  features: PropTypes.array.isRequired,
-  infoOwner: PropTypes.shape({
-    avatar: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    isSuper: PropTypes.bool.isRequired,
-  }).isRequired
-});
-
 DetailedOffer.propTypes = {
-  otherPlaces: PropTypes.arrayOf(placeType.isRequired).isRequired,
-  place: PropTypes.shape({
+  offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.string.isRequired,
     photos: PropTypes.array.isRequired,
@@ -168,8 +152,17 @@ DetailedOffer.propTypes = {
       name: PropTypes.string.isRequired,
       isSuper: PropTypes.bool.isRequired,
     }).isRequired
-  }).isRequired,
-  reviews: PropTypes.array.isRequired,
+  }).isRequired).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired
+    })
+  }),
 };
 
-export default DetailedOffer;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
+
+export {DetailedOffer};
+export default connect(mapStateToProps)(DetailedOffer);

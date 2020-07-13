@@ -1,5 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import CitiesPlaces from './cities-places.jsx';
 
 const citiesPlaces = [
@@ -45,11 +47,21 @@ const citiesPlaces = [
   }
 ];
 
+const mockStore = configureStore([]);
+
 const cityName = `Paris`;
 
 test(`<CitiesPlaces /> render`, () => {
+  const store = mockStore({
+    city: `Paris`,
+    currentSort: `Popular`,
+    offers: citiesPlaces,
+  });
+
   const three = renderer
-    .create(<CitiesPlaces citiesPlaces = {citiesPlaces} cityName = {cityName} />).toJSON();
+    .create(<Provider store = {store}>
+      <CitiesPlaces citiesPlaces = {citiesPlaces} cityName = {cityName} />
+    </Provider>).toJSON();
 
   expect(three).toMatchSnapshot();
 });

@@ -1,37 +1,18 @@
 import {CITIES} from './const.js';
 import {extend} from './utils/util.js';
 import {offers} from './mock/mock.js';
-
-const placeOffer = {
-  id: 0,
-  city: `Paris`,
-  photos: [`https://canadskaya-izba.ru/img/doma/karkas2.jpg`, `https://www.krasdom.com/galfotobig/584.jpg`, `https://www.krasdom.com/galfotobig/561.jpg`, `https://www.artis21.ru/upload/iblock/f16/f164e862e34e212180e03f76c9226ee7.jpg`],
-  title: `Очень красивый и уютный дом`,
-  description: `Описание у всех одинаковое, потому что лень придумывать.`,
-  isPremium: true,
-  isFavorite: true,
-  type: `Apartment`,
-  rating: 5,
-  countDedrooms: 4,
-  maxGuests: 6,
-  price: 250,
-  features: [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Washing machine`],
-  infoOwner: {
-    avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
-    name: `Vladimir`,
-    isSuper: true,
-  }
-};
+import {SortTypes} from './const.js';
 
 const initialState = {
   city: CITIES[0],
   offers: [],
-  placeOffer,
+  currentSort: SortTypes.POPULAR,
 };
 
 const ActionType = {
   CHANGE_CITIES: `CHANGE_CITIES`,
   GET_OFFERS: `GET_OFFERS`,
+  SORT_TYPE_CHANGE: `SORT_TYPE_CHANGE`,
 };
 
 const ActionCreator = {
@@ -43,6 +24,16 @@ const ActionCreator = {
     type: ActionType.GET_OFFERS,
     payload: offers
   }),
+  changeSortType: (evt) => {
+    if (evt.target.className === `places__option`) {
+      return {
+        type: ActionType.SORT_TYPE_CHANGE,
+        payload: evt.target.textContent
+      };
+    }
+
+    return {};
+  },
 };
 
 const reducer = (store = initialState, action) => {
@@ -54,6 +45,10 @@ const reducer = (store = initialState, action) => {
     case ActionType.GET_OFFERS:
       return extend(store, {
         offers: action.payload
+      });
+    case ActionType.SORT_TYPE_CHANGE:
+      return extend(store, {
+        currentSort: action.payload
       });
   }
 
