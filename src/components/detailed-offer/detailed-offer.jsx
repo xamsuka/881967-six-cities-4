@@ -114,7 +114,7 @@ class DetailedOffer extends PureComponent {
             </div>
           </div>
           <section className="property__map map">
-            <Map pins = {otherPlaces} />
+            <Map citiesPlaces = {otherPlaces} idPlaceActive= {id} />
           </section>
         </section>
         <div className="container">
