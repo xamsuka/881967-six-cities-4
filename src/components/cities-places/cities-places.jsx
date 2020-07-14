@@ -2,16 +2,21 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import VariantSort from '../variant-sort/variant-sort.jsx';
+import Map from '../map/map.jsx';
 
 class CitiesPlaces extends PureComponent {
   constructor(props) {
     super(props);
     this._overMouseCardHandler = this._overMouseCardHandler.bind(this);
+    this.state = {
+      idPlaceActive: null,
+    };
   }
 
   _overMouseCardHandler(evt) {
-    const idPlace = Number(evt.currentTarget.attributes[`data-id`].value);
-    return this.props.citiesPlaces.filter((city) => city.id === idPlace);
+    this.setState({
+      idPlaceActive: Number(evt.currentTarget.attributes[`data-id`].value),
+    });
   }
 
   render() {
@@ -24,25 +29,32 @@ class CitiesPlaces extends PureComponent {
     const countPlaces = placeCards.length;
 
     return (
-      <section className="cities__places places">
-        <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">
-          {countPlaces} places to stay in {cityName}
-        </b>
-        <form className="places__sorting" action="#" method="get">
-          <span className="places__sorting-caption">Sort by</span>
-          <span className="places__sorting-type" tabIndex={0}>
-            Popular
-            <svg className="places__sorting-arrow" width={7} height={4}>
-              <use xlinkHref="#icon-arrow-select" />
-            </svg>
-          </span>
-          <VariantSort />
-        </form>
-        <div className="cities__places-list places__list tabs__content">
-          {placeCards}
+      <React.Fragment>
+        <section className="cities__places places">
+          <h2 className="visually-hidden">Places</h2>
+          <b className="places__found">
+            {countPlaces} places to stay in {cityName}
+          </b>
+          <form className="places__sorting" action="#" method="get">
+            <span className="places__sorting-caption">Sort by</span>
+            <span className="places__sorting-type" tabIndex={0}>
+              Popular
+              <svg className="places__sorting-arrow" width={7} height={4}>
+                <use xlinkHref="#icon-arrow-select" />
+              </svg>
+            </span>
+            <VariantSort />
+          </form>
+          <div className="cities__places-list places__list tabs__content">
+            {placeCards}
+          </div>
+        </section>
+        <div className="cities__right-section">
+          <section className="cities__map map">
+            <Map citiesPlaces = {citiesPlaces} idPlaceActive= {this.state.idPlaceActive} />
+          </section>
         </div>
-      </section>
+      </React.Fragment>
     );
   }
 }

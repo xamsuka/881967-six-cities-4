@@ -2,26 +2,12 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CitiesPlaces from '../cities-places/cities-places.jsx';
 import City from '../city/city.jsx';
-import Map from '../map/map.jsx';
+
 import {CITIES} from '../../const.js';
 
 class Main extends PureComponent {
   constructor(props) {
     super(props);
-    this.mapComponent = new Map();
-  }
-
-  componentDidMount() {
-    this.mapComponent.getMap();
-  }
-
-  componentDidUpdate() {
-    this.mapComponent.getMap();
-  }
-
-  _getOffersCoord(offers) {
-    const pins = offers.map((place) => place.coords) || [];
-    this.mapComponent.setPins(pins);
   }
 
   render() {
@@ -34,8 +20,6 @@ class Main extends PureComponent {
     const cityPlacesRender = citiesPlaces.filter((place) => {
       return place.city === currentCity;
     });
-
-    this._getOffersCoord(cityPlacesRender);
 
     return (
       <React.Fragment>
@@ -105,12 +89,7 @@ class Main extends PureComponent {
             <div className="cities">
               <div className="cities__places-container container">
                 <CitiesPlaces citiesPlaces = {cityPlacesRender} cityName ={currentCity} />
-                <div className="cities__right-section">
-                  <section className="cities__map map">
-                    <div id="map" />
-                    {/* <Map pins = {cityPlacesRender} /> */}
-                  </section>
-                </div>
+
               </div>
             </div>
           </main>
