@@ -1,22 +1,13 @@
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-class Map extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      pins: props.pins,
-    };
+class Map {
+  constructor() {
+    this.pins = [];
+    this.map = null;
   }
 
-  init() {
-    const pins = this.state.pins;
-    const pinCoords = [];
-
-    pins.forEach((pin) => pinCoords.push(pin.coords));
-
+  _init() {
     const city = [52.38333, 4.9];
 
     const icon = leaflet.icon({
@@ -44,18 +35,32 @@ class Map extends PureComponent {
       .marker(offerCords, {icon})
       .addTo(map);
 
-    pinCoords.forEach((pinCoord) => {
+    return map;
+  }
+
+  _addPinsToMap(pins) {
+    if (this.pins.length === 0) {
+      return;
+    }
+
+    pins.forEach((pinCoord) => {
       const newPin = new leaflet.Marker(pinCoord);
-      newPin.addTo(map);
+      newPin.addTo(this.map);
     });
   }
 
-  componentDidMount() {
-    this.init();
+  getMap() {
+    if (this.map !== null) {
+
+      this._addPinsToMap(this.pins);
+    } else {
+      this.map = this._init();
+      this._addPinsToMap(this.pins);
+    }
   }
 
-  render() {
-    return (<div id="map" />);
+  setPins(pins) {
+    this.pins = pins;
   }
 }
 

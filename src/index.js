@@ -4,7 +4,6 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import App from './components/app/app.jsx';
 import {reducer} from './reducer.js';
-// import {offers} from './mock/mock.js';
 
 const rootElement = document.querySelector(`#root`);
 
