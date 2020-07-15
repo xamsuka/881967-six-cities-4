@@ -1,22 +1,36 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
+import {PureComponent} from 'react';
 
 class Map extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      pins: props.pins,
-    };
+    this.citiesPlaces = [];
+    this.idPlaceActive = null;
+    this.map = null;
   }
 
-  init() {
-    const pins = this.state.pins;
-    const pinCoords = [];
+  addPinsToMap() {
+    const iconActive = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
 
-    pins.forEach((pin) => pinCoords.push(pin.coords));
+    if (this.citiesPlaces.length === 0) {
+      return;
+    }
 
+    this.citiesPlaces.forEach((place) => {
+      const newPin = new leaflet.Marker(place.coords);
+      if (this.idPlaceActive === place.id) {
+        newPin.setIcon(iconActive);
+      }
+      newPin.addTo(this.map);
+    });
+  }
+
+  initMap() {
     const city = [52.38333, 4.9];
 
     const icon = leaflet.icon({
@@ -24,7 +38,7 @@ class Map extends PureComponent {
       iconSize: [30, 30]
     });
 
-    const zoom = 12;
+    const zoom = 2;
     const map = leaflet.map(`map`, {
       center: city,
       zoom,
@@ -44,23 +58,51 @@ class Map extends PureComponent {
       .marker(offerCords, {icon})
       .addTo(map);
 
-    pinCoords.forEach((pinCoord) => {
-      const newPin = new leaflet.Marker(pinCoord);
-      newPin.addTo(map);
-    });
+    this.map = map;
+
+    this.addPinsToMap();
   }
 
   componentDidMount() {
-    this.init();
+    this.initMap();
+  }
+
+  componentDidUpdate() {
+    this.map.remove();
+    this.initMap();
   }
 
   render() {
+    const {citiesPlaces, idPlaceActive} = this.props;
+    this.citiesPlaces = citiesPlaces;
+    this.idPlaceActive = idPlaceActive;
+
     return (<div id="map" />);
   }
 }
 
 Map.propTypes = {
-  pins: PropTypes.array.isRequired,
+  citiesPlaces: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.string.isRequired,
+    photos: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    countDedrooms: PropTypes.number.isRequired,
+    maxGuests: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    features: PropTypes.array.isRequired,
+    infoOwner: PropTypes.shape({
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      isSuper: PropTypes.bool.isRequired,
+    }).isRequired
+  }).isRequired).isRequired,
+  idPlaceActive: PropTypes.number.isRequired,
 };
 
 export default Map;

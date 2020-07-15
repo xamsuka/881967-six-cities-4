@@ -5,4 +5,11 @@ const VARIANT_CARD_CLASS = {
   near: `near-places__card`,
 };
 
-export {CITIES, ONE_STAR, VARIANT_CARD_CLASS};
+const SortTypes = {
+  POPULAR: `Popular`,
+  PRICE_LOW_TO_HIGHT: `Price: low to high`,
+  PRICE_HIGHT_TO_LOW: `Price: high to low`,
+  TOP_RATED_FIRST: `Top rated first`,
+};
+
+export {CITIES, ONE_STAR, VARIANT_CARD_CLASS, SortTypes};

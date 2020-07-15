@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CitiesPlaces from '../cities-places/cities-places.jsx';
 import City from '../city/city.jsx';
-import Map from '../map/map.jsx';
+
 import {CITIES} from '../../const.js';
 
 class Main extends PureComponent {
@@ -17,7 +17,7 @@ class Main extends PureComponent {
       return <City cityName = {city} currentCity = {currentCity} key={city} />;
     });
 
-    const citiesRender = citiesPlaces.filter((place) => {
+    const cityPlacesRender = citiesPlaces.filter((place) => {
       return place.city === currentCity;
     });
 
@@ -88,12 +88,8 @@ class Main extends PureComponent {
             </div>
             <div className="cities">
               <div className="cities__places-container container">
-                <CitiesPlaces citiesPlaces = {citiesRender} cityName ={currentCity} />
-                <div className="cities__right-section">
-                  <section className="cities__map map">
-                    <Map pins = {citiesRender} />
-                  </section>
-                </div>
+                <CitiesPlaces citiesPlaces = {cityPlacesRender} cityName ={currentCity} />
+
               </div>
             </div>
           </main>

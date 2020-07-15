@@ -237,7 +237,8 @@ Array [
                 </svg>
               </span>
               <ul
-                className="places__options places__options--custom places__options--close"
+                className="places__options places__options--custom places__options--opened"
+                onClick={[Function]}
               >
                 <li
                   className="places__option places__option--active"
@@ -354,8 +355,8 @@ Array [
                     className="place-card__name"
                   >
                     <a
-                      href="/offer"
-                      target="_blank"
+                      href="/offer/0"
+                      onClick={[Function]}
                     >
                       Очень красивый и уютный дом
                     </a>
@@ -453,8 +454,8 @@ Array [
                     className="place-card__name"
                   >
                     <a
-                      href="/offer"
-                      target="_blank"
+                      href="/offer/1"
+                      onClick={[Function]}
                     >
                       Обычный дом на ночь
                     </a>
