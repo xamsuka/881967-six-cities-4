@@ -14,7 +14,7 @@ class Map extends PureComponent {
   addPinsToMap() {
     const iconActive = leaflet.icon({
       iconUrl: `img/pin-active.svg`,
-      iconSize: [30, 30]
+      iconSize: [27, 39]
     });
 
     if (this.citiesPlaces.length === 0) {
@@ -35,7 +35,7 @@ class Map extends PureComponent {
 
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: [27, 39]
     });
 
     const zoom = 2;
@@ -70,6 +70,7 @@ class Map extends PureComponent {
   componentDidUpdate() {
     this.map.remove();
     this.initMap();
+    this.addPinsToMap();
   }
 
   render() {

@@ -2,8 +2,10 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CitiesPlaces from '../cities-places/cities-places.jsx';
 import City from '../city/city.jsx';
-
+import withCities from '../../hocs/with-cities/with-cities.jsx';
 import {CITIES} from '../../const.js';
+
+const WithCitiesPlaces = withCities(CitiesPlaces);
 
 class Main extends PureComponent {
   constructor(props) {
@@ -13,8 +15,8 @@ class Main extends PureComponent {
   render() {
     const {citiesPlaces, currentCity, onChangeCurrentCity} = this.props;
 
-    const cityesElements = CITIES.map((city) => {
-      return <City cityName = {city} currentCity = {currentCity} key={city} />;
+    const cityesElements = CITIES.map((city, index) => {
+      return <City cityName = {city} currentCity = {currentCity} key={city} idCity = {index} />;
     });
 
     const cityPlacesRender = citiesPlaces.filter((place) => {
@@ -88,7 +90,7 @@ class Main extends PureComponent {
             </div>
             <div className="cities">
               <div className="cities__places-container container">
-                <CitiesPlaces citiesPlaces = {cityPlacesRender} cityName ={currentCity} />
+                <WithCitiesPlaces citiesPlaces = {cityPlacesRender} cityName ={currentCity} />
 
               </div>
             </div>

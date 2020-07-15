@@ -7,11 +7,11 @@ class City extends PureComponent {
   }
 
   render() {
-    const {cityName, currentCity} = this.props;
+    const {cityName, currentCity, idCity} = this.props;
 
     return (
       <li className="locations__item">
-        <a className={`locations__item-link tabs__item ${cityName === currentCity ? `tabs__item--active` : ``}`} href="#">
+        <a className={`locations__item-link tabs__item ${cityName === currentCity ? `tabs__item--active` : ``}`} href="#" data-id={idCity}>
           <span>{cityName}</span>
         </a>
       </li>
@@ -22,6 +22,7 @@ class City extends PureComponent {
 City.propTypes = {
   cityName: PropTypes.string.isRequired,
   currentCity: PropTypes.string.isRequired,
+  idCity: PropTypes.number.isRequired,
 };
 
 export default City;
