@@ -7,7 +7,6 @@ import Map from '../map/map.jsx';
 const CitiesPlaces = (props) => {
   const {citiesPlaces, cityName, onChangeActiveElement, activeElement} = props;
 
-
   const placeCards = citiesPlaces.map((place) => {
     return <PlaceCard place={place} onMouseOver={onChangeActiveElement} key={place.id} variant = {`cities`} />;
   });
