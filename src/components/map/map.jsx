@@ -9,6 +9,7 @@ class Map extends PureComponent {
     this.citiesPlaces = [];
     this.idPlaceActive = null;
     this.map = null;
+    this.showedPins = [];
   }
 
   addPinsToMap() {
@@ -23,9 +24,13 @@ class Map extends PureComponent {
 
     this.citiesPlaces.forEach((place) => {
       const newPin = new leaflet.Marker(place.coords);
+
+      this.showedPins.push(newPin);
+
       if (this.idPlaceActive === place.id) {
         newPin.setIcon(iconActive);
       }
+
       newPin.addTo(this.map);
     });
   }
@@ -63,13 +68,18 @@ class Map extends PureComponent {
     this.addPinsToMap();
   }
 
+  removePins() {
+    this.showedPins.forEach((pin) => {
+      this.map.removeLayer(pin);
+    });
+  }
+
   componentDidMount() {
     this.initMap();
   }
 
   componentDidUpdate() {
-    this.map.remove();
-    this.initMap();
+    this.removePins();
     this.addPinsToMap();
   }
 
