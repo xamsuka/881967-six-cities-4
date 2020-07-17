@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import VariantSort from '../variant-sort/variant-sort.jsx';
 import Map from '../map/map.jsx';
+import widthSort from '../with-sort/with-sort.jsx';
+
+const WidthVariantSort = widthSort(VariantSort);
 
 const CitiesPlaces = (props) => {
   const {citiesPlaces, cityName, onChangeActiveElement, activeElement} = props;
@@ -20,23 +23,18 @@ const CitiesPlaces = (props) => {
         <b className="places__found">
           {countPlaces} places to stay in {cityName}
         </b>
-        <form className="places__sorting" action="#" method="get">
-          <span className="places__sorting-caption">Sort by</span>
-          <span className="places__sorting-type" tabIndex={0}>
-            Popular
-            <svg className="places__sorting-arrow" width={7} height={4}>
-              <use xlinkHref="#icon-arrow-select" />
-            </svg>
-          </span>
-          <VariantSort />
-        </form>
+
+        <WidthVariantSort />
+
         <div className="cities__places-list places__list tabs__content">
           {placeCards}
         </div>
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
+
           <Map citiesPlaces = {citiesPlaces} idPlaceActive = {activeElement} />
+
         </section>
       </div>
     </React.Fragment>
