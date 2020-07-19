@@ -16,10 +16,16 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  changeCities: (evt) => ({
-    type: ActionType.CHANGE_CITIES,
-    payload: evt.target.textContent
-  }),
+  changeCities: (evt) => {
+    if (evt.target.nodeName === `A` || evt.target.nodeName === `SPAN`) {
+      return {
+        type: ActionType.CHANGE_CITIES,
+        payload: evt.target.textContent
+      };
+    }
+
+    return {};
+  },
   getOffers: () => ({
     type: ActionType.GET_OFFERS,
     payload: offers

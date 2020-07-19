@@ -9,12 +9,13 @@ class Map extends PureComponent {
     this.citiesPlaces = [];
     this.idPlaceActive = null;
     this.map = null;
+    this.showedPins = [];
   }
 
   addPinsToMap() {
     const iconActive = leaflet.icon({
       iconUrl: `img/pin-active.svg`,
-      iconSize: [30, 30]
+      iconSize: [27, 39]
     });
 
     if (this.citiesPlaces.length === 0) {
@@ -23,9 +24,13 @@ class Map extends PureComponent {
 
     this.citiesPlaces.forEach((place) => {
       const newPin = new leaflet.Marker(place.coords);
+
+      this.showedPins.push(newPin);
+
       if (this.idPlaceActive === place.id) {
         newPin.setIcon(iconActive);
       }
+
       newPin.addTo(this.map);
     });
   }
@@ -35,7 +40,7 @@ class Map extends PureComponent {
 
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: [27, 39]
     });
 
     const zoom = 2;
@@ -63,13 +68,19 @@ class Map extends PureComponent {
     this.addPinsToMap();
   }
 
+  removePins() {
+    this.showedPins.forEach((pin) => {
+      this.map.removeLayer(pin);
+    });
+  }
+
   componentDidMount() {
     this.initMap();
   }
 
   componentDidUpdate() {
-    this.map.remove();
-    this.initMap();
+    this.removePins();
+    this.addPinsToMap();
   }
 
   render() {

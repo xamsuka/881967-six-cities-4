@@ -7,28 +7,26 @@ const withSort = (Component) => {
       super(props);
 
       this.state = {
-        currentSort: SortTypes.POPULAR,
+        isOpen: false
       };
 
-      this._changeSortTypeHandler = this._changeSortTypeHandler.bind(this);
+      this._changeSortStatusHandler = this._changeSortStatusHandler.bind(this);
     }
 
-    _changeSortTypeHandler(evt) {
-      const newSortType = evt.target.textContent;
-
+    _changeSortStatusHandler() {
       this.setState({
-        currentSort: newSortType
+        isOpen: !this.state.isOpen,
       });
     }
 
     render() {
       return <Component
         {...this.props}
-        currentSort = {this.state.currentSort}
-        onSortTypeChange = {this._changeSortTypeHandler}
+        isOpen = {this.state.isOpen}
+        onSortBlockClick = {this._changeSortStatusHandler}
       />;
     }
   };
 };
 
-export {withSort};
+export default withSort;

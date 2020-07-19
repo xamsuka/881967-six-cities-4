@@ -1,9 +1,12 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CitiesPlaces from '../cities-places/cities-places.jsx';
-import City from '../city/city.jsx';
+import Cities from '../city/cities.jsx';
+import withCities from '../../hocs/with-cities/with-cities.jsx';
 
-import {CITIES} from '../../const.js';
+
+const WithCitiesPlaces = withCities(CitiesPlaces);
+const WidthCities = withCities(Cities);
 
 class Main extends PureComponent {
   constructor(props) {
@@ -12,10 +15,6 @@ class Main extends PureComponent {
 
   render() {
     const {citiesPlaces, currentCity, onChangeCurrentCity} = this.props;
-
-    const cityesElements = CITIES.map((city) => {
-      return <City cityName = {city} currentCity = {currentCity} key={city} />;
-    });
 
     const cityPlacesRender = citiesPlaces.filter((place) => {
       return place.city === currentCity;
@@ -81,15 +80,12 @@ class Main extends PureComponent {
             <h1 className="visually-hidden">Cities</h1>
             <div className="tabs">
               <section className="locations container">
-                <ul className="locations__list tabs__list" onClick={onChangeCurrentCity}>
-                  {cityesElements}
-                </ul>
+                <WidthCities currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} />
               </section>
             </div>
             <div className="cities">
               <div className="cities__places-container container">
-                <CitiesPlaces citiesPlaces = {cityPlacesRender} cityName ={currentCity} />
-
+                <WithCitiesPlaces citiesPlaces = {cityPlacesRender} cityName ={currentCity} />
               </div>
             </div>
           </main>
@@ -101,7 +97,7 @@ class Main extends PureComponent {
 
 Main.propTypes = {
   citiesPlaces: PropTypes.array.isRequired,
-  currentCity: PropTypes.oneOf([`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldor`]).isRequired,
+  currentCity: PropTypes.oneOf([`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`]).isRequired,
   onChangeCurrentCity: PropTypes.func.isRequired,
 };
 
