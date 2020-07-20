@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import CitiesPlaces from '../cities-places/cities-places.jsx';
 import Cities from '../city/cities.jsx';
 import withCities from '../../hocs/with-cities/with-cities.jsx';
+import NoPlaces from '../no-places/no-places.jsx';
 
 
 const WithCitiesPlaces = withCities(CitiesPlaces);
@@ -19,6 +20,8 @@ class Main extends PureComponent {
     const cityPlacesRender = citiesPlaces.filter((place) => {
       return place.city === currentCity;
     });
+
+    const cityPlacesComponent = cityPlacesRender.length ? <WithCitiesPlaces citiesPlaces = {cityPlacesRender} cityName ={currentCity} /> : <NoPlaces cityName = {currentCity} />;
 
     return (
       <React.Fragment>
@@ -85,7 +88,7 @@ class Main extends PureComponent {
             </div>
             <div className="cities">
               <div className="cities__places-container container">
-                <WithCitiesPlaces citiesPlaces = {cityPlacesRender} cityName ={currentCity} />
+                {cityPlacesComponent}
               </div>
             </div>
           </main>

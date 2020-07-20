@@ -62,7 +62,7 @@ const generateReviews = (count) => {
   return new Array(count).fill(``).map((value, index) => generateReview(index));
 };
 
-const offers = generateOffers(50);
+const offers = generateOffers(10);
 const reviews = generateReviews(10);
 
 export {offers, reviews};

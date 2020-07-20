@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import VariantSort from '../variant-sort/variant-sort.jsx';
 import Map from '../map/map.jsx';
-import widthSort from '../with-sort/with-sort.jsx';
+import widthSort from '../../hocs/with-sort/with-sort.jsx';
 
 const WidthVariantSort = widthSort(VariantSort);
 
