@@ -1,12 +1,12 @@
 import {extend} from '../../utils/util.js';
 
+const initialState = {
+  authorizationStatus: AuthorizationStatus.USER_NOAUTH,
+};
+
 const AuthorizationStatus = {
   USER_AUTH: `USER_AUTH`,
   USER_NOAUTH: `USER_NOAUTH`,
-};
-
-const initialState = {
-  authorizationStatus: AuthorizationStatus.USER_NOAUTH,
 };
 
 const ActionType = {
