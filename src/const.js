@@ -12,4 +12,9 @@ const SortTypes = {
   TOP_RATED_FIRST: `Top rated first`,
 };
 
-export {CITIES, ONE_STAR, VARIANT_CARD_CLASS, SortTypes};
+const AuthorizationStatus = {
+  USER_AUTH: `USER_AUTH`,
+  USER_NOAUTH: `USER_NOAUTH`,
+};
+
+export {CITIES, ONE_STAR, VARIANT_CARD_CLASS, SortTypes, AuthorizationStatus};
