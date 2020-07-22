@@ -9,10 +9,20 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  getOffers: (offers) => ({
+  loadOffers: (offers) => ({
     type: ActionType.GET_OFFERS,
     payload: offers
   }),
+};
+
+const Operations = {
+  loadOffers: () => (dispatch, getState, api) => {
+    return api.get(`/hotels`)
+      .then((response) => {
+        debugger
+        dispatch(ActionCreator.loadOffers(response.data));
+      });
+  },
 };
 
 const reducer = (store = initialState, action) => {
@@ -26,4 +36,4 @@ const reducer = (store = initialState, action) => {
   return store;
 };
 
-export {reducer, ActionCreator};
+export {reducer, Operations, ActionCreator};

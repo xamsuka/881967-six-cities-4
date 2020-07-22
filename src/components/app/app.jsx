@@ -4,31 +4,33 @@ import {connect} from 'react-redux';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducers/offer/reducer.js';
 import {SortTypes} from '../../const.js';
+import {getOffers, getSortedOffers} from '../../reducers/data/selectors.js';
+import {getCurrentCity, getCurrentSort} from '../../reducers/offer/selectors.js';
 
-const sortedOffers = (offers, currentSort) => {
-  const sortOffers = offers.slice();
+// const sortedOffers = (offers, currentSort) => {
+//   const sortOffers = offers.slice();
 
-  switch (currentSort) {
-    case SortTypes.POPULAR:
-      return offers;
-    case SortTypes.PRICE_LOW_TO_HIGHT:
-      return sortOffers.sort((a, b) => {
-        return a.price - b.price;
-      });
-    case SortTypes.PRICE_HIGHT_TO_LOW:
-      return sortOffers.sort((a, b) => {
-        return b.price - a.price;
-      });
-    case SortTypes.TOP_RATED_FIRST:
-      return sortOffers.sort((a, b) => {
-        return a.rating - b.rating;
-      });
-  }
+//   switch (currentSort) {
+//     case SortTypes.POPULAR:
+//       return offers;
+//     case SortTypes.PRICE_LOW_TO_HIGHT:
+//       return sortOffers.sort((a, b) => {
+//         return a.price - b.price;
+//       });
+//     case SortTypes.PRICE_HIGHT_TO_LOW:
+//       return sortOffers.sort((a, b) => {
+//         return b.price - a.price;
+//       });
+//     case SortTypes.TOP_RATED_FIRST:
+//       return sortOffers.sort((a, b) => {
+//         return a.rating - b.rating;
+//       });
+//   }
 
-  return offers;
-};
+//   return offers;
+// };
 
 class App extends PureComponent {
   constructor(props) {
@@ -36,11 +38,9 @@ class App extends PureComponent {
   }
 
   render() {
-    const {citiesPlaces, currentCity, onChangeCurrentCity, getOffers, currentSort} = this.props;
+    const {citiesPlaces, currentCity, onChangeCurrentCity, currentSort} = this.props;
 
-    getOffers();
-
-    const sortedCityPlaces = sortedOffers(citiesPlaces, currentSort);
+    // const sortedCityPlaces = sortedOffers(citiesPlaces, currentSort);
 
     return (
       <BrowserRouter>
@@ -83,17 +83,14 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  citiesPlaces: state.offers,
-  currentCity: state.city,
-  currentSort: state.currentSort,
+  citiesPlaces: getOffers(state),
+  currentCity: getCurrentCity(state),
+  currentSort: getCurrentSort(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCurrentCity: (evt) => {
     dispatch(ActionCreator.changeCities(evt));
-  },
-  getOffers: () => {
-    dispatch(ActionCreator.getOffers());
   }
 });
 

@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {SortTypes} from '../../const.js';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducers/offer/reducer.js';
 
 class VariantSort extends PureComponent {
   constructor(props) {

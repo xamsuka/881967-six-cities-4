@@ -5,7 +5,6 @@ import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
 import Map from '../map/map.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
-import {reviews} from '../../mock/mock.js';
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
