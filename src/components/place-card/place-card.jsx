@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 import {VARIANT_CARD_CLASS} from '../../const.js';
 
 const PlaceCard = (props) => {
-  const {place, onMouseOver, variant} = props;
+  const {offer, onMouseOver, variant} = props;
   const currentClass = VARIANT_CARD_CLASS[variant] || `cities__place-card`;
-  const {id, photos, isPremium, type, isFavorite, price} = place;
+  const {id, photos, isPremium, type, isFavorite, price} = offer;
 
   const srcPhotosPriview = photos[0];
   const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
@@ -48,7 +48,7 @@ const PlaceCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${place.id}`}>{place.title}</Link>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -57,7 +57,7 @@ const PlaceCard = (props) => {
 };
 
 PlaceCard.propTypes = {
-  place: PropTypes.shape({
+  offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.string.isRequired,
     photos: PropTypes.array.isRequired,

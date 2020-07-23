@@ -15,13 +15,11 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {citiesPlaces, currentCity, onChangeCurrentCity} = this.props;
+    const {offers, currentCity, onChangeCurrentCity} = this.props;
 
-    const cityPlacesRender = citiesPlaces.filter((place) => {
-      return place.city === currentCity;
-    });
-
-    const cityPlacesComponent = cityPlacesRender.length ? <WithCitiesPlaces citiesPlaces = {cityPlacesRender} cityName ={currentCity} /> : <NoPlaces cityName = {currentCity} />;
+    const cityPlacesComponent = offers.length
+      ? <WithCitiesPlaces offers = {offers} cityName ={currentCity} />
+      : <NoPlaces cityName = {currentCity} />;
 
     return (
       <React.Fragment>
@@ -99,7 +97,7 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
-  citiesPlaces: PropTypes.array.isRequired,
+  offers: PropTypes.array.isRequired,
   currentCity: PropTypes.oneOf([`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`]).isRequired,
   onChangeCurrentCity: PropTypes.func.isRequired,
 };

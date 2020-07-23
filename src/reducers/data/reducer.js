@@ -1,4 +1,5 @@
 import {extend} from '../../utils/util.js';
+import {hotelsAdapter} from '../../adapters/adapters.js';
 
 const initialState = {
   offers: [],
@@ -19,8 +20,9 @@ const Operations = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        debugger
-        dispatch(ActionCreator.loadOffers(response.data));
+        const offer = hotelsAdapter(response.data);
+        dispatch(ActionCreator.loadOffers(offer));
+        console.log(hotelsAdapter(response.data))
       });
   },
 };

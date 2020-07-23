@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
 import NameSpace from '../name-space.js';
 import {SortTypes} from '../../const.js';
-import {getCurrentSort} from '../offer/selectors.js';
+import {getCurrentSort, getCurrentCity} from '../application/selectors.js';
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -9,8 +9,20 @@ const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
 
+const getOffersAfterFiltration = createSelector(
+  getOffers,
+  getCurrentCity,
+  (offers, currentCity) => {
+    const offersAfterFiltration = offers.filter((offer) => {
+      return offer.city.name === currentCity;
+    });
+
+    return offersAfterFiltration;
+  }
+);
+
 const getSortedOffers = createSelector(
-    getOffers,
+    getOffersAfterFiltration,
     getCurrentSort,
     (offers, currentSort) => {
       const sortOffers = offers.slice();
@@ -36,4 +48,4 @@ const getSortedOffers = createSelector(
     }
 );
 
-export {getOffers, getSortedOffers};
+export {getSortedOffers};

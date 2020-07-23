@@ -7,14 +7,26 @@ import widthSort from '../../hocs/with-sort/with-sort.jsx';
 
 const WidthVariantSort = widthSort(VariantSort);
 
-const CitiesPlaces = (props) => {
-  const {citiesPlaces, cityName, onChangeActiveElement, activeElement} = props;
+const getCityLocation = (offer) => {
+  if (offer) {
+    const {latitude, longitude} = offer.city.location;
+    return new Array(latitude, longitude);
+  }
 
-  const placeCards = citiesPlaces.map((place) => {
-    return <PlaceCard place={place} onMouseOver={onChangeActiveElement} key={place.id} variant = {`cities`} />;
+  return;
+};
+
+const CitiesPlaces = (props) => {
+  const {offers, cityName, onChangeActiveElement, activeElement} = props;
+
+  const placeCards = offers.map((offer) => {
+    return <PlaceCard offer={offer} onMouseOver={onChangeActiveElement} key={offer.id} variant = {`cities`} />;
   });
 
   const countPlaces = placeCards.length;
+
+  const coordsCity = getCityLocation(offers[0]);
+  const {zoom} = offers[0].city.location;
 
   return (
     <React.Fragment>
@@ -33,7 +45,7 @@ const CitiesPlaces = (props) => {
       <div className="cities__right-section">
         <section className="cities__map map">
 
-          <Map citiesPlaces = {citiesPlaces} idPlaceActive = {activeElement} />
+          <Map offers = {offers} idPlaceActive = {activeElement} coordsCity = {coordsCity} zoom = {zoom} />
 
         </section>
       </div>
@@ -42,9 +54,9 @@ const CitiesPlaces = (props) => {
 };
 
 CitiesPlaces.propTypes = {
-  citiesPlaces: PropTypes.arrayOf(PropTypes.shape({
+  offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    city: PropTypes.string.isRequired,
+    city: PropTypes.any.isRequired,
     photos: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -56,11 +68,11 @@ CitiesPlaces.propTypes = {
     maxGuests: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
-    infoOwner: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      isSuper: PropTypes.bool.isRequired,
-    }).isRequired
+    // infoOwner: PropTypes.shape({
+    //   avatar: PropTypes.string.isRequired,
+    //   name: PropTypes.string.isRequired,
+    //   isSuper: PropTypes.bool.isRequired,
+    // }).isRequired
   }).isRequired).isRequired,
   cityName: PropTypes.string.isRequired,
   onChangeActiveElement: PropTypes.func.isRequired,

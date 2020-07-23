@@ -6,7 +6,9 @@ import {PureComponent} from 'react';
 class Map extends PureComponent {
   constructor(props) {
     super(props);
-    this.citiesPlaces = [];
+    this.offers = [];
+    this.coordsCity = [];
+    this.zoom = null;
     this.idPlaceActive = null;
     this.map = null;
     this.showedPins = [];
@@ -18,16 +20,16 @@ class Map extends PureComponent {
       iconSize: [27, 39]
     });
 
-    if (this.citiesPlaces.length === 0) {
+    if (this.offers.length === 0) {
       return;
     }
 
-    this.citiesPlaces.forEach((place) => {
-      const newPin = new leaflet.Marker(place.coords);
+    this.offers.forEach((offer) => {
+      const newPin = new leaflet.Marker(new Array(offer.coords.latitude, offer.coords.longitude));
 
       this.showedPins.push(newPin);
 
-      if (this.idPlaceActive === place.id) {
+      if (this.idPlaceActive === offer.id) {
         newPin.setIcon(iconActive);
       }
 
@@ -36,21 +38,19 @@ class Map extends PureComponent {
   }
 
   initMap() {
-    const city = [52.38333, 4.9];
-
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [27, 39]
     });
 
-    const zoom = 2;
     const map = leaflet.map(`map`, {
-      center: city,
-      zoom,
+      center: this.coordsCity,
+      zoom: this.zoom,
       zoomControl: false,
       marker: true
     });
-    map.setView(city, zoom);
+
+    map.setView(this.coordsCity, this.zoom);
 
     leaflet
     .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -58,9 +58,8 @@ class Map extends PureComponent {
     })
     .addTo(map);
 
-    const offerCords = [52.3709553943508, 4.89309666406198];
     leaflet
-      .marker(offerCords, {icon})
+      .marker(this.coordsCity, {icon})
       .addTo(map);
 
     this.map = map;
@@ -79,21 +78,24 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate() {
-    this.removePins();
-    this.addPinsToMap();
+    // this.removePins();
+    this.map.remove();
+    this.initMap();
   }
 
   render() {
-    const {citiesPlaces, idPlaceActive} = this.props;
-    this.citiesPlaces = citiesPlaces;
+    const {offers, idPlaceActive, coordsCity, zoom = 12} = this.props;
+    this.offers = offers;
     this.idPlaceActive = idPlaceActive;
+    this.coordsCity = coordsCity;
+    this.zoom = zoom;
 
     return (<div id="map" />);
   }
 }
 
 Map.propTypes = {
-  citiesPlaces: PropTypes.arrayOf(PropTypes.shape({
+  offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.string.isRequired,
     photos: PropTypes.array.isRequired,

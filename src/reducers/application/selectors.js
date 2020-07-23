@@ -10,4 +10,8 @@ const getCurrentSort = (state) => {
   return state[NAME_SPACE].currentSort;
 };
 
-export {getCurrentCity, getCurrentSort};
+const getLoadingStatus = (state) => {
+  return state[NAME_SPACE].isLoading;
+}
+
+export {getCurrentCity, getCurrentSort, getLoadingStatus};
