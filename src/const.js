@@ -5,6 +5,11 @@ const VARIANT_CARD_CLASS = {
   near: `near-places__card`,
 };
 
+const VARIANT_RATING_CLASS = {
+  reviews: `reviews__rating`,
+  placeCard: `place-card__rating`,
+};
+
 const SortTypes = {
   POPULAR: `Popular`,
   PRICE_LOW_TO_HIGHT: `Price: low to high`,
@@ -17,4 +22,4 @@ const AuthorizationStatus = {
   USER_NOAUTH: `USER_NOAUTH`,
 };
 
-export {CITIES, ONE_STAR, VARIANT_CARD_CLASS, SortTypes, AuthorizationStatus};
+export {CITIES, ONE_STAR, VARIANT_CARD_CLASS, VARIANT_RATING_CLASS, SortTypes, AuthorizationStatus};
