@@ -14,10 +14,10 @@ class DetailedOffer extends PureComponent {
   render() {
     const {offers} = this.props;
     const {id} = this.props.match.params;
-    const place = offers[id];
+    const offer = offers[id];
     const otherPlaces = offers.slice().slice(0, 3);
 
-    const {photos, title, description, isPremium, type, rating, countDedrooms, maxGuests, isFavorite, price, features, infoOwner} = place;
+    const {photos, title, description, isPremium, type, rating, countDedrooms, maxGuests, isFavorite, price, features, infoOwner} = offer;
     const {avatar: ownerAvatar, name: ownerName, isPro} = infoOwner || {};
 
     const placeCardsNear = otherPlaces.map((placeNear) => {
