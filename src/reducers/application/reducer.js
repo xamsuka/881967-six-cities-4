@@ -5,7 +5,6 @@ import {SortTypes} from '../../const.js';
 const initialState = {
   city: CITIES[0],
   currentSort: SortTypes.POPULAR,
-  isLoading: false,
 };
 
 const ActionType = {

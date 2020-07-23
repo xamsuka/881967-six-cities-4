@@ -9,6 +9,10 @@ const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
 
+const getStatusLoading = (state) => {
+  return state[NAME_SPACE].isLoading;
+};
+
 const getOffersAfterFiltration = createSelector(
   getOffers,
   getCurrentCity,
@@ -48,4 +52,4 @@ const getSortedOffers = createSelector(
     }
 );
 
-export {getSortedOffers};
+export {getSortedOffers, getStatusLoading};

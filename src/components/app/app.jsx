@@ -5,7 +5,7 @@ import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {ActionCreator} from '../../reducers/application/reducer.js';
-import {getSortedOffers} from '../../reducers/data/selectors.js';
+import {getSortedOffers, getStatusLoading} from '../../reducers/data/selectors.js';
 import {getCurrentCity, getCurrentSort} from '../../reducers/application/selectors.js';
 
 class App extends PureComponent {
@@ -14,13 +14,13 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, currentCity, onChangeCurrentCity} = this.props;
+    const {offers, currentCity, onChangeCurrentCity, isLoading} = this.props;
 
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Main offers = {offers} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} />;
+          <Main offers = {offers} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} isLoading = {isLoading} />;
           </Route>
           <Route path='/offer/:id' component={DetailedOffer}/>
         </Switch>
@@ -59,6 +59,7 @@ const mapStateToProps = (state) => ({
   offers: getSortedOffers(state),
   currentCity: getCurrentCity(state),
   currentSort: getCurrentSort(state),
+  isLoading: getStatusLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

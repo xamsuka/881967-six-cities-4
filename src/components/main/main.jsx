@@ -4,6 +4,7 @@ import CitiesPlaces from '../cities-places/cities-places.jsx';
 import Cities from '../city/cities.jsx';
 import withCities from '../../hocs/with-cities/with-cities.jsx';
 import NoPlaces from '../no-places/no-places.jsx';
+import Loading from '../loading/loading.jsx';
 
 
 const WithCitiesPlaces = withCities(CitiesPlaces);
@@ -15,11 +16,17 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {offers, currentCity, onChangeCurrentCity} = this.props;
+    const {offers, currentCity, onChangeCurrentCity, isLoading} = this.props;
 
-    const cityPlacesComponent = offers.length
-      ? <WithCitiesPlaces offers = {offers} cityName ={currentCity} />
-      : <NoPlaces cityName = {currentCity} />;
+    let cityPlacesComponent = ``;
+
+    if (!isLoading) {
+      cityPlacesComponent = <Loading />
+    } else if (offers.length) {
+      cityPlacesComponent = <WithCitiesPlaces offers = {offers} cityName ={currentCity} />
+    } else {
+      cityPlacesComponent = <NoPlaces cityName = {currentCity} />
+    }
 
     return (
       <React.Fragment>
