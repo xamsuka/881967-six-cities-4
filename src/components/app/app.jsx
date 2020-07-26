@@ -5,7 +5,8 @@ import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {ActionCreator} from '../../reducers/application/reducer.js';
-import {getSortedOffers, getStatusLoading} from '../../reducers/data/selectors.js';
+import {getSortedOffers} from '../../reducers/data/selectors.js';
+import {getStatusLoading} from '../../reducers/application/selectors.js';
 import {getCurrentCity, getCurrentSort} from '../../reducers/application/selectors.js';
 
 class App extends PureComponent {

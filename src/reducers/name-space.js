@@ -1,6 +1,6 @@
 const NAME_SPACE = {
   DATA: `DATA`,
-  OFFER: `OFFER`,
+  APPLICATION: `APPLICATION`,
   USER: `USER`,
 };
 
