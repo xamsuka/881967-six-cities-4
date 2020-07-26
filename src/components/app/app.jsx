@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
+import SignIn from '../sign-in/sign-in.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {ActionCreator} from '../../reducers/application/reducer.js';
 import {getSortedOffers} from '../../reducers/data/selectors.js';
@@ -24,6 +25,9 @@ class App extends PureComponent {
           <Main offers = {offers} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} isLoading = {isLoading} />;
           </Route>
           <Route path='/offer/:id' component={DetailedOffer}/>
+          <Route exact path="/sign-in">
+          <SignIn />;
+          </Route>
         </Switch>
       </BrowserRouter>
     );
