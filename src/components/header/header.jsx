@@ -5,7 +5,7 @@ const Header = (props) => {
 
   const textButtonProfile = userData || `Sign In`;
   const classUsetText = userData ? `header__user-name user__name` : `header__login`;
-  const userLink = userData.id ? `/favorite` : `/sign-in`;
+  const userLink = userData ? `/favorite` : `/sign-in`;
 
   return (
     <header className="header">

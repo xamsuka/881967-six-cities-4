@@ -61,3 +61,5 @@ const FavoriteItems = (props) => {
     </ul>
   );
 };
+
+export default FavoriteItems;

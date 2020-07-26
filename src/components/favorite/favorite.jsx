@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../header/header.jsx";
+import FavoriteItems from '../favorite-items/favorite-items.jsx';
 
 const Favorite = (props) => {
   return (
@@ -33,3 +34,5 @@ const Favorite = (props) => {
     </React.Fragment>
   );
 };
+
+export default Favorite;
