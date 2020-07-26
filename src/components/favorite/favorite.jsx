@@ -2,11 +2,10 @@ import React from "react";
 import Header from "../header/header.jsx";
 import FavoriteItems from '../favorite-items/favorite-items.jsx';
 
-const Favorite = (props) => {
+const Favorite = () => {
   return (
     <React.Fragment>
-      <div classname="page">
-
+      <div className="page">
         <Header />
 
         <main className="page__main page__main--favorites">

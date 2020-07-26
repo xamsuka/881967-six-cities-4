@@ -10,15 +10,15 @@ const getOffers = (state) => {
 };
 
 const getOffersAfterFiltration = createSelector(
-  getOffers,
-  getCurrentCity,
-  (offers, currentCity) => {
-    const offersAfterFiltration = offers.filter((offer) => {
-      return offer.city.name === currentCity;
-    });
+    getOffers,
+    getCurrentCity,
+    (offers, currentCity) => {
+      const offersAfterFiltration = offers.filter((offer) => {
+        return offer.city.name === currentCity;
+      });
 
-    return offersAfterFiltration;
-  }
+      return offersAfterFiltration;
+    }
 );
 
 const getSortedOffers = createSelector(

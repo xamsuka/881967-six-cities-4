@@ -108,7 +108,7 @@ class DetailedOffer extends PureComponent {
                 </div>
               </div>
 
-              <Reviews reviews = {reviews} />
+              <Reviews reviews = {[]} />
 
             </div>
           </div>

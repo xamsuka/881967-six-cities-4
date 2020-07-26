@@ -1,65 +1,75 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import PlaceCard from '../place-card/place-card.jsx';
+import {VARIANT_CARD_CLASS} from '../../const.js';
 
 const FavoriteItems = (props) => {
+  const {favoriteOffers} = props;
+
+  const cityFavorite = favoriteOffers.map((offer) => offer.city.name);
+  const uniqueCityName = new Set(cityFavorite);
+
   return (
     <ul className="favorites__list">
-      <li className="favorites__locations-items">
-        <div className="favorites__locations locations locations--current">
-          <div className="locations__item">
-            <a className="locations__item-link" href="#">
-              <span>Amsterdam</span>
-            </a>
-          </div>
-        </div>
-        <div className="favorites__places">
-          <article className="favorites__card place-card">
-            <div className="favorites__image-wrapper place-card__image-wrapper">
-              <a href="#">
-                <img
-                  className="place-card__image"
-                  src="img/apartment-small-03.jpg"
-                  width={150}
-                  height={110}
-                  alt="Place image"
-                />
-              </a>
-            </div>
-            <div className="favorites__card-info place-card__info">
-              <div className="place-card__price-wrapper">
-                <div className="place-card__price">
-                  <b className="place-card__price-value">€180</b>
-                  <span className="place-card__price-text">/&nbsp;night</span>
-                </div>
-                <button
-                  className="place-card__bookmark-button place-card__bookmark-button--active button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    width={18}
-                    height={19}
-                  >
-                    <use xlinkHref="#icon-bookmark" />
-                  </svg>
-                  <span className="visually-hidden">In bookmarks</span>
-                </button>
+      {uniqueCityName.map((city, index) => {
+        const favoriteOffersInCity = favoriteOffers.filter((offer) => offer.city.name === city);
+
+        return (
+          <li className="favorites__locations-items" key = {`${city} ${index}`}>
+            <div className="favorites__locations locations locations--current">
+              <div className="locations__item">
+                <a className="locations__item-link" href="#">
+                  <span> {city} </span>
+                </a>
               </div>
-              <div className="place-card__rating rating">
-                <div className="place-card__stars rating__stars">
-                  <span style={{ width: "100%" }} />
-                  <span className="visually-hidden">Rating</span>
-                </div>
-              </div>
-              <h2 className="place-card__name">
-                <a href="#">Nice, cozy, warm big bed apartment</a>
-              </h2>
-              <p className="place-card__type">Apartment</p>
             </div>
-          </article>
-        </div>
-      </li>
+            <div className="favorites__places">
+              {favoriteOffersInCity.map((favoriteOffer) => {
+                return <PlaceCard offer = {favoriteOffer} variant = {VARIANT_CARD_CLASS.favorite} key = {`${favoriteOffers.id} ${favoriteOffers.photos} `}/>;
+              })}
+            </div>
+          </li>
+        );
+      })}
     </ul>
   );
+};
+
+FavoriteItems.propTypes = {
+  favoriteOffers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    previewPhoto: PropTypes.string.isRequired,
+    photos: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    countDedrooms: PropTypes.number.isRequired,
+    maxGuests: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    features: PropTypes.array.isRequired,
+    infoOwner: {
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+    },
+    coords: {
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    },
+  })),
 };
 
 export default FavoriteItems;

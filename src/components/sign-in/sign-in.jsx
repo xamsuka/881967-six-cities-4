@@ -1,4 +1,5 @@
 import React, {PureComponent, createRef} from "react";
+import PropTypes from 'prop-types';
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -23,7 +24,7 @@ class SignIn extends PureComponent {
     return (
       <React.Fragment>
         <div>
-          <div style={{ display: "none" }}>
+          <div style={{display: `none`}}>
             <svg xmlns="http://www.w3.org/2000/svg">
               <symbol id="icon-arrow-select" viewBox="0 0 7 4">
                 <path
@@ -125,5 +126,9 @@ class SignIn extends PureComponent {
     );
   }
 }
+
+SignIn.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default SignIn;

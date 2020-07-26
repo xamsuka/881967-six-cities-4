@@ -22,11 +22,11 @@ class Main extends PureComponent {
     let cityPlacesComponent = ``;
 
     if (!isLoading) {
-      cityPlacesComponent = <Loading />
+      cityPlacesComponent = <Loading />;
     } else if (offers.length) {
-      cityPlacesComponent = <WithCitiesPlaces offers = {offers} cityName ={currentCity} />
+      cityPlacesComponent = <WithCitiesPlaces offers = {offers} cityName ={currentCity} />;
     } else {
-      cityPlacesComponent = <NoPlaces cityName = {currentCity} />
+      cityPlacesComponent = <NoPlaces cityName = {currentCity} />;
     }
 
     return (
@@ -75,9 +75,50 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    previewPhoto: PropTypes.string.isRequired,
+    photos: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    countDedrooms: PropTypes.number.isRequired,
+    maxGuests: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    features: PropTypes.array.isRequired,
+    infoOwner: {
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+    },
+    coords: {
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    },
+  })),
   currentCity: PropTypes.oneOf([`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`]).isRequired,
   onChangeCurrentCity: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  userData: PropTypes.shape({
+    email: PropTypes.string,
+    id: PropTypes.number,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    isPro: PropTypes.bool,
+  }).isRequired,
 };
 
 export default Main;

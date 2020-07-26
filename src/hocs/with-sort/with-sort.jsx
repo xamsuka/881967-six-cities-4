@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import {SortTypes} from '../../const.js';
 
 const withSort = (Component) => {
   return class WidthSort extends PureComponent {

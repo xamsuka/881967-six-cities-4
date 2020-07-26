@@ -29,8 +29,7 @@ const Operations = {
       .then((response) => {
         const offer = hotelsAdapter(response.data);
         dispatch(ActionCreator.loadOffers(offer));
-        console.log(hotelsAdapter(response.data));
-      })
+      });
   },
 };
 

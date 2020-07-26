@@ -18,10 +18,10 @@ const store = createStore(reducer, applyMiddleware(thunk.withExtraArgument(api))
 store.dispatch(DataOperations.loadOffers());
 
 ReactDom.render(
-  <Provider store = {store}>
-    <App />
-  </Provider>,
-  rootElement
+    <Provider store = {store}>
+      <App />
+    </Provider>,
+    rootElement
 );
 
 

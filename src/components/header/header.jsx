@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const Header = (props) => {
   const {userData} = props;
 
   const emailProfile = userData.email || `Sign In`;
   const classAuth = userData ? `header__user-name user__name` : `header__login`;
-  const userLink = userData.length ? `/favorite` : `/login`;
+  const userLink = Object.keys(userData).length ? `/favorite` : `/login`;
 
   return (
     <header className="header">
@@ -31,7 +32,7 @@ const Header = (props) => {
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                   <span className={classAuth}>
-                      {emailProfile}
+                    {emailProfile}
                   </span>
                 </a>
               </li>
@@ -41,6 +42,16 @@ const Header = (props) => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  userData: PropTypes.shape({
+    email: PropTypes.string,
+    id: PropTypes.number,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    isPro: PropTypes.bool,
+  }).isRequired,
 };
 
 export default Header;

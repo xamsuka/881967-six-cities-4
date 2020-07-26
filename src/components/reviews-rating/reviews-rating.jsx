@@ -10,7 +10,7 @@ class ReviewsRating extends PureComponent {
   render() {
     const {rating, variant} = this.props;
 
-    const classRating = VARIANT_RATING_CLASS[variant] || VARIANT_RATING_CLASS.reviews;
+    const classRating = VARIANT_RATING_CLASS[variant] || VARIANT_RATING_CLASS.placeCard;
 
     return (
       <div className={`${classRating} rating`}>
@@ -25,6 +25,7 @@ class ReviewsRating extends PureComponent {
 
 ReviewsRating.propTypes = {
   rating: PropTypes.number.isRequired,
+  variant: PropTypes.arrayOf([`reviews`, `placeCard`]).isRequired,
 };
 
 export default ReviewsRating;

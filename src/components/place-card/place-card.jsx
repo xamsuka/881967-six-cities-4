@@ -75,7 +75,7 @@ PlaceCard.propTypes = {
       isSuper: PropTypes.bool.isRequired,
     }).isRequired
   }).isRequired,
-  onMouseOver: PropTypes.func.isRequired,
+  onMouseOver: PropTypes.func,
   variant: PropTypes.oneOf(Object.keys(VARIANT_CARD_CLASS)).isRequired,
 };
 

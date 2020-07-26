@@ -10,10 +10,10 @@ const WidthVariantSort = widthSort(VariantSort);
 const getCityLocation = (offer) => {
   if (offer) {
     const {latitude, longitude} = offer.city.location;
-    return new Array(latitude, longitude);
+    return Array.of(latitude, longitude);
   }
 
-  return;
+  return [];
 };
 
 const CitiesPlaces = (props) => {
@@ -56,7 +56,15 @@ const CitiesPlaces = (props) => {
 CitiesPlaces.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    city: PropTypes.any.isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    previewPhoto: PropTypes.string.isRequired,
     photos: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -68,12 +76,18 @@ CitiesPlaces.propTypes = {
     maxGuests: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
-    // infoOwner: PropTypes.shape({
-    //   avatar: PropTypes.string.isRequired,
-    //   name: PropTypes.string.isRequired,
-    //   isSuper: PropTypes.bool.isRequired,
-    // }).isRequired
-  }).isRequired).isRequired,
+    infoOwner: {
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+    },
+    coords: {
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    },
+  })),
   cityName: PropTypes.string.isRequired,
   onChangeActiveElement: PropTypes.func.isRequired,
   activeElement: PropTypes.number.isRequired,

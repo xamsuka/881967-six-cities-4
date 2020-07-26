@@ -29,7 +29,7 @@ class App extends PureComponent {
           </Route>
           <Route path='/offer/:id' component={DetailedOffer}/>
           <Route exact path="/login">
-           <SignIn onSubmit = {login} />;
+            <SignIn onSubmit = {login} />;
           </Route>
           <Route exact path="/favorite">
             <Favorite />;
@@ -43,7 +43,15 @@ class App extends PureComponent {
 App.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    city: PropTypes.any.isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    previewPhoto: PropTypes.string.isRequired,
     photos: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -55,15 +63,28 @@ App.propTypes = {
     maxGuests: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
-    // infoOwner: PropTypes.shape({
-    //   avatar: PropTypes.string.isRequired,
-    //   name: PropTypes.string.isRequired,
-    //   isSuper: PropTypes.bool.isRequired,
-    // }).isRequired
-  }).isRequired).isRequired,
+    infoOwner: {
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+    },
+    coords: {
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    },
+  })),
   currentCity: PropTypes.oneOf([`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`]).isRequired,
   onChangeCurrentCity: PropTypes.func.isRequired,
-  currentSort: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
+  userData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string.isRequired,
+    isPro: PropTypes.bool.isRequired,
+  }).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

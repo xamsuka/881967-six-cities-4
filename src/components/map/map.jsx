@@ -25,7 +25,7 @@ class Map extends PureComponent {
     }
 
     this.offers.forEach((offer) => {
-      const newPin = new leaflet.Marker(new Array(offer.coords.latitude, offer.coords.longitude));
+      const newPin = new leaflet.Marker(Array.of(offer.coords.latitude, offer.coords.longitude));
 
       this.showedPins.push(newPin);
 
@@ -97,7 +97,15 @@ class Map extends PureComponent {
 Map.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    city: PropTypes.string.isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    previewPhoto: PropTypes.string.isRequired,
     photos: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -109,13 +117,21 @@ Map.propTypes = {
     maxGuests: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
-    infoOwner: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
+    infoOwner: {
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      isSuper: PropTypes.bool.isRequired,
-    }).isRequired
-  }).isRequired).isRequired,
+      avatar: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+    },
+    coords: {
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    },
+  })),
   idPlaceActive: PropTypes.number.isRequired,
+  coordsCity: PropTypes.array.isRequired,
+  zoom: PropTypes.number.isRequired,
 };
 
 export default Map;
