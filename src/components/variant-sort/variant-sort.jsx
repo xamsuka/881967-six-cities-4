@@ -2,7 +2,8 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {SortTypes} from '../../const.js';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducers/application/reducer.js';
+import {getCurrentSort} from '../../reducers/application/selectors.js';
 
 class VariantSort extends PureComponent {
   constructor(props) {
@@ -44,7 +45,7 @@ VariantSort.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentSort: state.currentSort,
+  currentSort: getCurrentSort(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

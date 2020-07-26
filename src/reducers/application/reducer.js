@@ -1,18 +1,17 @@
-import {CITIES} from './const.js';
-import {extend} from './utils/util.js';
-import {offers} from './mock/mock.js';
-import {SortTypes} from './const.js';
+import {CITIES} from '../../const.js';
+import {extend} from '../../utils/util.js';
+import {SortTypes} from '../../const.js';
 
 const initialState = {
   city: CITIES[0],
-  offers: [],
   currentSort: SortTypes.POPULAR,
+  isLoading: false,
 };
 
 const ActionType = {
   CHANGE_CITIES: `CHANGE_CITIES`,
-  GET_OFFERS: `GET_OFFERS`,
   SORT_TYPE_CHANGE: `SORT_TYPE_CHANGE`,
+  CHANGE_STATUS_LOADING: `CHANGE_STATUS_LOADING`,
 };
 
 const ActionCreator = {
@@ -26,10 +25,6 @@ const ActionCreator = {
 
     return {};
   },
-  getOffers: () => ({
-    type: ActionType.GET_OFFERS,
-    payload: offers
-  }),
   changeSortType: (evt) => {
     if (evt.target.className === `places__option`) {
       return {
@@ -40,6 +35,10 @@ const ActionCreator = {
 
     return {};
   },
+  activatedPreloader: (isLoading) => ({
+    type: ActionType.CHANGE_STATUS_LOADING,
+    payload: !isLoading,
+  }),
 };
 
 const reducer = (store = initialState, action) => {
@@ -48,13 +47,15 @@ const reducer = (store = initialState, action) => {
       return extend(store, {
         city: action.payload
       });
-    case ActionType.GET_OFFERS:
-      return extend(store, {
-        offers: action.payload
-      });
+
     case ActionType.SORT_TYPE_CHANGE:
       return extend(store, {
         currentSort: action.payload
+      });
+
+    case ActionType.CHANGE_STATUS_LOADING:
+      return extend(store, {
+        isLoading: action.payload
       });
   }
 

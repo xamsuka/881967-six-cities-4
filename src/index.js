@@ -1,21 +1,27 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 import App from './components/app/app.jsx';
-import {reducer} from './reducer.js';
+import {reducer} from './reducers/reducer.js';
+import createAPI from './api.js';
+import {Operations as DataOperations} from './reducers/data/reducer.js';
+import {ActionCreator as ActionCreatorUser, AuthorizationStatus} from './reducers/user/reducer.js';
 
 const rootElement = document.querySelector(`#root`);
 
-const store = createStore(reducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const api = createAPI(() => store.dispatch(ActionCreatorUser.authorizeUser(AuthorizationStatus.USER_NOAUTH)));
 
-const init = () => {
-  ReactDom.render(
-      <Provider store = {store}>
-        <App />
-      </Provider>,
-      rootElement
-  );
-};
+const store = createStore(reducer, applyMiddleware(thunk.withExtraArgument(api)));
 
-init();
+store.dispatch(DataOperations.loadOffers());
+
+ReactDom.render(
+  <Provider store = {store}>
+    <App />
+  </Provider>,
+  rootElement
+);
+
+

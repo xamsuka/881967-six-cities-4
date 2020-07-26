@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
+import {VARIANT_RATING_CLASS} from '../../const.js';
 
 class Review extends PureComponent {
   constructor(props) {
@@ -26,7 +27,7 @@ class Review extends PureComponent {
         </div>
         <div className="reviews__info">
 
-          <ReviewsRating rating = {review.rating} />
+          <ReviewsRating rating = {review.rating} variant = {VARIANT_RATING_CLASS.reviews} />
 
           <p className="reviews__text">
             {review.text}

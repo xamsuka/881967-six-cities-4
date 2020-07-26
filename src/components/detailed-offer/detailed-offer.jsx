@@ -5,7 +5,6 @@ import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
 import Map from '../map/map.jsx';
 import PlaceCard from '../place-card/place-card.jsx';
-import {reviews} from '../../mock/mock.js';
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
@@ -15,11 +14,11 @@ class DetailedOffer extends PureComponent {
   render() {
     const {offers} = this.props;
     const {id} = this.props.match.params;
-    const place = offers[id];
+    const offer = offers[id];
     const otherPlaces = offers.slice().slice(0, 3);
 
-    const {photos, title, description, isPremium, type, rating, countDedrooms, maxGuests, isFavorite, price, features, infoOwner} = place;
-    const {avatar: ownerAvatar, name: ownerName, isSuper} = infoOwner || {};
+    const {photos, title, description, isPremium, type, rating, countDedrooms, maxGuests, isFavorite, price, features, infoOwner} = offer;
+    const {avatar: ownerAvatar, name: ownerName, isPro} = infoOwner || {};
 
     const placeCardsNear = otherPlaces.map((placeNear) => {
       return <PlaceCard place={placeNear} onMouseOver={() => {}} key={`${placeNear.id} ${placeNear.description}`} variant = {`near`} />;
@@ -91,7 +90,7 @@ class DetailedOffer extends PureComponent {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className={`roperty__avatar-wrapper ${isSuper ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`} >
+                  <div className={`roperty__avatar-wrapper ${isPro ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`} >
                     <img
                       className="property__avatar user__avatar"
                       src={ownerAvatar}

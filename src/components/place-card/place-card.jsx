@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {VARIANT_CARD_CLASS} from '../../const.js';
+import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
+import {VARIANT_CARD_CLASS, VARIANT_RATING_CLASS} from '../../const.js';
 
 const PlaceCard = (props) => {
-  const {place, onMouseOver, variant} = props;
+  const {offer, onMouseOver, variant} = props;
   const currentClass = VARIANT_CARD_CLASS[variant] || `cities__place-card`;
-  const {id, photos, isPremium, type, isFavorite, price} = place;
+  const {id, photos, isPremium, type, rating, isFavorite, price} = offer;
 
   const srcPhotosPriview = photos[0];
   const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
@@ -41,14 +42,11 @@ const PlaceCard = (props) => {
             <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `100%`}} />
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+
+        <ReviewsRating rating = {rating} variant = {VARIANT_RATING_CLASS.reviews} />
+
         <h2 className="place-card__name">
-          <Link to={`/offer/${place.id}`}>{place.title}</Link>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -57,7 +55,7 @@ const PlaceCard = (props) => {
 };
 
 PlaceCard.propTypes = {
-  place: PropTypes.shape({
+  offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.string.isRequired,
     photos: PropTypes.array.isRequired,
