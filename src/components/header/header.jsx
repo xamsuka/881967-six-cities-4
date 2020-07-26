@@ -3,9 +3,9 @@ import React from "react";
 const Header = (props) => {
   const {userData} = props;
 
-  const textButtonProfile = userData || `Sign In`;
-  const classUsetText = userData ? `header__user-name user__name` : `header__login`;
-  const userLink = userData ? `/favorite` : `/sign-in`;
+  const emailProfile = userData.email || `Sign In`;
+  const classAuth = userData ? `header__user-name user__name` : `header__login`;
+  const userLink = userData.length ? `/favorite` : `/login`;
 
   return (
     <header className="header">
@@ -30,8 +30,8 @@ const Header = (props) => {
                   href={userLink}
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                  <span className={classUsetText}>
-                      {textButtonProfile}
+                  <span className={classAuth}>
+                      {emailProfile}
                   </span>
                 </a>
               </li>

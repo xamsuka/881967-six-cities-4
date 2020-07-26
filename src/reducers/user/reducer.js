@@ -1,4 +1,5 @@
 import {extend} from '../../utils/util.js';
+import {userAdapter} from '../../adapters/adapters.js';
 
 const AuthorizationStatus = {
   USER_AUTH: `USER_AUTH`,
@@ -7,6 +8,7 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.USER_NOAUTH,
+  userData: {},
 };
 
 const ActionType = {
@@ -14,10 +16,20 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  authorizeUser: (status) => ({
+  authorizeUser: (status, userData) => ({
     type: ActionType.REQUIRED_AUTH,
     payload: status,
+    payloadData: userData,
   }),
+};
+
+const Operations = {
+  authorizeUser: (userData) => (dispatch, getState, api) => {
+    return api.post(`/login`, userData)
+      .then((response) => {
+        dispatch(ActionCreator.authorizeUser(AuthorizationStatus.USER_AUTH, userAdapter(response.data)));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,10 +37,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTH:
       return extend(state, {
         authorizationStatus: action.payload,
+        userData: action.payloadData,
       });
   }
 
   return state;
 };
 
-export {ActionType, ActionCreator, reducer, AuthorizationStatus};
+export {ActionType, ActionCreator, reducer, AuthorizationStatus, Operations};

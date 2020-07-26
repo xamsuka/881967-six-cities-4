@@ -10,6 +10,8 @@ import {ActionCreator} from '../../reducers/application/reducer.js';
 import {getSortedOffers} from '../../reducers/data/selectors.js';
 import {getStatusLoading} from '../../reducers/application/selectors.js';
 import {getCurrentCity, getCurrentSort} from '../../reducers/application/selectors.js';
+import {Operations as UserOperations} from '../../reducers/user/reducer.js';
+import {getUserData} from '../../reducers/user/selectors.js';
 
 class App extends PureComponent {
   constructor(props) {
@@ -17,20 +19,20 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, currentCity, onChangeCurrentCity, isLoading} = this.props;
+    const {offers, currentCity, onChangeCurrentCity, login, userData, isLoading} = this.props;
 
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-          <Main offers = {offers} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} isLoading = {isLoading} />;
+            <Main offers = {offers} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} isLoading = {isLoading} userData = {userData} />;
           </Route>
           <Route path='/offer/:id' component={DetailedOffer}/>
-          <Route exact path="/sign-in">
-          <SignIn />;
+          <Route exact path="/login">
+           <SignIn onSubmit = {login} />;
           </Route>
           <Route exact path="/favorite">
-          <Favorite />;
+            <Favorite />;
           </Route>
         </Switch>
       </BrowserRouter>
@@ -69,11 +71,15 @@ const mapStateToProps = (state) => ({
   currentCity: getCurrentCity(state),
   currentSort: getCurrentSort(state),
   isLoading: getStatusLoading(state),
+  userData: getUserData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCurrentCity: (evt) => {
     dispatch(ActionCreator.changeCities(evt));
+  },
+  login: (userData) => {
+    dispatch(UserOperations.authorizeUser(userData));
   }
 });
 
