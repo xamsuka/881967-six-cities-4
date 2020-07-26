@@ -6,6 +6,7 @@ describe(`Тестирование функции reducer`, () => {
       .toEqual({
         city: `Paris`,
         currentSort: `Popular`,
+        isLoading: false,
       });
   });
 
@@ -13,6 +14,7 @@ describe(`Тестирование функции reducer`, () => {
     expect(reducer({
       city: `Paris`,
       currentSort: `Popular`,
+      isLoading: false,
     }, {
       type: `CHANGE_CITIES`,
       payload: `Cologne`
@@ -20,6 +22,7 @@ describe(`Тестирование функции reducer`, () => {
       .toEqual({
         city: `Cologne`,
         currentSort: `Popular`,
+        isLoading: false,
       });
   });
 });
@@ -41,7 +44,7 @@ describe(`Тестирование Функций ActionCreator`, () => {
   test(`ActionCreator changeCities() `, () => {
     expect(ActionCreator.changeCities(mockEvent)).toEqual({
       type: `CHANGE_CITIES`,
-      payload: `Cologne`
+      payload: `Cologne`,
     });
   });
 

@@ -16,14 +16,10 @@ const ActionType = {
 
 const ActionCreator = {
   changeCities: (evt) => {
-    if (evt.target.nodeName === `A` || evt.target.nodeName === `SPAN`) {
-      return {
-        type: ActionType.CHANGE_CITIES,
-        payload: evt.target.textContent
-      };
-    }
-
-    return {};
+    return {
+      type: ActionType.CHANGE_CITIES,
+      payload: evt.target.textContent
+    };
   },
   changeSortType: (evt) => {
     if (evt.target.className === `places__option`) {
