@@ -129,9 +129,9 @@ Map.propTypes = {
       zoom: PropTypes.number.isRequired,
     },
   })),
-  idPlaceActive: PropTypes.number.isRequired,
-  coordsCity: PropTypes.array.isRequired,
-  zoom: PropTypes.number.isRequired,
+  idPlaceActive: PropTypes.number,
+  coordsCity: PropTypes.array,
+  zoom: PropTypes.number,
 };
 
 export default Map;

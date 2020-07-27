@@ -27,7 +27,7 @@ class App extends PureComponent {
           <Route exact path="/">
             <Main offers = {offers} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} isLoading = {isLoading} userData = {userData} />;
           </Route>
-          <Route path='/offer/:id' component={DetailedOffer}/>
+          <Route exact path='/offer/:id' component={DetailedOffer}/>
           <Route exact path="/login">
             <SignIn onSubmit = {login} />;
           </Route>

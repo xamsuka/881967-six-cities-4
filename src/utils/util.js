@@ -6,4 +6,13 @@ const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-export {getRandomNumber, extend};
+const getCityLocation = (offer) => {
+  if (offer) {
+    const {latitude, longitude} = offer.city.location;
+    return Array.of(latitude, longitude);
+  }
+
+  return [];
+};
+
+export {getRandomNumber, extend, getCityLocation};

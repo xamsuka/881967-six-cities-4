@@ -1,19 +1,22 @@
 import React from "react";
 import Header from "../header/header.jsx";
 import FavoriteItems from '../favorite-items/favorite-items.jsx';
+import PropTypes from 'prop-types';
 
-const Favorite = () => {
+const Favorite = (props) => {
+  const {favoriteOffers, userData} = props;
+
   return (
     <React.Fragment>
       <div className="page">
-        <Header />
+        <Header userData = {userData} />
 
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
 
-              <FavoriteItems />
+              <FavoriteItems favoriteOffers = {favoriteOffers} />
 
             </section>
           </div>
@@ -32,6 +35,50 @@ const Favorite = () => {
       </div>
     </React.Fragment>
   );
+};
+
+Favorite.propTypes = {
+  favoriteOffers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    previewPhoto: PropTypes.string.isRequired,
+    photos: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    countDedrooms: PropTypes.number.isRequired,
+    maxGuests: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    features: PropTypes.array.isRequired,
+    infoOwner: {
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+    },
+    coords: {
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    },
+  })).isRequired,
+  userData: PropTypes.shape({
+    email: PropTypes.string,
+    id: PropTypes.number,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    isPro: PropTypes.bool,
+  }).isRequired,
 };
 
 export default Favorite;

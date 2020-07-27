@@ -81,9 +81,11 @@ const cityName = `Paris`;
 
 test(`<CitiesPlaces /> render`, () => {
   const store = mockStore({
-    city: `Paris`,
-    currentSort: `Popular`,
-    offers,
+    APPLICATION: {
+      city: `Paris`,
+      currentSort: `Popular`,
+      offers,
+    }
   });
 
   const three = renderer

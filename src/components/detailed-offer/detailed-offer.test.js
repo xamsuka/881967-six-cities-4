@@ -73,11 +73,9 @@ const offers = [
   },
 ];
 
-const id = {
-  match: {
-    params: {
-      id: `0`,
-    }
+const match = {
+  params: {
+    id: `1`,
   }
 };
 
@@ -85,7 +83,7 @@ test(`DetailedOffer first render`, () => {
   const three = renderer
     .create(<DetailedOffer
       offers = {offers}
-      id = {id}
+      match = {match}
     />).toJSON();
 
   expect(three).toMatchSnapshot();

@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Main from './main';
 
@@ -7,47 +7,75 @@ Enzyme.configure({
   Adapter: new Adapter(),
 });
 
-const citiesPlaces = [
+const offers = [
   {
-    id: 0,
-    city: `Paris`,
-    photos: [`https://canadskaya-izba.ru/img/doma/karkas2.jpg`],
+    id: 1,
+    city: {
+      location: {
+        latitude: 52.374,
+        longitude: 4.897976,
+        zoom: 13,
+      },
+      name: `Paris`
+    },
+    previewPhoto: `https://canadskaya-izba.ru/img/doma/karkas2.jpg`,
+    photos: [`https://canadskaya-izba.ru/img/doma/karkas2.jpg`, `https://www.krasdom.com/galfotobig/584.jpg`, `https://www.krasdom.com/galfotobig/561.jpg`, `https://www.artis21.ru/upload/iblock/f16/f164e862e34e212180e03f76c9226ee7.jpg`],
     title: `Очень красивый и уютный дом`,
     description: `Описание у всех одинаковое, потому что лень придумывать.`,
     isPremium: false,
     isFavorite: false,
-    type: `apartment`,
-    rating: 5,
-    countDedrooms: 4,
-    maxGuests: 6,
-    price: 250,
+    type: `Apartment`,
+    rating: 4,
+    countDedrooms: 3,
+    maxGuests: 3,
+    price: 500,
     features: [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Washing machine`],
     infoOwner: {
+      id: 1,
+      name: `Vladislav Kozlovsky`,
       avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
-      name: `Vladimir`,
-      isSuper: false,
-    }
+      isPro: true,
+    },
+    coords: {
+      latitude: 52.39,
+      longitude: 4.8,
+      zoom: 16,
+    },
   },
   {
-    id: 1,
-    city: `Paris`,
-    photos: [`https://canadskaya-izba.ru/img/doma/karkas2.jpg`],
-    title: `Обычный дом на ночь`,
+    id: 2,
+    city: {
+      location: {
+        latitude: 52.374,
+        longitude: 4.897976,
+        zoom: 12,
+      },
+      name: `Paris`
+    },
+    previewPhoto: `https://canadskaya-izba.ru/img/doma/karkas2.jpg`,
+    photos: [`https://canadskaya-izba.ru/img/doma/karkas2.jpg`, `https://www.krasdom.com/galfotobig/584.jpg`, `https://www.krasdom.com/galfotobig/561.jpg`, `https://www.artis21.ru/upload/iblock/f16/f164e862e34e212180e03f76c9226ee7.jpg`],
+    title: `Просто хорошее место`,
     description: `Описание у всех одинаковое, потому что лень придумывать.`,
-    isPremium: false,
+    isPremium: true,
     isFavorite: false,
-    type: `apartment`,
-    rating: 4,
-    countDedrooms: 2,
-    maxGuests: 3,
-    price: 100,
-    features: [`Wifi`, `Heating`, `Kitchen`],
+    type: `Apartment`,
+    rating: 5,
+    countDedrooms: 4,
+    maxGuests: 2,
+    price: 200,
+    features: [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Washing machine`],
     infoOwner: {
+      id: `2`,
+      name: `Vladislav Petrov`,
       avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
-      name: `Vlad`,
-      isSuper: false,
-    }
-  }
+      isPro: false,
+    },
+    coords: {
+      latitude: 52.39,
+      longitude: 4.8,
+      zoom: 16,
+    },
+  },
 ];
 
 Enzyme.configure({adapter: new Adapter()});
@@ -56,11 +84,17 @@ describe(`<MainComponent />`, () => {
   test(`simulate click evets`, () => {
     const onChangeCurrentCity = jest.fn();
 
-    const three = shallow(<Main citiesPlaces = {citiesPlaces} currentCity = {`Paris`} onChangeCurrentCity = {onChangeCurrentCity} />);
+    const three = mount(<Main
+      offers = {offers}
+      currentCity = {`Paris`}
+      onChangeCurrentCity = {onChangeCurrentCity}
+      isLoading = {false}
+      userData = {{}}
+    />);
 
-    const sectionTypesElement = three.find(`.locations__list`);
+    const sectionTypesElement = three.find(`.locations__item-link`).at(1);
 
-    sectionTypesElement.props().onClick();
+    sectionTypesElement.simulate(`click`);
 
     expect(onChangeCurrentCity).toHaveBeenCalledTimes(1);
   });

@@ -48,4 +48,4 @@ const getSortedOffers = createSelector(
     }
 );
 
-export {getSortedOffers};
+export {getOffers, getSortedOffers};

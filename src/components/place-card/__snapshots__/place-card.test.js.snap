@@ -3,7 +3,7 @@
 exports[`<PlaceCard /> render 1`] = `
 <article
   className="cities__place-card place-card"
-  data-id={0}
+  data-id={1}
   onMouseOver={[Function]}
 >
   
@@ -35,7 +35,7 @@ exports[`<PlaceCard /> render 1`] = `
           className="place-card__price-value"
         >
           €
-          250
+          500
         </b>
         <span
           className="place-card__price-text"
@@ -67,12 +67,12 @@ exports[`<PlaceCard /> render 1`] = `
       className="place-card__rating rating"
     >
       <div
-        className="place-card__stars rating__stars"
+        className="reviews__stars rating__stars"
       >
         <span
           style={
             Object {
-              "width": "100%",
+              "width": "80%",
             }
           }
         />
@@ -87,8 +87,8 @@ exports[`<PlaceCard /> render 1`] = `
       className="place-card__name"
     >
       <a
-        href="/offer"
-        target="_blank"
+        href="/offer/1"
+        onClick={[Function]}
       >
         Очень красивый и уютный дом
       </a>
@@ -96,7 +96,7 @@ exports[`<PlaceCard /> render 1`] = `
     <p
       className="place-card__type"
     >
-      apartment
+      Apartment
     </p>
   </div>
 </article>

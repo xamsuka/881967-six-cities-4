@@ -4,17 +4,9 @@ import PlaceCard from '../place-card/place-card.jsx';
 import VariantSort from '../variant-sort/variant-sort.jsx';
 import Map from '../map/map.jsx';
 import widthSort from '../../hocs/with-sort/with-sort.jsx';
+import {getCityLocation} from '../../utils/util.js';
 
 const WidthVariantSort = widthSort(VariantSort);
-
-const getCityLocation = (offer) => {
-  if (offer) {
-    const {latitude, longitude} = offer.city.location;
-    return Array.of(latitude, longitude);
-  }
-
-  return [];
-};
 
 const CitiesPlaces = (props) => {
   const {offers, cityName, onChangeActiveElement, activeElement} = props;

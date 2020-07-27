@@ -25,7 +25,7 @@ class ReviewsRating extends PureComponent {
 
 ReviewsRating.propTypes = {
   rating: PropTypes.number.isRequired,
-  variant: PropTypes.arrayOf([`reviews`, `placeCard`]).isRequired,
+  variant: PropTypes.oneOf([`reviews__rating`, `place-card__rating`]).isRequired,
 };
 
 export default ReviewsRating;
