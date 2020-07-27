@@ -19,7 +19,14 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, currentCity, onChangeCurrentCity, login, userData, isLoading} = this.props;
+    const {
+      offers,
+      currentCity,
+      onChangeCurrentCity,
+      login,
+      userData,
+      isLoading
+    } = this.props;
 
     return (
       <BrowserRouter>
@@ -32,7 +39,7 @@ class App extends PureComponent {
             <SignIn onSubmit = {login} />;
           </Route>
           <Route exact path="/favorite">
-            <Favorite />;
+            <Favorite favoriteOffers = {offers} />;
           </Route>
         </Switch>
       </BrowserRouter>
@@ -79,11 +86,11 @@ App.propTypes = {
   onChangeCurrentCity: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   userData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    avatarUrl: PropTypes.string.isRequired,
-    isPro: PropTypes.bool.isRequired,
-  }).isRequired,
+    id: PropTypes.number,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    isPro: PropTypes.bool,
+  }),
   isLoading: PropTypes.bool.isRequired,
 };
 

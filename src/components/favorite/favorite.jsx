@@ -78,7 +78,7 @@ Favorite.propTypes = {
     name: PropTypes.string,
     avatarUrl: PropTypes.string,
     isPro: PropTypes.bool,
-  }).isRequired,
+  }),
 };
 
 export default Favorite;
