@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Route, Router, Switch} from 'react-router-dom';
+import {Route, Router, Switch, Redirect} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import PrivateRoute from '../private-route/private-route.jsx';
@@ -16,7 +16,7 @@ import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {getUserData} from '../../reducers/user/selectors.js';
 import {createBrowserHistory} from 'history';
 
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
 
 class App extends PureComponent {
   constructor(props) {
@@ -31,7 +31,6 @@ class App extends PureComponent {
       login,
       userData,
       isLoading,
-      getFavoriteOffers
     } = this.props;
 
     return (
@@ -42,9 +41,9 @@ class App extends PureComponent {
           </Route>
           <Route exact path='/offer/:id' component={DetailedOffer}/>
           <Route exact path='/login' >
-            <SignIn onSubmit = {login} history={history} />
+            {Object.keys(userData).length ? <Redirect to="/" /> : <SignIn onSubmit = {login} history={history} /> }
           </Route>
-          <PrivateRoute exact path="/favorites" component = {Favorite} userData = {userData} getFavoriteOffers = {getFavoriteOffers} />
+          <PrivateRoute exact path="/favorites" component = {Favorite} userData = {userData} />
         </Switch>
       </Router>
     );
@@ -110,8 +109,8 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeCurrentCity: (evt) => {
     dispatch(ActionCreatorApplication.changeCities(evt));
   },
-  login: (userData, history) => {
-    dispatch(UserOperations.authorizeUser(userData, history));
+  login: (userData) => {
+    dispatch(UserOperations.authorizeUser(userData));
   },
   getFavoriteOffers: () => {
     dispatch(DataOperations.loadFavoriteOffers());

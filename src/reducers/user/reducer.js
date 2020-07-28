@@ -30,6 +30,12 @@ const Operations = {
         dispatch(ActionCreator.authorizeUser(AuthorizationStatus.USER_AUTH, userAdapter(response.data)));
         history.push(`/`);
       });
+  },
+  checkAuth: () => (dispatch, getState, api) => {
+    return api.get(`/login`)
+      .then((response) => {
+        dispatch(ActionCreator.authorizeUser(AuthorizationStatus.USER_AUTH, userAdapter(response.data)));
+      });
   }
 };
 

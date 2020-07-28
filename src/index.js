@@ -8,7 +8,7 @@ import App from './components/app/app.jsx';
 import {reducer} from './reducers/reducer.js';
 import createAPI from './api.js';
 import {Operations as DataOperations} from './reducers/data/reducer.js';
-import {ActionCreator as ActionCreatorUser, AuthorizationStatus} from './reducers/user/reducer.js';
+import {ActionCreator as ActionCreatorUser, AuthorizationStatus, Operations as UserOperations} from './reducers/user/reducer.js';
 
 const rootElement = document.querySelector(`#root`);
 
@@ -19,6 +19,7 @@ const store = createStore(reducer, composeWithDevTools(
 ));
 
 store.dispatch(DataOperations.loadOffers());
+store.dispatch(UserOperations.checkAuth());
 
 ReactDom.render(
     <Provider store = {store}>

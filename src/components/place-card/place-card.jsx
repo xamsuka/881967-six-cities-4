@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import {Link, Route} from 'react-router-dom';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
 import {VARIANT_CARD_CLASS, VARIANT_RATING_CLASS} from '../../const.js';
+import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
+import {AuthorizationStatus} from '../../const.js';
+import {history} from '../app/app.jsx';
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -14,7 +17,11 @@ class PlaceCard extends PureComponent {
   }
 
   _onChangeFavoriteStatus() {
-    this.onClickFavorite(this.props.offer.id, Number(!this.props.offer.isFavorite));
+    if (this.props.authorizationStatus !== AuthorizationStatus.USER_NOAUTH) {
+      this.onClickFavorite(this.props.offer.id, Number(!this.props.offer.isFavorite));
+    }
+
+    history.push(`/login`);
   }
 
   render() {
@@ -107,7 +114,12 @@ PlaceCard.propTypes = {
   onMouseOver: PropTypes.func,
   variant: PropTypes.oneOf(Object.keys(VARIANT_CARD_CLASS)).isRequired,
   onClickFavorite: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.oneOf([`USER_NOAUTH`, `USER_AUTH`]),
 };
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onClickFavorite: (id, newState) => {
@@ -115,4 +127,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(PlaceCard);
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceCard);
