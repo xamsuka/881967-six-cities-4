@@ -1,26 +1,32 @@
 import React from "react";
 import Header from "../header/header.jsx";
+import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 import FavoriteItems from '../favorite-items/favorite-items.jsx';
 import PropTypes from 'prop-types';
 
 const Favorite = (props) => {
-  const {favoriteOffers, userData} = props;
+  const {getFavoriteOffers, userData} = props;
+
+  const favoriteOffers = getFavoriteOffers();
 
   return (
     <React.Fragment>
       <div className="page">
         <Header userData = {userData} />
 
-        <main className="page__main page__main--favorites">
-          <div className="page__favorites-container container">
-            <section className="favorites">
-              <h1 className="favorites__title">Saved listing</h1>
+        {favoriteOffers ?
+          <main className="page__main page__main--favorites">
+            <div className="page__favorites-container container">
+              <section className="favorites">
+                <h1 className="favorites__title">Saved listing</h1>
 
-              <FavoriteItems favoriteOffers = {favoriteOffers} />
+                <FavoriteItems favoriteOffers = {favoriteOffers} />
 
-            </section>
-          </div>
-        </main>
+              </section>
+            </div>
+          </main>
+          : <FavoritesEmpty />}
+
         <footer className="footer container">
           <a className="footer__logo-link" href="main.html">
             <img

@@ -31,7 +31,7 @@ const ActionCreator = {
 
     return {};
   },
-  activatedPreloader: (isLoading) => ({
+  changeActivePreloader: (isLoading) => ({
     type: ActionType.CHANGE_STATUS_LOADING,
     payload: !isLoading,
   }),

@@ -1,60 +1,73 @@
-import React from "react";
+import React, {PureComponent} from "react";
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Link, BrowserRouter} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
 import {VARIANT_CARD_CLASS, VARIANT_RATING_CLASS} from '../../const.js';
+import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 
-const PlaceCard = (props) => {
-  const {offer, onMouseOver, variant} = props;
-  const currentClass = VARIANT_CARD_CLASS[variant] || `cities__place-card`;
-  const {id, photos, isPremium, type, rating, isFavorite, price} = offer;
+class PlaceCard extends PureComponent {
+  constructor(props) {
+    super(props);
+    this._onChangeFavoriteStatus = this._onChangeFavoriteStatus.bind(this);
+    this.onClickFavorite = this.props.onClickFavorite;
+  }
 
-  const srcPhotosPriview = photos[0];
-  const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
+  _onChangeFavoriteStatus() {
+    this.onClickFavorite(this.props.offer.id, Number(!this.props.offer.isFavorite));
+  }
 
-  return (
-    <article className= {`${currentClass} place-card`} onMouseOver={onMouseOver} data-id={id}>
-      {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ``}
-      <div className="place-card__image-wrapper">
-        <a href="#">
-          <img
-            className="place-card__image"
-            src={srcPhotosPriview}
-            width={260}
-            height={200}
-            alt="Place image"
-          />
-        </a>
-      </div>
-      <div className="place-card__info">
-        <div className="place-card__price-wrapper">
-          <div className="place-card__price">
-            <b className="place-card__price-value">€{price}</b>
-            <span className="place-card__price-text">/&nbsp;night</span>
-          </div>
-          <button
-            className={`place-card__bookmark-button ${favoriteClass} button`}
-            type="button"
-          >
-            <svg className="place-card__bookmark-icon" width={18} height={19}>
-              <use xlinkHref="#icon-bookmark" />
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+  render() {
+    const {offer, onMouseOver, variant} = this.props;
+    const currentClass = VARIANT_CARD_CLASS[variant] || `cities__place-card`;
+    const {id, previewPhoto, isPremium, type, rating, isFavorite, price} = offer;
+
+    const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
+
+    return (
+      <article className= {`${currentClass} place-card`} onMouseOver={onMouseOver} data-id={id}>
+        {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ``}
+        <div className="place-card__image-wrapper">
+          <a href="#">
+            <img
+              className="place-card__image"
+              src={previewPhoto}
+              width={260}
+              height={200}
+              alt="Place image"
+            />
+          </a>
         </div>
+        <div className="place-card__info">
+          <div className="place-card__price-wrapper">
+            <div className="place-card__price">
+              <b className="place-card__price-value">€{price}</b>
+              <span className="place-card__price-text">/&nbsp;night</span>
+            </div>
+            <button
+              className={`place-card__bookmark-button ${favoriteClass} button`}
+              type="button" onClick = {this._onChangeFavoriteStatus}
+            >
+              <svg className="place-card__bookmark-icon" width={18} height={19}>
+                <use xlinkHref="#icon-bookmark" />
+              </svg>
+              <span className="visually-hidden">To bookmarks</span>
+            </button>
+          </div>
 
-        <ReviewsRating rating = {rating} variant = {VARIANT_RATING_CLASS.reviews} />
+          <ReviewsRating rating = {rating} variant = {VARIANT_RATING_CLASS.reviews} />
 
-        <h2 className="place-card__name">
-          <BrowserRouter>
-            <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
-          </BrowserRouter>
-        </h2>
-        <p className="place-card__type">{type}</p>
-      </div>
-    </article>
-  );
-};
+          <h2 className="place-card__name">
+            <Route>
+              <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+            </Route>
+          </h2>
+          <p className="place-card__type">{type}</p>
+        </div>
+      </article>
+    );
+  }
+}
 
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
@@ -93,6 +106,13 @@ PlaceCard.propTypes = {
   }).isRequired,
   onMouseOver: PropTypes.func,
   variant: PropTypes.oneOf(Object.keys(VARIANT_CARD_CLASS)).isRequired,
+  onClickFavorite: PropTypes.func.isRequired,
 };
 
-export default PlaceCard;
+const mapDispatchToProps = (dispatch) => ({
+  onClickFavorite: (id, newState) => {
+    dispatch(DataOperations.setFavoriteOffer(id, newState));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(PlaceCard);

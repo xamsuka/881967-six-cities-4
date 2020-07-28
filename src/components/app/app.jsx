@@ -1,17 +1,22 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Route, BrowserRouter, Switch} from 'react-router-dom';
+import {Route, Router, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
-import Favorite from '../favorite/favorite.jsx';
+import PrivateRoute from '../private-route/private-route.jsx';
+import Favorite from '../favorites/favorites.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
-import {ActionCreator} from '../../reducers/application/reducer.js';
+import {ActionCreator as ActionCreatorApplication} from '../../reducers/application/reducer.js';
 import {getSortedOffers} from '../../reducers/data/selectors.js';
 import {getStatusLoading} from '../../reducers/application/selectors.js';
 import {getCurrentCity, getCurrentSort} from '../../reducers/application/selectors.js';
 import {Operations as UserOperations} from '../../reducers/user/reducer.js';
+import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {getUserData} from '../../reducers/user/selectors.js';
+import {createBrowserHistory} from 'history';
+
+const history = createBrowserHistory();
 
 class App extends PureComponent {
   constructor(props) {
@@ -25,24 +30,23 @@ class App extends PureComponent {
       onChangeCurrentCity,
       login,
       userData,
-      isLoading
+      isLoading,
+      getFavoriteOffers
     } = this.props;
 
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           <Route exact path="/">
             <Main offers = {offers} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} isLoading = {isLoading} userData = {userData} />;
           </Route>
           <Route exact path='/offer/:id' component={DetailedOffer}/>
-          <Route exact path="/login">
-            <SignIn onSubmit = {login} />;
+          <Route exact path='/login' >
+            <SignIn onSubmit = {login} history={history} />
           </Route>
-          <Route exact path="/favorite">
-            <Favorite favoriteOffers = {offers} />;
-          </Route>
+          <PrivateRoute exact path="/favorites" component = {Favorite} userData = {userData} getFavoriteOffers = {getFavoriteOffers} />
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
@@ -90,7 +94,7 @@ App.propTypes = {
     name: PropTypes.string,
     avatarUrl: PropTypes.string,
     isPro: PropTypes.bool,
-  }),
+  }).isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 
@@ -104,11 +108,14 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCurrentCity: (evt) => {
-    dispatch(ActionCreator.changeCities(evt));
+    dispatch(ActionCreatorApplication.changeCities(evt));
   },
-  login: (userData) => {
-    dispatch(UserOperations.authorizeUser(userData));
-  }
+  login: (userData, history) => {
+    dispatch(UserOperations.authorizeUser(userData, history));
+  },
+  getFavoriteOffers: () => {
+    dispatch(DataOperations.loadFavoriteOffers());
+  },
 });
 
 export {App};

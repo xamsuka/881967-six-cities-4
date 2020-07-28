@@ -13,11 +13,12 @@ class SignIn extends PureComponent {
 
   _submitHandler(evt) {
     evt.preventDefault();
+    const {history} = this.props;
 
     this.onSubmit({
       email: this.loginRef.current.value,
       password: this.passwordRef.current.value,
-    });
+    }, history);
   }
 
   render() {
@@ -129,6 +130,7 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default SignIn;

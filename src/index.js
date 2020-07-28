@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {Provider} from 'react-redux';
+import {composeWithDevTools} from "redux-devtools-extension";
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import App from './components/app/app.jsx';
@@ -13,7 +14,9 @@ const rootElement = document.querySelector(`#root`);
 
 const api = createAPI(() => store.dispatch(ActionCreatorUser.authorizeUser(AuthorizationStatus.USER_NOAUTH)));
 
-const store = createStore(reducer, applyMiddleware(thunk.withExtraArgument(api)));
+const store = createStore(reducer, composeWithDevTools(
+    applyMiddleware(thunk.withExtraArgument(api))
+));
 
 store.dispatch(DataOperations.loadOffers());
 

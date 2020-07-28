@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import {Route, Link} from "react-router-dom";
 
 const Header = (props) => {
   const {userData} = props;
 
   const emailProfile = userData.email || `Sign In`;
   const classAuth = userData ? `header__user-name user__name` : `header__login`;
-  const userLink = Object.keys(userData).length ? `/favorite` : `/login`;
+  const userLink = Object.keys(userData).length ? `/favorites` : `/login`;
 
   return (
     <header className="header">
@@ -26,15 +27,16 @@ const Header = (props) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a
-                  className="header__nav-link header__nav-link--profile"
-                  href={userLink}
-                >
-                  <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                  <span className={classAuth}>
-                    {emailProfile}
-                  </span>
-                </a>
+                <Route>
+                  <Link className="header__nav-link header__nav-link--profile"
+                    to={userLink}>
+
+                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+                    <span className={classAuth}>
+                      {emailProfile}
+                    </span>
+                  </Link>
+                </Route>
               </li>
             </ul>
           </nav>

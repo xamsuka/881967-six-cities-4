@@ -21,7 +21,7 @@ class Main extends PureComponent {
 
     let cityPlacesComponent = ``;
 
-    if (!isLoading) {
+    if (!isLoading && offers.length === 0) {
       cityPlacesComponent = <Loading />;
     } else if (offers.length) {
       cityPlacesComponent = <WithCitiesPlaces offers = {offers} cityName ={currentCity} activeElement = {-1} />;

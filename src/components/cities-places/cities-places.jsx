@@ -12,7 +12,7 @@ const CitiesPlaces = (props) => {
   const {offers, cityName, onChangeActiveElement, activeElement} = props;
 
   const placeCards = offers.map((offer) => {
-    return <PlaceCard offer={offer} onMouseOver={onChangeActiveElement} key={offer.id} variant = {`cities`} />;
+    return <PlaceCard offer={offer} onMouseOver = {onChangeActiveElement} variant = {`cities`} key={offer.id} />;
   });
 
   const countPlaces = placeCards.length;
