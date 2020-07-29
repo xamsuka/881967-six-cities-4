@@ -15,7 +15,7 @@ class ReviewsRating extends PureComponent {
     return (
       <div className={`${classRating} rating`}>
         <div className="reviews__stars rating__stars">
-          <span style={{width: `${ONE_STAR * rating}%`}} />
+          <span style={{width: `${ONE_STAR * Math.round(rating)}%`}} />
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
