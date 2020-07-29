@@ -1,5 +1,5 @@
 import {extend} from '../../utils/util.js';
-import {hotelAdapter, hotelsAdapter} from '../../adapters/adapters.js';
+import {hotelAdapter, hotelsAdapter, reviewsAdapter} from '../../adapters/adapters.js';
 import {ActionCreator as ActionCreatorApplication} from '../application/reducer.js';
 
 const initialState = {
@@ -61,7 +61,27 @@ const Operations = {
         dispatch(ActionCreator.updateOffers(offer));
         dispatch(Operations.loadFavoriteOffers());
       });
-  }
+  },
+  loadOfferComments: (id) => (dispatch, getState, api) => {
+    return api.get(`comments/${id}`)
+      .then((response) => {
+        const reviews = reviewsAdapter(response.data);
+        return reviews;
+      });
+  },
+  addNewOfferComment: (id, commentPost) => (dispatch, getState, api) => {
+    return api.post(`comments/${id}`, commentPost)
+      .then((response) => {
+        return response;
+      });
+  },
+  getNearbyOffers: (id) => (dispatch, getState, api) => {
+    return api.get(`/hotels/${id}/nearby`)
+      .then((response) => {
+        const nearbyOffers = hotelsAdapter(response.data);
+        return nearbyOffers;
+      });
+  },
 };
 
 const reducer = (store = initialState, action) => {

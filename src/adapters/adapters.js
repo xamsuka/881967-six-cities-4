@@ -34,4 +34,21 @@ const userAdapter = (userData) => ({
   isProp: userData[`is_pro`],
 });
 
-export {hotelAdapter, hotelsAdapter, userAdapter};
+const reviewAdapter = (review) => ({
+  comment: review[`comment`],
+  date: review[`date`],
+  id: review[`id`],
+  rating: review[`rating`],
+  user: {
+    avatarUrl: review[`user`][`avatar_url`],
+    id: review[`user`][`id`],
+    isPro: review[`user`][`is_pro`],
+    name: review[`user`][`name`],
+  }
+});
+
+const reviewsAdapter = (reviews) => {
+  return reviews.map((review) => reviewAdapter(review));
+};
+
+export {hotelAdapter, hotelsAdapter, userAdapter, reviewAdapter, reviewsAdapter};
