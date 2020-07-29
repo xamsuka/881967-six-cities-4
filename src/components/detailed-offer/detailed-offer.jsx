@@ -12,7 +12,7 @@ import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {getOffers} from '../../reducers/data/selectors.js';
 import {getCityLocation} from '../../utils/util.js';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
-import {VARIANT_CARD, VARIANT_RATING_CLASS} from '../../const.js';
+import {VARIANT_CARD} from '../../const.js';
 
 class DetailedOffer extends PureComponent {
   constructor(props) {

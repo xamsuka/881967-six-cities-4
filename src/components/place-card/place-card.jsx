@@ -120,6 +120,13 @@ PlaceCard.propTypes = {
   onMouseOver: PropTypes.func,
   onClickFavorite: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.oneOf([`USER_NOAUTH`, `USER_AUTH`]),
+  classNameCard: PropTypes.string,
+  classNameImgWrapper: PropTypes.string,
+  imageSize: PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }),
+  key: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

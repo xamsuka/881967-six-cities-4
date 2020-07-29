@@ -8,7 +8,7 @@ const hotelAdapter = (offer) => ({
   isPremium: offer[`is_premium`],
   isFavorite: offer[`is_favorite`],
   type: offer[`type`],
-  rating: offer[`rating`],
+  rating: Math.round(offer[`rating`]),
   countDedrooms: offer[`bedrooms`],
   maxGuests: offer[`max_adults`],
   price: offer[`price`],

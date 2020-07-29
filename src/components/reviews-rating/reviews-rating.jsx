@@ -15,10 +15,9 @@ class ReviewsRating extends PureComponent {
     return (
       <div className={`${classRating} rating`}>
         <div className={`${variant}__stars rating__stars`}>
-          <span style={{width: `${ONE_STAR * Math.round(rating)}%`}} />
+          <span style={{width: `${ONE_STAR * rating}%`}} />
           <span className="visually-hidden">Rating</span>
         </div>
-
         {children}
       </div>
     );
@@ -28,6 +27,7 @@ class ReviewsRating extends PureComponent {
 ReviewsRating.propTypes = {
   rating: PropTypes.number.isRequired,
   variant: PropTypes.oneOf([`reviews`, `property`, `placeCard`]).isRequired,
+  children: PropTypes.node,
 };
 
 export default ReviewsRating;
