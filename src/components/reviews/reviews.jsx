@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import FeedbackForm from "../feedback-form/feedback-form.jsx";
 import Review from '../review/review.jsx';
+import {AuthorizationStatus} from '../../const.js';
 
 class Reviews extends PureComponent {
   constructor(props) {
@@ -9,7 +10,7 @@ class Reviews extends PureComponent {
   }
 
   render() {
-    const {reviews} = this.props;
+    const {reviews, authorizationStatus} = this.props;
 
     const reviewComponents = reviews.map((review) => {
       return <Review review = {review} key = {`${review.text} ${review.id}`} />;
@@ -24,7 +25,7 @@ class Reviews extends PureComponent {
           {reviewComponents}
         </ul>
 
-        <FeedbackForm />
+        {authorizationStatus === AuthorizationStatus.USER_AUTH ? <FeedbackForm /> : ``}
 
       </section>
     );
@@ -42,7 +43,8 @@ Reviews.propTypes = {
     rating: PropTypes.oneOf([1, 2, 3, 4, 5]),
     text: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
-  }))
+  })),
+  authorizationStatus: PropTypes.oneOf([`USER_AUTH`, `USER_NOAUTH`]),
 };
 
 export default Reviews;

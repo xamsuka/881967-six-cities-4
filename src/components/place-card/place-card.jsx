@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link, Route} from 'react-router-dom';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
-import {VARIANT_RATING_CLASS} from '../../const.js';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {AuthorizationStatus} from '../../const.js';
@@ -25,7 +24,8 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const {offer,
+    const {
+      offer,
       classNameCard = `cities__place-card`,
       classNameImgWrapper = `cities__image-wrapper`,
       imageSize = {width: 260, height: 200},
@@ -68,7 +68,7 @@ class PlaceCard extends PureComponent {
             </button>
           </div>
 
-          <ReviewsRating rating = {rating} variant = {VARIANT_RATING_CLASS.reviews} />
+          <ReviewsRating rating = {rating} variant = {`reviews`} />
 
           <h2 className="place-card__name">
             <Route>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
+import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
 import Map from '../map/map.jsx';
 import Loading from '../loading/loading.jsx';
 import {getStatusLoadingOffers} from '../../reducers/application/selectors.js';
@@ -10,7 +11,8 @@ import PlaceCardsList from '../place-cards-list/place-cards-list.jsx';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {getOffers} from '../../reducers/data/selectors.js';
 import {getCityLocation} from '../../utils/util.js';
-import {VARIANT_CARD} from '../../const.js';
+import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
+import {VARIANT_CARD, VARIANT_RATING_CLASS} from '../../const.js';
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
@@ -18,7 +20,7 @@ class DetailedOffer extends PureComponent {
   }
 
   render() {
-    const {offers, isLoading} = this.props;
+    const {offers, isLoading, authorizationStatus} = this.props;
 
     if (isLoading) {
       return <Loading />;
@@ -60,15 +62,12 @@ class DetailedOffer extends PureComponent {
                   <span className="visually-hidden">To bookmarks</span>
                 </button>
               </div>
-              <div className="property__rating rating">
-                <div className="property__stars rating__stars">
-                  <span style={{width: `80%`}} />
-                  <span className="visually-hidden">Rating</span>
-                </div>
+              <ReviewsRating rating = {rating} variant = {`property`}>
                 <span className="property__rating-value rating__value">
                   {rating}
                 </span>
-              </div>
+              </ReviewsRating>
+
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
                   {type}
@@ -115,7 +114,7 @@ class DetailedOffer extends PureComponent {
                 </div>
               </div>
 
-              <Reviews reviews = {[]} />
+              <Reviews reviews = {[]} authorizationStatus = {authorizationStatus} />
 
             </div>
           </div>
@@ -183,11 +182,13 @@ DetailedOffer.propTypes = {
     })
   }),
   isLoading: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.oneOf([`USER_AUTH`, `USER_NOAUTH`]),
 };
 
 const mapStateToProps = (state) => ({
   offers: getOffers(state),
   isLoading: getStatusLoadingOffers(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

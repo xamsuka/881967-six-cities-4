@@ -10,6 +10,7 @@ const VARIANT_CARD = {
 const VARIANT_RATING_CLASS = {
   reviews: `reviews__rating`,
   placeCard: `place-card__rating`,
+  property: `property__rating`,
 };
 
 const SortTypes = {
