@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link, Route} from 'react-router-dom';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
-import {VARIANT_CARD_CLASS, VARIANT_RATING_CLASS} from '../../const.js';
+import {VARIANT_RATING_CLASS} from '../../const.js';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {AuthorizationStatus} from '../../const.js';
@@ -25,22 +25,27 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const {offer, onMouseOver, variant} = this.props;
-    const currentClass = VARIANT_CARD_CLASS[variant] || `cities__place-card`;
+    const {offer,
+      classNameCard = `cities__place-card`,
+      classNameImgWrapper = `cities__image-wrapper`,
+      imageSize = {width: 260, height: 200},
+      onMouseOver
+    } = this.props;
+
     const {id, previewPhoto, isPremium, type, rating, isFavorite, price} = offer;
 
     const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
 
     return (
-      <article className= {`${currentClass} place-card`} onMouseOver={onMouseOver} data-id={id}>
+      <article className= {`${classNameCard} place-card`} onMouseOver={onMouseOver} data-id={id}>
         {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ``}
-        <div className="place-card__image-wrapper">
+        <div className={`${classNameImgWrapper} place-card__image-wrapper`}>
           <a href="#">
             <img
               className="place-card__image"
               src={previewPhoto}
-              width={260}
-              height={200}
+              width={imageSize.width}
+              height={imageSize.height}
               alt="Place image"
             />
           </a>
@@ -112,7 +117,6 @@ PlaceCard.propTypes = {
     },
   }).isRequired,
   onMouseOver: PropTypes.func,
-  variant: PropTypes.oneOf(Object.keys(VARIANT_CARD_CLASS)).isRequired,
   onClickFavorite: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.oneOf([`USER_NOAUTH`, `USER_AUTH`]),
 };

@@ -34,7 +34,7 @@ const Operations = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        dispatch(ActionCreatorApplication.changeActivePreloader(getState().APPLICATION.isLoading));
+        dispatch(ActionCreatorApplication.changeActivePreloaderOffers(getState().APPLICATION.isLoadingOffers));
 
         return response;
       })
@@ -43,14 +43,21 @@ const Operations = {
         dispatch(ActionCreator.loadOffers(offers));
       })
       .then(() => {
-        dispatch(ActionCreatorApplication.changeActivePreloader(getState().APPLICATION.isLoading));
+        dispatch(ActionCreatorApplication.changeActivePreloaderOffers(getState().APPLICATION.isLoadingOffers
+        ));
       });
   },
   loadFavoriteOffers: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
       .then((response) => {
+        dispatch(ActionCreatorApplication.changeActivePreloaderFeatures(getState().APPLICATION.isLoadingFeatures));
+
+        return response;
+      })
+      .then((response) => {
         const offers = hotelsAdapter(response.data);
         dispatch(ActionCreator.loadFavoriteOffers(offers));
+        dispatch(ActionCreatorApplication.changeActivePreloaderFeatures(getState().APPLICATION.isLoadingFeatures));
       });
   },
   setFavoriteOffer: (id, newStatus) => (dispatch, getState, api) => {

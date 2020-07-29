@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card.jsx';
+import PlaceCardsList from '../place-cards-list/place-cards-list.jsx';
 import VariantSort from '../variant-sort/variant-sort.jsx';
 import Map from '../map/map.jsx';
 import widthSort from '../../hocs/with-sort/with-sort.jsx';
+import {VARIANT_CARD} from '../../const.js';
 import {getCityLocation} from '../../utils/util.js';
 
 const WidthVariantSort = widthSort(VariantSort);
@@ -11,12 +12,7 @@ const WidthVariantSort = widthSort(VariantSort);
 const CitiesPlaces = (props) => {
   const {offers, cityName, onChangeActiveElement, activeElement} = props;
 
-  const placeCards = offers.map((offer) => {
-    return <PlaceCard offer={offer} onMouseOver = {onChangeActiveElement} variant = {`cities`} key={offer.id} />;
-  });
-
-  const countPlaces = placeCards.length;
-
+  const countPlaces = offers.length;
   const coordsCity = getCityLocation(offers[0]);
   const {zoom} = offers[0].city.location;
 
@@ -31,8 +27,11 @@ const CitiesPlaces = (props) => {
         <WidthVariantSort />
 
         <div className="cities__places-list places__list tabs__content">
-          {placeCards}
+
+          {<PlaceCardsList offers = {offers} variant = {VARIANT_CARD.CITIES} onChangeActiveElement = {onChangeActiveElement} />}
+
         </div>
+
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">

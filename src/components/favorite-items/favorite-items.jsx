@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card.jsx';
-import {VARIANT_CARD_CLASS} from '../../const.js';
+import PlaceCardsList from '../place-cards-list/place-cards-list.jsx';
+import {VARIANT_CARD} from '../../const.js';
 
 const FavoriteItems = (props) => {
   const {favoriteOffers} = props;
 
   const cityFavorite = favoriteOffers.map((offer) => offer.city.name);
-  const uniqueCityName = new Set(cityFavorite);
+  const uniqueCityName = Array.from(new Set(cityFavorite));
 
   return (
     <ul className="favorites__list">
@@ -24,9 +24,7 @@ const FavoriteItems = (props) => {
               </div>
             </div>
             <div className="favorites__places">
-              {favoriteOffersInCity.map((favoriteOffer) => {
-                return <PlaceCard offer = {favoriteOffer} variant = {VARIANT_CARD_CLASS.favorite} key = {`${favoriteOffers.id} ${favoriteOffers.photos} `}/>;
-              })}
+              {<PlaceCardsList offers = {favoriteOffersInCity} variant = {VARIANT_CARD.FAVORITE} onChangeActiveElement = {() => {}} />}
             </div>
           </li>
         );

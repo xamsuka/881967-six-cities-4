@@ -1,20 +1,36 @@
 import React from "react";
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import Header from "../header/header.jsx";
+import Loading from '../loading/loading.jsx';
 import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 import FavoriteItems from '../favorite-items/favorite-items.jsx';
-import PropTypes from 'prop-types';
+import {AuthorizationStatus} from '../../const.js';
+import {getAuthorizationStatus, getUserData} from '../../reducers/user/selectors.js';
+import {Operations as DataOperations} from '../../reducers/data/reducer.js';
+import {getFavoriteOffers} from '../../reducers/data/selectors.js';
+import {getStatusLoadingFeatures} from '../../reducers/application/selectors.js';
 
 const Favorite = (props) => {
-  const {getFavoriteOffers, userData} = props;
+  const {loadingFavoriteOffers, favoriteOffers, authorizationStatus, userData, isLoading} = props;
+  const isFeatues = !!favoriteOffers.length;
 
-  const favoriteOffers = getFavoriteOffers();
+  if (!isFeatues && !isLoading) {
+    loadingFavoriteOffers();
+  }
+
+  let favoriteComponent = <FavoritesEmpty />;
+
+  if (isLoading === true) {
+    favoriteComponent = <Loading />;
+  }
 
   return (
     <React.Fragment>
       <div className="page">
         <Header userData = {userData} />
 
-        {favoriteOffers ?
+        {isFeatues ?
           <main className="page__main page__main--favorites">
             <div className="page__favorites-container container">
               <section className="favorites">
@@ -25,7 +41,7 @@ const Favorite = (props) => {
               </section>
             </div>
           </main>
-          : <FavoritesEmpty />}
+          : favoriteComponent}
 
         <footer className="footer container">
           <a className="footer__logo-link" href="main.html">
@@ -87,4 +103,17 @@ Favorite.propTypes = {
   }),
 };
 
-export default Favorite;
+const mapStateToProps = (state) => ({
+  favoriteOffers: getFavoriteOffers(state),
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
+  isLoading: getStatusLoadingFeatures(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadingFavoriteOffers: () => {
+    dispatch(DataOperations.loadFavoriteOffers());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Favorite);

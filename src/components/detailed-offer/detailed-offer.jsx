@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
 import Map from '../map/map.jsx';
-import PlaceCard from '../place-card/place-card.jsx';
+import PlaceCardsList from '../place-cards-list/place-cards-list.jsx';
 import {getOffers} from '../../reducers/data/selectors.js';
 import {getCityLocation} from '../../utils/util.js';
+import {VARIANT_CARD} from '../../const.js';
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
@@ -21,10 +22,6 @@ class DetailedOffer extends PureComponent {
 
     const {photos, title, description, isPremium, type, rating, countDedrooms, maxGuests, isFavorite, price, features, infoOwner} = offer;
     const {avatar: ownerAvatar, name: ownerName, isPro} = infoOwner || {};
-
-    const placeCardsNear = otherPlaces.map((placeNear) => {
-      return <PlaceCard offer={offer} onMouseOver={() => {}} key={`${placeNear.id} ${placeNear.description}`} variant = {`near`} />;
-    });
 
     const favoriteClass = isFavorite ? `property__bookmark-button--active` : ``;
 
@@ -115,7 +112,9 @@ class DetailedOffer extends PureComponent {
             </div>
           </div>
           <section className="property__map map">
+
             <Map offers = {otherPlaces} coordsCity = {getCityLocation(otherPlaces[0])} zoom = {12 }/>
+
           </section>
         </section>
         <div className="container">
@@ -124,7 +123,9 @@ class DetailedOffer extends PureComponent {
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              {placeCardsNear}
+
+              {<PlaceCardsList offers = {otherPlaces} variant = {VARIANT_CARD.NEAR} onChangeActiveElement = {() => {}} />}
+
             </div>
           </section>
         </div>

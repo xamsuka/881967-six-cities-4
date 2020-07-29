@@ -9,6 +9,10 @@ const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
 
+const getFavoriteOffers = (state) => {
+  return state[NAME_SPACE].favoriteOffers;
+};
+
 const getOffersAfterFiltration = createSelector(
     getOffers,
     getCurrentCity,
@@ -48,4 +52,4 @@ const getSortedOffers = createSelector(
     }
 );
 
-export {getOffers, getSortedOffers};
+export {getOffers, getFavoriteOffers, getSortedOffers};

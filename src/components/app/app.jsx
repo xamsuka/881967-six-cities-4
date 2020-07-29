@@ -9,7 +9,7 @@ import Favorite from '../favorites/favorites.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {ActionCreator as ActionCreatorApplication} from '../../reducers/application/reducer.js';
 import {getSortedOffers} from '../../reducers/data/selectors.js';
-import {getStatusLoading} from '../../reducers/application/selectors.js';
+import {getStatusLoadingOffers} from '../../reducers/application/selectors.js';
 import {getCurrentCity, getCurrentSort} from '../../reducers/application/selectors.js';
 import {Operations as UserOperations} from '../../reducers/user/reducer.js';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
@@ -101,7 +101,7 @@ const mapStateToProps = (state) => ({
   offers: getSortedOffers(state),
   currentCity: getCurrentCity(state),
   currentSort: getCurrentSort(state),
-  isLoading: getStatusLoading(state),
+  isLoading: getStatusLoadingOffers(state),
   userData: getUserData(state),
 });
 
