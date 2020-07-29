@@ -6,12 +6,16 @@ const getCurrentCity = (state) => {
   return state[NAME_SPACE].city;
 };
 
-const getStatusLoading = (state) => {
-  return state[NAME_SPACE].isLoading;
+const getStatusLoadingOffers = (state) => {
+  return state[NAME_SPACE].isLoadingOffers;
+};
+
+const getStatusLoadingFeatures = (state) => {
+  return state[NAME_SPACE].isLoadingFeatures;
 };
 
 const getCurrentSort = (state) => {
   return state[NAME_SPACE].currentSort;
 };
 
-export {getCurrentCity, getCurrentSort, getStatusLoading};
+export {getCurrentCity, getCurrentSort, getStatusLoadingOffers, getStatusLoadingFeatures};

@@ -1,10 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
-import CitiesPlaces from './cities-places.jsx';
+import FavoriteItems from './favorite-items.jsx';
 
-const offers = [
+const favoriteOffers = [
   {
     id: 1,
     city: {
@@ -75,23 +73,9 @@ const offers = [
   },
 ];
 
-const mockStore = configureStore([]);
-
-const cityName = `Paris`;
-
-test(`<CitiesPlaces /> render`, () => {
-  const store = mockStore({
-    APPLICATION: {
-      city: `Paris`,
-      currentSort: `Popular`,
-      offers,
-    }
-  });
-
+test(`<FavoriteItems /> render`, () => {
   const three = renderer
-    .create(<Provider store = {store}>
-      <CitiesPlaces offers = {offers} cityName = {cityName} onChangeActiveElement = {() => {}} activeElement = {1} />
-    </Provider>).toJSON();
+    .create(<FavoriteItems favoriteOffers = {favoriteOffers} />).toJSON();
 
   expect(three).toMatchSnapshot();
 });

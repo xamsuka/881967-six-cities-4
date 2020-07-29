@@ -5,25 +5,23 @@ import {SortTypes} from '../../const.js';
 const initialState = {
   city: CITIES[0],
   currentSort: SortTypes.POPULAR,
-  isLoading: false,
+  isLoadingOffers: false,
+  isLoadingFeatures: false,
 };
 
 const ActionType = {
   CHANGE_CITIES: `CHANGE_CITIES`,
   SORT_TYPE_CHANGE: `SORT_TYPE_CHANGE`,
-  CHANGE_STATUS_LOADING: `CHANGE_STATUS_LOADING`,
+  CHANGE_STATUS_LOADING_OFFERS: `CHANGE_STATUS_LOADING_OFFERS`,
+  CHANGE_STATUS_LOADING_FEATURES: `CHANGE_STATUS_LOADING_FEATURES`,
 };
 
 const ActionCreator = {
   changeCities: (evt) => {
-    if (evt.target.nodeName === `A` || evt.target.nodeName === `SPAN`) {
-      return {
-        type: ActionType.CHANGE_CITIES,
-        payload: evt.target.textContent
-      };
-    }
-
-    return {};
+    return {
+      type: ActionType.CHANGE_CITIES,
+      payload: evt.target.textContent
+    };
   },
   changeSortType: (evt) => {
     if (evt.target.className === `places__option`) {
@@ -35,8 +33,12 @@ const ActionCreator = {
 
     return {};
   },
-  activatedPreloader: (isLoading) => ({
-    type: ActionType.CHANGE_STATUS_LOADING,
+  changeActivePreloaderOffers: (isLoading) => ({
+    type: ActionType.CHANGE_STATUS_LOADING_OFFERS,
+    payload: !isLoading,
+  }),
+  changeActivePreloaderFeatures: (isLoading) => ({
+    type: ActionType.CHANGE_STATUS_LOADING_FEATURES,
     payload: !isLoading,
   }),
 };
@@ -53,9 +55,14 @@ const reducer = (store = initialState, action) => {
         currentSort: action.payload
       });
 
-    case ActionType.CHANGE_STATUS_LOADING:
+    case ActionType.CHANGE_STATUS_LOADING_OFFERS:
       return extend(store, {
-        isLoading: action.payload
+        isLoadingOffers: action.payload
+      });
+
+    case ActionType.CHANGE_STATUS_LOADING_FEATURES:
+      return extend(store, {
+        isLoadingFeatures: action.payload
       });
   }
 

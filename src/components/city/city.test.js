@@ -1,13 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import City from './city';
+import City from './cities.jsx';
 
-const cityName = `Paris`;
 const currentCity = `Paris`;
 
 test(`<City /> render`, () => {
   const three = renderer
-    .create(<City cityName = {cityName} currentCity = {currentCity} />).toJSON();
+    .create(<City currentCity = {currentCity} onChangeCurrentCity = {() => {}} />).toJSON();
 
   expect(three).toMatchSnapshot();
 });

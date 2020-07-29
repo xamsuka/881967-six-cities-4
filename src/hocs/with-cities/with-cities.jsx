@@ -6,7 +6,7 @@ const withCities = (Component) => {
       super(props);
 
       this.state = {
-        activeElement: null,
+        activeElement: -1,
       };
 
       this._changeActiveElementHandler = this._changeActiveElementHandler.bind(this);

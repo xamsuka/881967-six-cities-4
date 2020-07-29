@@ -44,7 +44,7 @@ exports[`<Reviews /> render 1`] = `
         className="reviews__info"
       >
         <div
-          className="reviews__rating rating"
+          className="place-card__rating rating"
         >
           <div
             className="reviews__stars rating__stars"
@@ -103,7 +103,7 @@ exports[`<Reviews /> render 1`] = `
         className="reviews__info"
       >
         <div
-          className="reviews__rating rating"
+          className="place-card__rating rating"
         >
           <div
             className="reviews__stars rating__stars"

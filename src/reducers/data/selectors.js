@@ -9,16 +9,20 @@ const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
 
-const getOffersAfterFiltration = createSelector(
-  getOffers,
-  getCurrentCity,
-  (offers, currentCity) => {
-    const offersAfterFiltration = offers.filter((offer) => {
-      return offer.city.name === currentCity;
-    });
+const getFavoriteOffers = (state) => {
+  return state[NAME_SPACE].favoriteOffers;
+};
 
-    return offersAfterFiltration;
-  }
+const getOffersAfterFiltration = createSelector(
+    getOffers,
+    getCurrentCity,
+    (offers, currentCity) => {
+      const offersAfterFiltration = offers.filter((offer) => {
+        return offer.city.name === currentCity;
+      });
+
+      return offersAfterFiltration;
+    }
 );
 
 const getSortedOffers = createSelector(
@@ -48,4 +52,4 @@ const getSortedOffers = createSelector(
     }
 );
 
-export {getSortedOffers};
+export {getOffers, getFavoriteOffers, getSortedOffers};

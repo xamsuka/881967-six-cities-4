@@ -1,4 +1,5 @@
 import React, {PureComponent, createRef} from "react";
+import PropTypes from 'prop-types';
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -12,18 +13,19 @@ class SignIn extends PureComponent {
 
   _submitHandler(evt) {
     evt.preventDefault();
+    const {history} = this.props;
 
     this.onSubmit({
       email: this.loginRef.current.value,
       password: this.passwordRef.current.value,
-    });
+    }, history);
   }
 
   render() {
     return (
       <React.Fragment>
         <div>
-          <div style={{ display: "none" }}>
+          <div style={{display: `none`}}>
             <svg xmlns="http://www.w3.org/2000/svg">
               <symbol id="icon-arrow-select" viewBox="0 0 7 4">
                 <path
@@ -125,5 +127,10 @@ class SignIn extends PureComponent {
     );
   }
 }
+
+SignIn.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+};
 
 export default SignIn;

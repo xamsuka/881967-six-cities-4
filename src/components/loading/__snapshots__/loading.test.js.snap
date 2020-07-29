@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Loading /> render 1`] = `
+<div
+  className="preloader"
+>
+  <p
+    className="preloader__text"
+  >
+    Загрузка данный с сервера...
+  </p>
+</div>
+`;

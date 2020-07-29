@@ -1,16 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<City /> render 1`] = `
-<li
-  className="locations__item"
+<ul
+  className="locations__list tabs__list"
 >
-  <a
-    className="locations__item-link tabs__item tabs__item--active"
-    href="#"
+  <li
+    className="locations__item"
   >
-    <span>
-      Paris
-    </span>
-  </a>
-</li>
+    <a
+      className="locations__item-link tabs__item tabs__item--active"
+      data-id={0}
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Paris
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      data-id={1}
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Cologne
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      data-id={2}
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Brussels
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      data-id={3}
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Amsterdam
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      data-id={4}
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Hamburg
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+  >
+    <a
+      className="locations__item-link tabs__item "
+      data-id={5}
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Dusseldorf
+      </span>
+    </a>
+  </li>
+</ul>
 `;

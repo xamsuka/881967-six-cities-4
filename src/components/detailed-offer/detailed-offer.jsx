@@ -4,7 +4,10 @@ import {connect} from 'react-redux';
 import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
 import Map from '../map/map.jsx';
-import PlaceCard from '../place-card/place-card.jsx';
+import PlaceCardsList from '../place-cards-list/place-cards-list.jsx';
+import {getOffers} from '../../reducers/data/selectors.js';
+import {getCityLocation} from '../../utils/util.js';
+import {VARIANT_CARD} from '../../const.js';
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
@@ -19,10 +22,6 @@ class DetailedOffer extends PureComponent {
 
     const {photos, title, description, isPremium, type, rating, countDedrooms, maxGuests, isFavorite, price, features, infoOwner} = offer;
     const {avatar: ownerAvatar, name: ownerName, isPro} = infoOwner || {};
-
-    const placeCardsNear = otherPlaces.map((placeNear) => {
-      return <PlaceCard place={placeNear} onMouseOver={() => {}} key={`${placeNear.id} ${placeNear.description}`} variant = {`near`} />;
-    });
 
     const favoriteClass = isFavorite ? `property__bookmark-button--active` : ``;
 
@@ -108,12 +107,14 @@ class DetailedOffer extends PureComponent {
                 </div>
               </div>
 
-              <Reviews reviews = {reviews} />
+              <Reviews reviews = {[]} />
 
             </div>
           </div>
           <section className="property__map map">
-            <Map citiesPlaces = {otherPlaces} idPlaceActive= {id} />
+
+            <Map offers = {otherPlaces} coordsCity = {getCityLocation(otherPlaces[0])} zoom = {12 }/>
+
           </section>
         </section>
         <div className="container">
@@ -122,7 +123,9 @@ class DetailedOffer extends PureComponent {
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              {placeCardsNear}
+
+              {<PlaceCardsList offers = {otherPlaces} variant = {VARIANT_CARD.NEAR} onChangeActiveElement = {() => {}} />}
+
             </div>
           </section>
         </div>
@@ -134,7 +137,15 @@ class DetailedOffer extends PureComponent {
 DetailedOffer.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    city: PropTypes.string.isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    previewPhoto: PropTypes.string.isRequired,
     photos: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -146,12 +157,18 @@ DetailedOffer.propTypes = {
     maxGuests: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
-    infoOwner: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
+    infoOwner: {
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      isSuper: PropTypes.bool.isRequired,
-    }).isRequired
-  }).isRequired).isRequired,
+      avatar: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+    },
+    coords: {
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    },
+  })).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired
@@ -160,7 +177,7 @@ DetailedOffer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
+  offers: getOffers(state),
 });
 
 export {DetailedOffer};

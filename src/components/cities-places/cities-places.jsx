@@ -1,30 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card.jsx';
+import PlaceCardsList from '../place-cards-list/place-cards-list.jsx';
 import VariantSort from '../variant-sort/variant-sort.jsx';
 import Map from '../map/map.jsx';
 import widthSort from '../../hocs/with-sort/with-sort.jsx';
+import {VARIANT_CARD} from '../../const.js';
+import {getCityLocation} from '../../utils/util.js';
 
 const WidthVariantSort = widthSort(VariantSort);
-
-const getCityLocation = (offer) => {
-  if (offer) {
-    const {latitude, longitude} = offer.city.location;
-    return new Array(latitude, longitude);
-  }
-
-  return;
-};
 
 const CitiesPlaces = (props) => {
   const {offers, cityName, onChangeActiveElement, activeElement} = props;
 
-  const placeCards = offers.map((offer) => {
-    return <PlaceCard offer={offer} onMouseOver={onChangeActiveElement} key={offer.id} variant = {`cities`} />;
-  });
-
-  const countPlaces = placeCards.length;
-
+  const countPlaces = offers.length;
   const coordsCity = getCityLocation(offers[0]);
   const {zoom} = offers[0].city.location;
 
@@ -39,8 +27,11 @@ const CitiesPlaces = (props) => {
         <WidthVariantSort />
 
         <div className="cities__places-list places__list tabs__content">
-          {placeCards}
+
+          {<PlaceCardsList offers = {offers} variant = {VARIANT_CARD.CITIES} onChangeActiveElement = {onChangeActiveElement} />}
+
         </div>
+
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
@@ -56,7 +47,15 @@ const CitiesPlaces = (props) => {
 CitiesPlaces.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    city: PropTypes.any.isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    previewPhoto: PropTypes.string.isRequired,
     photos: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -68,12 +67,18 @@ CitiesPlaces.propTypes = {
     maxGuests: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
-    // infoOwner: PropTypes.shape({
-    //   avatar: PropTypes.string.isRequired,
-    //   name: PropTypes.string.isRequired,
-    //   isSuper: PropTypes.bool.isRequired,
-    // }).isRequired
-  }).isRequired).isRequired,
+    infoOwner: {
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+    },
+    coords: {
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    },
+  })),
   cityName: PropTypes.string.isRequired,
   onChangeActiveElement: PropTypes.func.isRequired,
   activeElement: PropTypes.number.isRequired,

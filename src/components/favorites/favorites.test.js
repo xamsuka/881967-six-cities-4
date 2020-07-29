@@ -1,10 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
-import CitiesPlaces from './cities-places.jsx';
+import Favorite from './favorite.jsx';
 
-const offers = [
+const favoriteOffers = [
   {
     id: 1,
     city: {
@@ -28,7 +26,7 @@ const offers = [
     price: 500,
     features: [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Washing machine`],
     infoOwner: {
-      id: `1`,
+      id: 1,
       name: `Vladislav Kozlovsky`,
       avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
       isPro: true,
@@ -75,23 +73,17 @@ const offers = [
   },
 ];
 
-const mockStore = configureStore([]);
+const userData = {
+  id: 1,
+  email: `1@mail.ru`,
+  name: `Vlad`,
+  isProp: false,
+  avatarUrl: ``,
+};
 
-const cityName = `Paris`;
-
-test(`<CitiesPlaces /> render`, () => {
-  const store = mockStore({
-    APPLICATION: {
-      city: `Paris`,
-      currentSort: `Popular`,
-      offers,
-    }
-  });
-
+test(`<Favorite /> render`, () => {
   const three = renderer
-    .create(<Provider store = {store}>
-      <CitiesPlaces offers = {offers} cityName = {cityName} onChangeActiveElement = {() => {}} activeElement = {1} />
-    </Provider>).toJSON();
+    .create(<Favorite favoriteOffers = {favoriteOffers} userData = {userData} />).toJSON();
 
   expect(three).toMatchSnapshot();
 });

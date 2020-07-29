@@ -1,8 +1,10 @@
 const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
 const ONE_STAR = 20;
-const VARIANT_CARD_CLASS = {
-  cities: `cities__place-card`,
-  near: `near-places__card`,
+
+const VARIANT_CARD = {
+  CITIES: `CITIES`,
+  NEAR: `NEAR`,
+  FAVORITE: `FAVORITE`,
 };
 
 const VARIANT_RATING_CLASS = {
@@ -22,4 +24,9 @@ const AuthorizationStatus = {
   USER_NOAUTH: `USER_NOAUTH`,
 };
 
-export {CITIES, ONE_STAR, VARIANT_CARD_CLASS, VARIANT_RATING_CLASS, SortTypes, AuthorizationStatus};
+export {CITIES, ONE_STAR,
+  VARIANT_CARD,
+  VARIANT_RATING_CLASS,
+  SortTypes,
+  AuthorizationStatus
+};
