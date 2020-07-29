@@ -4,7 +4,10 @@ import {connect} from 'react-redux';
 import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
 import Map from '../map/map.jsx';
+import Loading from '../loading/loading.jsx';
+import {getStatusLoadingOffers} from '../../reducers/application/selectors.js';
 import PlaceCardsList from '../place-cards-list/place-cards-list.jsx';
+import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {getOffers} from '../../reducers/data/selectors.js';
 import {getCityLocation} from '../../utils/util.js';
 import {VARIANT_CARD} from '../../const.js';
@@ -15,7 +18,12 @@ class DetailedOffer extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, isLoading} = this.props;
+
+    if (isLoading) {
+      return <Loading />;
+    }
+
     const {id} = this.props.match.params;
     const offer = offers[id];
     const otherPlaces = offers.slice().slice(0, 3);
@@ -174,11 +182,17 @@ DetailedOffer.propTypes = {
       id: PropTypes.string.isRequired
     })
   }),
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: getOffers(state),
+  isLoading: getStatusLoadingOffers(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadOffers: dispatch(DataOperations.loadOffers),
 });
 
 export {DetailedOffer};
-export default connect(mapStateToProps)(DetailedOffer);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailedOffer);

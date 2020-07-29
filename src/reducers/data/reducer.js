@@ -32,17 +32,11 @@ const ActionCreator = {
 
 const Operations = {
   loadOffers: () => (dispatch, getState, api) => {
+    dispatch(ActionCreatorApplication.changeActivePreloaderOffers(getState().APPLICATION.isLoadingOffers));
     return api.get(`/hotels`)
-      .then((response) => {
-        dispatch(ActionCreatorApplication.changeActivePreloaderOffers(getState().APPLICATION.isLoadingOffers));
-
-        return response;
-      })
       .then((response) => {
         const offers = hotelsAdapter(response.data);
         dispatch(ActionCreator.loadOffers(offers));
-      })
-      .then(() => {
         dispatch(ActionCreatorApplication.changeActivePreloaderOffers(getState().APPLICATION.isLoadingOffers
         ));
       });

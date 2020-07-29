@@ -29,7 +29,8 @@ class PlaceCard extends PureComponent {
       classNameCard = `cities__place-card`,
       classNameImgWrapper = `cities__image-wrapper`,
       imageSize = {width: 260, height: 200},
-      onMouseOver
+      onMouseOver,
+      key,
     } = this.props;
 
     const {id, previewPhoto, isPremium, type, rating, isFavorite, price} = offer;
@@ -37,7 +38,7 @@ class PlaceCard extends PureComponent {
     const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
 
     return (
-      <article className= {`${classNameCard} place-card`} onMouseOver={onMouseOver} data-id={id}>
+      <article className= {`${classNameCard} place-card`} onMouseOver={onMouseOver} data-id={id} key = {key} >
         {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ``}
         <div className={`${classNameImgWrapper} place-card__image-wrapper`}>
           <a href="#">

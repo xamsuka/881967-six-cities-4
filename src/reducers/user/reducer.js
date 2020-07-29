@@ -1,5 +1,6 @@
 import {extend} from '../../utils/util.js';
 import {userAdapter} from '../../adapters/adapters.js';
+import {Operations as DataOperations} from '../data/reducer.js';
 
 const AuthorizationStatus = {
   USER_AUTH: `USER_AUTH`,
@@ -28,6 +29,7 @@ const Operations = {
     return api.post(`/login`, userData)
       .then((response) => {
         dispatch(ActionCreator.authorizeUser(AuthorizationStatus.USER_AUTH, userAdapter(response.data)));
+        dispatch(DataOperations.loadFavoriteOffers());
         history.push(`/`);
       });
   },
@@ -35,6 +37,7 @@ const Operations = {
     return api.get(`/login`)
       .then((response) => {
         dispatch(ActionCreator.authorizeUser(AuthorizationStatus.USER_AUTH, userAdapter(response.data)));
+        dispatch(DataOperations.loadFavoriteOffers());
       });
   }
 };

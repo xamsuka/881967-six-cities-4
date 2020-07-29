@@ -5,24 +5,15 @@ import Header from "../header/header.jsx";
 import Loading from '../loading/loading.jsx';
 import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 import FavoriteItems from '../favorite-items/favorite-items.jsx';
-import {getAuthorizationStatus, getUserData} from '../../reducers/user/selectors.js';
-import {Operations as DataOperations} from '../../reducers/data/reducer.js';
+import {getUserData} from '../../reducers/user/selectors.js';
 import {getFavoriteOffers} from '../../reducers/data/selectors.js';
 import {getStatusLoadingFeatures} from '../../reducers/application/selectors.js';
 
 const Favorite = (props) => {
-  const {loadingFavoriteOffers, favoriteOffers, userData, isLoading} = props;
+  const {favoriteOffers, userData, isLoading} = props;
   const isFeatues = !!favoriteOffers.length;
 
-  if (!isFeatues && !isLoading) {
-    loadingFavoriteOffers();
-  }
-
-  let favoriteComponent = <FavoritesEmpty />;
-
-  if (isLoading === true) {
-    favoriteComponent = <Loading />;
-  }
+  let favoritesComponent = isLoading ? <Loading /> : <FavoritesEmpty />;
 
   return (
     <React.Fragment>
@@ -40,7 +31,7 @@ const Favorite = (props) => {
               </section>
             </div>
           </main>
-          : favoriteComponent}
+          : favoritesComponent}
 
         <footer className="footer container">
           <a className="footer__logo-link" href="main.html">
@@ -100,19 +91,14 @@ Favorite.propTypes = {
     avatarUrl: PropTypes.string,
     isPro: PropTypes.bool,
   }),
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   favoriteOffers: getFavoriteOffers(state),
-  authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
   isLoading: getStatusLoadingFeatures(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  loadingFavoriteOffers: () => {
-    dispatch(DataOperations.loadFavoriteOffers());
-  },
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favorite);
+export default connect(mapStateToProps)(Favorite);
