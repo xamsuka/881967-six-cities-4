@@ -5,14 +5,13 @@ import Header from "../header/header.jsx";
 import Loading from '../loading/loading.jsx';
 import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 import FavoriteItems from '../favorite-items/favorite-items.jsx';
-import {AuthorizationStatus} from '../../const.js';
 import {getAuthorizationStatus, getUserData} from '../../reducers/user/selectors.js';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {getFavoriteOffers} from '../../reducers/data/selectors.js';
 import {getStatusLoadingFeatures} from '../../reducers/application/selectors.js';
 
 const Favorite = (props) => {
-  const {loadingFavoriteOffers, favoriteOffers, authorizationStatus, userData, isLoading} = props;
+  const {loadingFavoriteOffers, favoriteOffers, userData, isLoading} = props;
   const isFeatues = !!favoriteOffers.length;
 
   if (!isFeatues && !isLoading) {

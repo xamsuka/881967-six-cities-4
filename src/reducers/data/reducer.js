@@ -65,6 +65,7 @@ const Operations = {
       .then((response) => {
         const offer = hotelAdapter(response.data);
         dispatch(ActionCreator.updateOffers(offer));
+        dispatch(Operations.loadFavoriteOffers());
       });
   }
 };
