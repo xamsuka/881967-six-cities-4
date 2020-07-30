@@ -24,10 +24,31 @@ class DetailedOffer extends PureComponent {
     this._onSubmitButtonReviews = this._onSubmitButtonReviews.bind(this);
   }
 
+  _getRatingComments(ratingsElements) {
+    let ratingComment = 0;
+
+    for (let rating of ratingsElements) {
+      if (rating.checked) {
+        ratingComment = rating.value;
+        break;
+      }
+    }
+
+    return ratingComment;
+  }
+
   _onSubmitButtonReviews(evt) {
-    const form = new FormData(evt);
-    const comment = form.get(`reviews__help`);
-    this._onSubmitButtonReviews(this.id, comment);
+    evt.preventDefault();
+    const ratingsElements = evt.currentTarget.rating;
+    const rating = this._getRatingComments(ratingsElements);
+    const textComment = evt.currentTarget.review.value;
+
+    const comment = {
+      comment: textComment,
+      rating,
+    };
+
+    this.onSubmit(this.id, comment);
   }
 
   render() {

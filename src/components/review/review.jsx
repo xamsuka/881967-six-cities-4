@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
+import {dateAdapter} from '../../utils/util.js';
 
 class Review extends PureComponent {
   constructor(props) {
@@ -32,7 +33,7 @@ class Review extends PureComponent {
             {review.comment}
           </p>
           <time className="reviews__time" dateTime={review.date}>
-            {review.date}
+            {dateAdapter(review.date)}
           </time>
         </div>
       </li>);

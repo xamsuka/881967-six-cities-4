@@ -1,3 +1,4 @@
+const MOUNTH = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
 const ONE_STAR = 20;
 
@@ -29,5 +30,6 @@ export {CITIES, ONE_STAR,
   VARIANT_CARD,
   VARIANT_RATING_CLASS,
   SortTypes,
-  AuthorizationStatus
+  AuthorizationStatus,
+  MOUNTH,
 };

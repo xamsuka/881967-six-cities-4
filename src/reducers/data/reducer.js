@@ -91,7 +91,8 @@ const Operations = {
   addNewOfferComment: (id, commentPost) => (dispatch, getState, api) => {
     return api.post(`comments/${id}`, commentPost)
       .then((response) => {
-        return response;
+        const comments = reviewsAdapter(response.data);
+        dispatch(ActionCreator.loadOfferComments(comments));
       });
   },
   loadNearbyOffers: (id) => (dispatch, getState, api) => {

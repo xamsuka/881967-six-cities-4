@@ -1,3 +1,5 @@
+import {MOUNTH} from '../const.js';
+
 const getRandomNumber = (min = 0, max = 10) => {
   return Math.floor(Math.random(min) * max);
 };
@@ -15,4 +17,13 @@ const getCityLocation = (offer) => {
   return [];
 };
 
-export {getRandomNumber, extend, getCityLocation};
+const dateAdapter = (dateRAW) => {
+  const date = new Date(dateRAW);
+  const year = date.getFullYear();
+  const mount = MOUNTH[date.getMonth()];
+
+  return `${mount} ${year}`;
+};
+
+
+export {getRandomNumber, extend, getCityLocation, dateAdapter};
