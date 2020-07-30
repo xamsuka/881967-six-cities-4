@@ -6,7 +6,9 @@ import Reviews from '../reviews/reviews.jsx';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
 import Map from '../map/map.jsx';
 import Loading from '../loading/loading.jsx';
-import {getStatusLoadingOffers} from '../../reducers/application/selectors.js';
+import FeedbackForm from "../feedback-form/feedback-form.jsx";
+import {getStatusLoadingOffers, getStatusLoadingComments, getStatusLoadingOffersNearby} from '../../reducers/application/selectors.js';
+import {getCommentsOffer, getNearbyOffers} from '../../reducers/data/selectors.js';
 import PlaceCardsList from '../place-cards-list/place-cards-list.jsx';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {getOffers} from '../../reducers/data/selectors.js';
@@ -17,23 +19,48 @@ import {VARIANT_CARD} from '../../const.js';
 class DetailedOffer extends PureComponent {
   constructor(props) {
     super(props);
+    this.id = Number(this.props.match.params.id);
+    this.onSubmit = this.props.addNewOfferComment;
+    this._onSubmitButtonReviews = this._onSubmitButtonReviews.bind(this);
+  }
+
+  _onSubmitButtonReviews(evt) {
+    const form = new FormData(evt);
+    const comment = form.get(`reviews__help`);
+    this._onSubmitButtonReviews(this.id, comment);
   }
 
   render() {
-    const {offers, isLoading, authorizationStatus} = this.props;
+    const {
+      offers, isLoadingOffers,
+      isLoadingComments, isLoadingOfferNearby,
+      commentsOffer, nearbyOffers,
+      loadOfferComments, loadOffersNearby,
+      authorizationStatus,
+    } = this.props;
 
-    if (isLoading) {
+    if (isLoadingOffers) {
       return <Loading />;
     }
 
-    const {id} = this.props.match.params;
-    const offer = offers[id];
-    const otherPlaces = offers.slice().slice(0, 3);
+    const offerIndex = offers.findIndex((it) => it.id === this.id);
+    const offer = offers[offerIndex];
 
     const {photos, title, description, isPremium, type, rating, countDedrooms, maxGuests, isFavorite, price, features, infoOwner} = offer;
     const {avatar: ownerAvatar, name: ownerName, isPro} = infoOwner || {};
 
     const favoriteClass = isFavorite ? `property__bookmark-button--active` : ``;
+
+    const isCommentsOffer = !!commentsOffer.length;
+    const isNearbyOffer = !!nearbyOffers.length;
+
+    if (!isCommentsOffer && !isLoadingComments) {
+      loadOfferComments(this.id);
+    }
+
+    if (!isNearbyOffer && !isLoadingOfferNearby) {
+      loadOffersNearby(this.id);
+    }
 
     return (
       <main className="page__main page__main--property">
@@ -99,7 +126,7 @@ class DetailedOffer extends PureComponent {
                   <div className={`roperty__avatar-wrapper ${isPro ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`} >
                     <img
                       className="property__avatar user__avatar"
-                      src={ownerAvatar}
+                      src={`/${ownerAvatar}`}
                       width={74}
                       height={74}
                       alt="Host avatar"
@@ -114,13 +141,21 @@ class DetailedOffer extends PureComponent {
                 </div>
               </div>
 
-              <Reviews reviews = {[]} authorizationStatus = {authorizationStatus} />
+              {isCommentsOffer
+                ? <Reviews reviews = {commentsOffer} authorizationStatus = {authorizationStatus}>
+                  <FeedbackForm onSubmitButtonReviews = {this._onSubmitButtonReviews} />
+                </Reviews>
+                : <Loading />
+              }
 
             </div>
           </div>
           <section className="property__map map">
 
-            <Map offers = {otherPlaces} coordsCity = {getCityLocation(otherPlaces[0])} zoom = {12 }/>
+            {isNearbyOffer
+              ? <Map offers = {nearbyOffers} coordsCity = {getCityLocation(nearbyOffers[0])} zoom = {12 }/>
+              : ``
+            }
 
           </section>
         </section>
@@ -131,7 +166,7 @@ class DetailedOffer extends PureComponent {
             </h2>
             <div className="near-places__list places__list">
 
-              {<PlaceCardsList offers = {otherPlaces} variant = {VARIANT_CARD.NEAR} onChangeActiveElement = {() => {}} />}
+              {<PlaceCardsList offers = {nearbyOffers} variant = {VARIANT_CARD.NEAR} onChangeActiveElement = {() => {}} />}
 
             </div>
           </section>
@@ -181,18 +216,33 @@ DetailedOffer.propTypes = {
       id: PropTypes.string.isRequired
     })
   }),
-  isLoading: PropTypes.bool.isRequired,
+  isLoadingOffers: PropTypes.bool.isRequired,
+  loadOfferComments: PropTypes.func.isRequired,
+  addNewOfferComment: PropTypes.func.isRequired,
+  loadOffersNearby: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.oneOf([`USER_AUTH`, `USER_NOAUTH`]),
 };
 
 const mapStateToProps = (state) => ({
   offers: getOffers(state),
-  isLoading: getStatusLoadingOffers(state),
+  isLoadingOffers: getStatusLoadingOffers(state),
+  isLoadingComments: getStatusLoadingComments(state),
+  isLoadingOfferNearby: getStatusLoadingOffersNearby(state),
+  commentsOffer: getCommentsOffer(state),
+  nearbyOffers: getNearbyOffers(state),
   authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadOffers: dispatch(DataOperations.loadOffers),
+  loadOfferComments: (id) => {
+    dispatch(DataOperations.loadOfferComments(id));
+  },
+  addNewOfferComment: (id, commentPost) => {
+    dispatch(DataOperations.addNewOfferComment(id, commentPost));
+  },
+  loadOffersNearby: (id) => {
+    dispatch(DataOperations.loadNearbyOffers(id));
+  },
 });
 
 export {DetailedOffer};

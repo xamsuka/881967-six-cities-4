@@ -14,8 +14,18 @@ const getStatusLoadingFeatures = (state) => {
   return state[NAME_SPACE].isLoadingFeatures;
 };
 
+const getStatusLoadingComments = (state) => {
+  return state[NAME_SPACE].isLoadingComments;
+};
+
+const getStatusLoadingOffersNearby = (state) => {
+  return state[NAME_SPACE].isLoadingOffersNearby;
+};
+
 const getCurrentSort = (state) => {
   return state[NAME_SPACE].currentSort;
 };
 
-export {getCurrentCity, getCurrentSort, getStatusLoadingOffers, getStatusLoadingFeatures};
+export {getCurrentCity, getCurrentSort,
+  getStatusLoadingOffers, getStatusLoadingFeatures,
+  getStatusLoadingComments, getStatusLoadingOffersNearby};

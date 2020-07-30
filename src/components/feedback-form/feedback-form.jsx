@@ -6,8 +6,10 @@ class FeedbackForm extends PureComponent {
   }
 
   render() {
+    const {onSubmitButtonReviews} = this.props;
+
     return (
-      <form className="reviews__form form" action="#" method="post">
+      <form className="reviews__form form" action="#" method="post" onSubmit = {onSubmitButtonReviews}>
         <label className="reviews__label form__label" htmlFor="review">
           Your review
         </label>
@@ -109,9 +111,7 @@ class FeedbackForm extends PureComponent {
           </p>
           <button
             className="reviews__submit form__submit button"
-            type="submit"
-            disabled
-          >
+            type="submit">
             Submit
           </button>
         </div>

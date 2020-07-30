@@ -1,6 +1,5 @@
 import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
-import FeedbackForm from "../feedback-form/feedback-form.jsx";
 import Review from '../review/review.jsx';
 import {AuthorizationStatus} from '../../const.js';
 
@@ -10,7 +9,7 @@ class Reviews extends PureComponent {
   }
 
   render() {
-    const {reviews, authorizationStatus} = this.props;
+    const {reviews, authorizationStatus, children} = this.props;
 
     const reviewComponents = reviews.map((review) => {
       return <Review review = {review} key = {`${review.text} ${review.id}`} />;
@@ -25,7 +24,7 @@ class Reviews extends PureComponent {
           {reviewComponents}
         </ul>
 
-        {authorizationStatus === AuthorizationStatus.USER_AUTH ? <FeedbackForm /> : ``}
+        {authorizationStatus === AuthorizationStatus.USER_AUTH ? children : ``}
 
       </section>
     );
@@ -37,11 +36,11 @@ Reviews.propTypes = {
     id: PropTypes.number.isRequired,
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
-      userAvatar: PropTypes.string.isRequired,
-      userName: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     }),
     rating: PropTypes.oneOf([1, 2, 3, 4, 5]),
-    text: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
   })),
   authorizationStatus: PropTypes.oneOf([`USER_AUTH`, `USER_NOAUTH`]),

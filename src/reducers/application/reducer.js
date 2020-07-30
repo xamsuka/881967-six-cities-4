@@ -6,14 +6,18 @@ const initialState = {
   city: CITIES[0],
   currentSort: SortTypes.POPULAR,
   isLoadingOffers: false,
-  isLoadingFeatures: false,
+  isLoadingFavorite: false,
+  isLoadingComments: false,
+  isLoadingOffersNearby: false,
 };
 
 const ActionType = {
   CHANGE_CITIES: `CHANGE_CITIES`,
   SORT_TYPE_CHANGE: `SORT_TYPE_CHANGE`,
   CHANGE_STATUS_LOADING_OFFERS: `CHANGE_STATUS_LOADING_OFFERS`,
-  CHANGE_STATUS_LOADING_FEATURES: `CHANGE_STATUS_LOADING_FEATURES`,
+  CHANGE_STATUS_LOADING_FAVORITE: `CHANGE_STATUS_LOADING_FAVORITE`,
+  CHANGE_STATUS_LOADING_COMMENTS: `CHANGE_STATUS_LOADING_COMMENTS`,
+  CHANGE_STATUS_LOADING_OFFERS_NEARY: `CHANGE_STATUS_LOADING_OFFERS_NEARY`,
 };
 
 const ActionCreator = {
@@ -37,8 +41,16 @@ const ActionCreator = {
     type: ActionType.CHANGE_STATUS_LOADING_OFFERS,
     payload: !isLoading,
   }),
-  changeActivePreloaderFeatures: (isLoading) => ({
-    type: ActionType.CHANGE_STATUS_LOADING_FEATURES,
+  changeActivePreloaderFavorite: (isLoading) => ({
+    type: ActionType.CHANGE_STATUS_LOADING_FAVORITE,
+    payload: !isLoading,
+  }),
+  changeActivePreloaderComments: (isLoading) => ({
+    type: ActionType.CHANGE_STATUS_LOADING_COMMENTS,
+    payload: !isLoading,
+  }),
+  changeActivePreloaderOffersNearby: (isLoading) => ({
+    type: ActionType.CHANGE_STATUS_LOADING_OFFERS_NEARY,
     payload: !isLoading,
   }),
 };
@@ -60,9 +72,19 @@ const reducer = (store = initialState, action) => {
         isLoadingOffers: action.payload
       });
 
-    case ActionType.CHANGE_STATUS_LOADING_FEATURES:
+    case ActionType.CHANGE_STATUS_LOADING_FAVORITE:
       return extend(store, {
-        isLoadingFeatures: action.payload
+        isLoadingFavorite: action.payload
+      });
+
+    case ActionType.CHANGE_STATUS_LOADING_COMMENTS:
+      return extend(store, {
+        isLoadingComments: action.payload
+      });
+
+    case ActionType.CHANGE_STATUS_LOADING_OFFERS_NEARY:
+      return extend(store, {
+        isLoadingOffersNearby: action.payload
       });
   }
 

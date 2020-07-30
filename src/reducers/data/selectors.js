@@ -13,6 +13,14 @@ const getFavoriteOffers = (state) => {
   return state[NAME_SPACE].favoriteOffers;
 };
 
+const getCommentsOffer = (state) => {
+  return state[NAME_SPACE].commentsOffer;
+};
+
+const getNearbyOffers = (state) => {
+  return state[NAME_SPACE].nearbyOffer;
+};
+
 const getOffersAfterFiltration = createSelector(
     getOffers,
     getCurrentCity,
@@ -52,4 +60,4 @@ const getSortedOffers = createSelector(
     }
 );
 
-export {getOffers, getFavoriteOffers, getSortedOffers};
+export {getOffers, getFavoriteOffers, getCommentsOffer, getNearbyOffers, getSortedOffers};
