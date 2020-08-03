@@ -9,6 +9,7 @@ const initialState = {
   isLoadingFavorite: false,
   isLoadingComments: false,
   isLoadingOffersNearby: false,
+  isLoadedOffersNearby: false,
 };
 
 const ActionType = {

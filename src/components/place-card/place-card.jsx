@@ -16,11 +16,11 @@ class PlaceCard extends PureComponent {
   }
 
   _onChangeFavoriteStatus() {
-    if (this.props.authorizationStatus !== AuthorizationStatus.USER_NOAUTH) {
-      this.onClickFavorite(this.props.offer.id, Number(!this.props.offer.isFavorite));
+    if (this.props.authorizationStatus === AuthorizationStatus.USER_NOAUTH) {
+      history.push(`/login`);
     }
 
-    history.push(`/login`);
+    this.onClickFavorite(this.props.offer.id, Number(!this.props.offer.isFavorite));
   }
 
   render() {

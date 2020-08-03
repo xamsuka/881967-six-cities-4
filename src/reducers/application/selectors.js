@@ -22,10 +22,15 @@ const getStatusLoadingOffersNearby = (state) => {
   return state[NAME_SPACE].isLoadingOffersNearby;
 };
 
+const getStatusLoadedOffersNearby = (state) => {
+  return state[NAME_SPACE].isLoadedOffersNearby;
+};
+
 const getCurrentSort = (state) => {
   return state[NAME_SPACE].currentSort;
 };
 
 export {getCurrentCity, getCurrentSort,
   getStatusLoadingOffers, getStatusLoadingFeatures,
-  getStatusLoadingComments, getStatusLoadingOffersNearby};
+  getStatusLoadingComments, getStatusLoadingOffersNearby,
+  getStatusLoadedOffersNearby};

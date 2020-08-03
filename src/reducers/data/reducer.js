@@ -6,7 +6,7 @@ const initialState = {
   offers: [],
   favoriteOffers: [],
   commentsOffer: [],
-  nearbyOffer: [],
+  nearbyOffers: [],
 };
 
 const ActionType = {
@@ -14,8 +14,9 @@ const ActionType = {
   GET_FAVORITE_OFFERS: `GET_FAVORITE_OFFERS`,
   UPDATE_OFFERS: `UPDATE_OFFERS`,
   GET_COMMENTS_OFFER: `GET_COMMENTS_OFFER`,
-  UPDATE_COMMENT_OFFER: `UPDATE_COMMENT_OFFER`,
+  UPDATE_COMMENTS_OFFER: `UPDATE_COMMENTS_OFFER`,
   GET_NEARBY_OFFERS: `GET_NEARBY_OFFERS`,
+  UPDATE_NEARBY_OFFERS: `UPDATE_NEARBY_OFFERS`,
 };
 
 const ActionCreator = {
@@ -27,24 +28,26 @@ const ActionCreator = {
     type: ActionType.GET_FAVORITE_OFFERS,
     payload: offers,
   }),
-  updateOffers: (offer) => {
-    return {
-      type: ActionType.UPDATE_OFFERS,
-      payload: offer,
-    };
-  },
+  updateOffers: (offer) => ({
+    type: ActionType.UPDATE_OFFERS,
+    payload: offer,
+  }),
   loadOfferComments: (comments) => ({
     type: ActionType.GET_COMMENTS_OFFER,
     payload: comments,
   }),
   updateCommentsOffer: (comments) => ({
-    type: ActionType.UPDATE_COMMENT_OFFER,
+    type: ActionType.UPDATE_COMMENTS_OFFER,
     payload: comments,
   }),
   loadNearbyOffers: (nearbyOffers) => ({
     type: ActionType.GET_NEARBY_OFFERS,
     payload: nearbyOffers,
   }),
+  updateNearbyOffers: (nearbyOffer) => ({
+    type: ActionType.UPDATE_NEARBY_OFFERS,
+    payload: nearbyOffer,
+  })
 };
 
 const Operations = {
@@ -76,6 +79,7 @@ const Operations = {
       .then((response) => {
         const offer = hotelAdapter(response.data);
         dispatch(ActionCreator.updateOffers(offer));
+        dispatch(ActionCreator.updateNearbyOffers(offer));
         dispatch(Operations.loadFavoriteOffers());
       });
   },
@@ -92,7 +96,7 @@ const Operations = {
     return api.post(`comments/${id}`, commentPost)
       .then((response) => {
         const comments = reviewsAdapter(response.data);
-        dispatch(ActionCreator.loadOfferComments(comments));
+        dispatch(ActionCreator.updateCommentsOffer(comments));
       });
   },
   loadNearbyOffers: (id) => (dispatch, getState, api) => {
@@ -125,9 +129,18 @@ const reducer = (store = initialState, action) => {
       return extend(store, {
         commentsOffer: action.payload,
       });
+    case ActionType.UPDATE_COMMENTS_OFFER:
+      return extend(store, {
+        commentsOffer: action.payload,
+      });
     case ActionType.GET_NEARBY_OFFERS:
       return extend(store, {
-        nearbyOffer: action.payload,
+        nearbyOffers: action.payload,
+      });
+    case ActionType.UPDATE_NEARBY_OFFERS:
+      const indexNewNearbyOffer = store.nearbyOffers.findIndex((nearbyOffer) => nearbyOffer.id === action.payload.id);
+      return extend(store, {
+        nearbyOffers: [].concat(store.nearbyOffers.slice(0, indexNewNearbyOffer), action.payload, store.nearbyOffers.slice(indexNewNearbyOffer + 1)),
       });
   }
 

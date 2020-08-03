@@ -18,7 +18,7 @@ const getCommentsOffer = (state) => {
 };
 
 const getNearbyOffers = (state) => {
-  return state[NAME_SPACE].nearbyOffer;
+  return state[NAME_SPACE].nearbyOffers;
 };
 
 const getOffersAfterFiltration = createSelector(
