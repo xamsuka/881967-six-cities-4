@@ -3,16 +3,28 @@ import PropTypes from 'prop-types';
 import Review from '../review/review.jsx';
 import {AuthorizationStatus} from '../../const.js';
 
+const MAX_REVIEWS = 10;
+
 class Reviews extends PureComponent {
   constructor(props) {
     super(props);
   }
 
+  _sortingReviews(reviews) {
+    return reviews.sort((a, b) => b.date - a.date);
+  }
+
   render() {
     const {reviews, authorizationStatus, children} = this.props;
 
-    const reviewComponents = reviews.map((review) => {
-      return <Review review = {review} key = {`${review.text} ${review.id}`} />;
+    const reviewsAfterSorting = this._sortingReviews(reviews);
+
+    const reviewComponents = reviewsAfterSorting.map((review, index) => {
+      if (index < MAX_REVIEWS) {
+        return <Review review = {review} key = {`${review.text} ${review.id}`} />;
+      }
+
+      return ``;
     });
 
     return (
@@ -43,6 +55,7 @@ Reviews.propTypes = {
     comment: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
   })),
+  children: PropTypes.node.isRequired,
   authorizationStatus: PropTypes.oneOf([`USER_AUTH`, `USER_NOAUTH`]),
 };
 

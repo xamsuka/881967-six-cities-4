@@ -36,7 +36,7 @@ const userAdapter = (userData) => ({
 
 const reviewAdapter = (review) => ({
   comment: review[`comment`],
-  date: review[`date`],
+  date: new Date(review[`date`]),
   id: review[`id`],
   rating: review[`rating`],
   user: {

@@ -88,8 +88,8 @@ class DetailedOffer extends PureComponent {
 
     const favoriteClass = isFavorite ? `property__bookmark-button--active` : ``;
 
-    const isCommentsOffer = !!commentsOffer.length;
     const isNearbyOffer = !!nearbyOffers.length;
+
     const nearbyOffersOnMap = [].concat(nearbyOffers, this.offer);
 
     return (
@@ -172,12 +172,9 @@ class DetailedOffer extends PureComponent {
                 </div>
               </div>
 
-              {isCommentsOffer
-                ? <Reviews reviews = {commentsOffer} authorizationStatus = {authorizationStatus}>
-                  <FeedbackForm onSubmitButtonReviews = {this._onSubmitButtonReviews} />
-                </Reviews>
-                : <Loading />
-              }
+              <Reviews reviews = {commentsOffer} authorizationStatus = {authorizationStatus}>
+                <FeedbackForm onSubmitButtonReviews = {this._onSubmitButtonReviews} />
+              </Reviews>
 
             </div>
           </div>
