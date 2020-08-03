@@ -50,7 +50,7 @@ Review.propTypes = {
     }),
     rating: PropTypes.oneOf([1, 2, 3, 4, 5]),
     comment: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date),
   })
 };
 

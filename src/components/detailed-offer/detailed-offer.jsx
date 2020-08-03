@@ -249,7 +249,7 @@ DetailedOffer.propTypes = {
   }),
   commentsOffer: PropTypes.arrayOf(PropTypes.shape({
     comment: PropTypes.string,
-    date: PropTypes.string,
+    date: PropTypes.instanceOf(Date),
     id: PropTypes.number,
     rating: PropTypes.number,
     user: PropTypes.shape({
