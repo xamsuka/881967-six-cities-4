@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+import PropTypes from 'prop-types';
 
 class FeedbackForm extends PureComponent {
   constructor(props) {
@@ -6,10 +7,12 @@ class FeedbackForm extends PureComponent {
   }
 
   render() {
-    const {onSubmitButtonReviews} = this.props;
+    const {onSubmitButtonReviews, onChangeFormValue, isValid} = this.props;
+
+    const desabledAttr = isValid ? `` : `disabled`;
 
     return (
-      <form className="reviews__form form" action="#" method="post" onSubmit = {onSubmitButtonReviews}>
+      <form className="reviews__form form" action="#" method="post" onSubmit = {onSubmitButtonReviews} onChange = {onChangeFormValue}>
         <label className="reviews__label form__label" htmlFor="review">
           Your review
         </label>
@@ -100,6 +103,8 @@ class FeedbackForm extends PureComponent {
           id="review"
           name="review"
           placeholder="Tell how was your stay, what you like and what can be improved"
+          maxLength={300}
+          minLength={50}
           defaultValue={``}
         />
         <div className="reviews__button-wrapper">
@@ -111,7 +116,7 @@ class FeedbackForm extends PureComponent {
           </p>
           <button
             className="reviews__submit form__submit button"
-            type="submit">
+            type="submit" disabled = {desabledAttr}>
             Submit
           </button>
         </div>
@@ -119,5 +124,11 @@ class FeedbackForm extends PureComponent {
     );
   }
 }
+
+FeedbackForm.propTypes = {
+  onSubmitButtonReviews: PropTypes.func.isRequired,
+  onChangeFormValue: PropTypes.func.isRequired,
+  isValid: PropTypes.bool.isRequired,
+};
 
 export default FeedbackForm;

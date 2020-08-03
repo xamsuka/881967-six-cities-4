@@ -7,6 +7,7 @@ import Reviews from '../reviews/reviews.jsx';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
 import Map from '../map/map.jsx';
 import Loading from '../loading/loading.jsx';
+import withForm from '../../hocs/with-form/with-form.jsx';
 import FeedbackForm from "../feedback-form/feedback-form.jsx";
 import {getStatusLoadingOffers} from '../../reducers/application/selectors.js';
 import {getCommentsOffer, getNearbyOffers} from '../../reducers/data/selectors.js';
@@ -16,6 +17,8 @@ import {getOffers} from '../../reducers/data/selectors.js';
 import {getCityLocation} from '../../utils/util.js';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {VARIANT_CARD} from '../../const.js';
+
+const WithFeedBackForm = withForm(FeedbackForm);
 
 class DetailedOffer extends PureComponent {
   constructor(props) {
@@ -173,7 +176,7 @@ class DetailedOffer extends PureComponent {
               </div>
 
               <Reviews reviews = {commentsOffer} authorizationStatus = {authorizationStatus}>
-                <FeedbackForm onSubmitButtonReviews = {this._onSubmitButtonReviews} />
+                <WithFeedBackForm onSubmitButtonReviews = {this._onSubmitButtonReviews} />
               </Reviews>
 
             </div>
