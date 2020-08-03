@@ -90,6 +90,7 @@ class DetailedOffer extends PureComponent {
 
     const isCommentsOffer = !!commentsOffer.length;
     const isNearbyOffer = !!nearbyOffers.length;
+    const nearbyOffersOnMap = [].concat(nearbyOffers, this.offer);
 
     return (
       <main className="page__main page__main--property">
@@ -183,7 +184,7 @@ class DetailedOffer extends PureComponent {
           <section className="property__map map">
 
             {isNearbyOffer
-              ? <Map offers = {nearbyOffers} coordsCity = {getCityLocation(nearbyOffers[0])} zoom = {12 }/>
+              ? <Map offers = {nearbyOffersOnMap} idPlaceActive = {this.id} coordsCity = {getCityLocation(this.offer)} zoom = {12 }/>
               : ``
             }
 
@@ -196,7 +197,7 @@ class DetailedOffer extends PureComponent {
             </h2>
             <div className="near-places__list places__list">
 
-              {<PlaceCardsList offers = {nearbyOffers.slice().slice(0, 3)} variant = {VARIANT_CARD.NEAR} onChangeActiveElement = {() => {}} />}
+              {<PlaceCardsList offers = {nearbyOffers} variant = {VARIANT_CARD.NEAR} onChangeActiveElement = {() => {}} />}
 
             </div>
           </section>
