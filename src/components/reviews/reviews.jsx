@@ -21,7 +21,7 @@ class Reviews extends PureComponent {
 
     const reviewComponents = reviewsAfterSorting.map((review, index) => {
       if (index < MAX_REVIEWS) {
-        return <Review review = {review} key = {`${review.text} ${review.id}`} />;
+        return <Review review = {review} key = {review.id} />;
       }
 
       return ``;

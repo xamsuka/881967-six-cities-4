@@ -67,18 +67,18 @@ CitiesPlaces.propTypes = {
     maxGuests: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
-    infoOwner: {
+    infoOwner: PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       avatar: PropTypes.string.isRequired,
       isPro: PropTypes.bool.isRequired,
-    },
-    coords: {
+    }),
+    coords: PropTypes.shape({
       latitude: PropTypes.number.isRequired,
       longitude: PropTypes.number.isRequired,
       zoom: PropTypes.number.isRequired,
-    },
-  })),
+    }).isRequired,
+  })).isRequired,
   cityName: PropTypes.string.isRequired,
   onChangeActiveElement: PropTypes.func.isRequired,
   activeElement: PropTypes.number.isRequired,

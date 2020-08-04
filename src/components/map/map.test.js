@@ -63,7 +63,7 @@ const offers = [
     price: 200,
     features: [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Washing machine`],
     infoOwner: {
-      id: `2`,
+      id: 2,
       name: `Vladislav Petrov`,
       avatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
       isPro: false,

@@ -18,7 +18,7 @@ const commentsOffer = [
   {
     comment: `Бла бла бла`,
     date: new Date(`2020-08-04T10:53:33.549Z`),
-    id: 1,
+    id: 2,
     rating: 5,
     user: {
       avatarUrl: `link`,
@@ -32,7 +32,7 @@ const commentsOffer = [
 
 test(`<Reviews /> render`, () => {
   const three = renderer
-    .create(<Reviews reviews = {commentsOffer} />).toJSON();
+    .create(<Reviews reviews = {commentsOffer} ><div></div></Reviews>).toJSON();
 
   expect(three).toMatchSnapshot();
 });
