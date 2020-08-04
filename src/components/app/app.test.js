@@ -98,7 +98,7 @@ test(`App render`, () => {
             offers = {offers}
             currentCity = {`Paris`}
             onChangeCurrentCity = {() => {}}
-            login = {() => {}}
+            onLogin = {() => {}}
             userData = {{}}
             isLoading = {false} />
         </Provider>

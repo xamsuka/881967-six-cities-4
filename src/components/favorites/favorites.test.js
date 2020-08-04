@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {StaticRouter} from 'react-router-dom';
 import {Favorites} from './favorites.jsx';
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
@@ -98,10 +99,12 @@ test(`<Favorite /> render`, () => {
   const three = renderer
     .create(
         <Provider store={store}>
-          <Favorites isLoading = {false}
-            favoriteOffers = {favoriteOffers}
-            userData = {userData}
-          />
+          <StaticRouter>
+            <Favorites isLoading = {false}
+              favoriteOffers = {favoriteOffers}
+              userData = {userData}
+            />
+          </StaticRouter>
         </Provider>).toJSON();
 
   expect(three).toMatchSnapshot();

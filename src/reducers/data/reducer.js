@@ -90,15 +90,19 @@ const Operations = {
         dispatch(ActionCreator.loadOfferComments(comments));
       });
   },
-  addNewOfferComment: (id, commentPost, formElement) => (dispatch, getState, api) => {
-    return api.post(`comments/${id}`, commentPost)
+  addNewOfferComment: (id, commentPost) => (dispatch, getState, api) => {
+    return new Promise((resolve, reject) => {
+      api.post(`comments/${id}`, commentPost)
       .then((response) => {
         const comments = reviewsAdapter(response.data);
         const isDisabledFeedbackForm = getState().APPLICATION.isDisabledFeedbackForm;
         dispatch(ActionCreator.updateCommentsOffer(comments));
         dispatch(ActionCreatorApplication.changeDisabledFeedbackForm(isDisabledFeedbackForm));
-        formElement.reset();
-      });
+
+        resolve(response);
+      }).catch(reject);
+    });
+
   },
   loadNearbyOffers: (id) => (dispatch, getState, api) => {
     return api.get(`/hotels/${id}/nearby`)

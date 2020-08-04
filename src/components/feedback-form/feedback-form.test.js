@@ -9,7 +9,7 @@ test(`<FeedbackForm /> render`, () => {
       isValid = {false}
       isDisabled = {false}
       onSubmitForm = {() => {}}
-      changeStatusForm = {() => {}}
+      onChangeStatusForm = {() => {}}
       onChangeFormValue = {() => {}}
       currentOfferId = {1}
     />).toJSON();

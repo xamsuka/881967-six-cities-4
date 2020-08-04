@@ -10,7 +10,7 @@ const City = (props) => {
       {CITIES.map((city, index) => {
         return (
           <li className="locations__item" key = {city}>
-            <a className={`locations__item-link tabs__item ${city === currentCity ? `tabs__item--active` : ``}`} href="#" data-id={index} onClick={onChangeCurrentCity}>
+            <a className={`locations__item-link tabs__item ${city === currentCity ? `tabs__item--active` : ``}`} href="/" data-id={index} onClick={onChangeCurrentCity}>
               <span>{city}</span>
             </a>
           </li>

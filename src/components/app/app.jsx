@@ -12,7 +12,6 @@ import {getSortedOffers} from '../../reducers/data/selectors.js';
 import {getStatusLoadingOffers} from '../../reducers/application/selectors.js';
 import {getCurrentCity} from '../../reducers/application/selectors.js';
 import {Operations as UserOperations} from '../../reducers/user/reducer.js';
-import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {getUserData} from '../../reducers/user/selectors.js';
 import {createBrowserHistory} from 'history';
 
@@ -28,7 +27,7 @@ class App extends PureComponent {
       offers,
       currentCity,
       onChangeCurrentCity,
-      login,
+      onLogin,
       userData,
       isLoading,
     } = this.props;
@@ -41,7 +40,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path='/offer/:id' component={DetailedOffer}/>
           <Route exact path='/login' >
-            {Object.keys(userData).length ? <Redirect to="/" /> : <SignIn onSubmit = {login} history={history} /> }
+            {Object.keys(userData).length ? <Redirect to="/" /> : <SignIn onSubmit = {onLogin} history={history} /> }
           </Route>
           <PrivateRoute
             exact
@@ -97,7 +96,7 @@ App.propTypes = {
   })).isRequired,
   currentCity: PropTypes.oneOf([`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`]).isRequired,
   onChangeCurrentCity: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -116,13 +115,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCurrentCity: (evt) => {
+    evt.preventDefault();
     dispatch(ActionCreatorApplication.changeCities(evt));
   },
-  login: (userData) => {
+  onLogin: (userData) => {
     dispatch(UserOperations.authorizeUser(userData));
-  },
-  getFavoriteOffers: () => {
-    dispatch(DataOperations.loadFavoriteOffers());
   },
 });
 

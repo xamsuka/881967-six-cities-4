@@ -59,12 +59,14 @@ Array [
           >
             <a
               className="header__logo-link header__logo-link--active"
+              href="/"
+              onClick={[Function]}
             >
               <img
                 alt="6 cities logo"
                 className="header__logo"
                 height={41}
-                src="img/logo.svg"
+                src="/img/logo.svg"
                 width={81}
               />
             </a>
@@ -121,7 +123,7 @@ Array [
               <a
                 className="locations__item-link tabs__item tabs__item--active"
                 data-id={0}
-                href="#"
+                href="/"
                 onClick={[Function]}
               >
                 <span>
@@ -135,7 +137,7 @@ Array [
               <a
                 className="locations__item-link tabs__item "
                 data-id={1}
-                href="#"
+                href="/"
                 onClick={[Function]}
               >
                 <span>
@@ -149,7 +151,7 @@ Array [
               <a
                 className="locations__item-link tabs__item "
                 data-id={2}
-                href="#"
+                href="/"
                 onClick={[Function]}
               >
                 <span>
@@ -163,7 +165,7 @@ Array [
               <a
                 className="locations__item-link tabs__item "
                 data-id={3}
-                href="#"
+                href="/"
                 onClick={[Function]}
               >
                 <span>
@@ -177,7 +179,7 @@ Array [
               <a
                 className="locations__item-link tabs__item "
                 data-id={4}
-                href="#"
+                href="/"
                 onClick={[Function]}
               >
                 <span>
@@ -191,7 +193,7 @@ Array [
               <a
                 className="locations__item-link tabs__item "
                 data-id={5}
-                href="#"
+                href="/"
                 onClick={[Function]}
               >
                 <span>

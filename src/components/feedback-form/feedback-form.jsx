@@ -6,7 +6,7 @@ import {ActionCreator} from '../../reducers/application/reducer.js';
 import {getStatusFeedbackForm} from '../../reducers/application/selectors.js';
 
 const FeedbackForm = (props) => {
-  const {currentOfferId, onChangeFormValue, changeStatusForm, isValid, isDisabled, onSubmitForm} = props;
+  const {currentOfferId, onChangeFormValue, onChangeStatusForm, isValid, isDisabled, onSubmitForm} = props;
   const disabledAttr = isValid ? `` : `disabled`;
   const disabledFormAttr = isDisabled ? `disabled` : ``;
 
@@ -35,8 +35,12 @@ const FeedbackForm = (props) => {
       rating,
     };
 
-    changeStatusForm(isDisabled);
-    onSubmitForm(currentOfferId, comment, formElement);
+    onChangeStatusForm(isDisabled);
+    onSubmitForm(currentOfferId, comment)
+      .then(() => {
+        formElement.reset();
+        onChangeFormValue(``);
+      });
   };
 
   return (
@@ -165,7 +169,7 @@ FeedbackForm.propTypes = {
   onSubmitForm: PropTypes.func.isRequired,
   currentOfferId: PropTypes.number.isRequired,
   onChangeFormValue: PropTypes.func.isRequired,
-  changeStatusForm: PropTypes.func.isRequired,
+  onChangeStatusForm: PropTypes.func.isRequired,
   isDisabled: PropTypes.bool.isRequired,
   isValid: PropTypes.bool.isRequired,
 };
@@ -175,10 +179,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmitForm: (id, commentPost, formElement) => {
-    dispatch(DataOperations.addNewOfferComment(id, commentPost, formElement));
+  onSubmitForm: (id, commentPost) => {
+    return dispatch(DataOperations.addNewOfferComment(id, commentPost));
   },
-  changeStatusForm: (isDisabled) => {
+  onChangeStatusForm: (isDisabled) => {
     dispatch(ActionCreator.changeDisabledFeedbackForm(isDisabled));
   },
 });

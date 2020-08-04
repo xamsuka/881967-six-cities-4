@@ -25,6 +25,14 @@ const withForm = (Component) => {
     }
 
     _changeFormValueHandler(evt) {
+      if (!evt) {
+        this.setState({
+          isValid: false,
+        });
+
+        return;
+      }
+
       const lengthComment = evt.currentTarget.review.value.length;
       const ratingsElements = evt.currentTarget.rating;
       const isChangeRating = this._checkChangeRating(ratingsElements);

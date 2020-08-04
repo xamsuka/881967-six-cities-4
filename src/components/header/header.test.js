@@ -1,4 +1,5 @@
 import React from 'react';
+import {StaticRouter} from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import Header from './header.jsx';
 
@@ -11,7 +12,7 @@ const userData = {
 
 test(`<Header /> render`, () => {
   const three = renderer
-    .create(<Header userData = {userData} />).toJSON();
+    .create(<StaticRouter><Header userData = {userData} /></StaticRouter>).toJSON();
 
   expect(three).toMatchSnapshot();
 });

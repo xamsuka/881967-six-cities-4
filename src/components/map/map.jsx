@@ -78,7 +78,6 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate() {
-    // this.removePins();
     this.map.remove();
     this.initMap();
   }

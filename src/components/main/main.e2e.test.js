@@ -1,5 +1,6 @@
 import React from 'react';
 import Enzyme, {mount} from 'enzyme';
+import {StaticRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
 import Main from './main';
 import {Provider} from "react-redux";
@@ -99,13 +100,15 @@ describe(`<MainComponent />`, () => {
 
     const three = mount(
         <Provider store={store}>
-          <Main
-            offers = {offers}
-            currentCity = {`Paris`}
-            onChangeCurrentCity = {onChangeCurrentCity}
-            isLoading = {false}
-            userData = {{}}
-          />
+          <StaticRouter>
+            <Main
+              offers = {offers}
+              currentCity = {`Paris`}
+              onChangeCurrentCity = {onChangeCurrentCity}
+              isLoading = {false}
+              userData = {{}}
+            />
+          </StaticRouter>
         </Provider>);
 
     const sectionTypesElement = three.find(`.locations__item-link`).at(1);

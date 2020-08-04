@@ -13,6 +13,7 @@ const withCities = (Component) => {
     }
 
     _changeActiveElementHandler(evt) {
+      evt.preventDefault();
       this.setState({
         activeElement: Number(evt.currentTarget.attributes[`data-id`].value),
       });

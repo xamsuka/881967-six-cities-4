@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {DetailedOffer} from './detailed-offer.jsx';
+import {StaticRouter} from 'react-router-dom';
 
 const mockStore = configureStore([]);
 
@@ -96,6 +97,13 @@ const commentsOffer = [{
   },
 }];
 
+const userData = {
+  id: 1,
+  name: `Vlad`,
+  email: `123@mail.ru`,
+  isPro: false,
+};
+
 test(`DetailedOffer first render`, () => {
   const store = mockStore({
     "APPLICATION": {
@@ -109,18 +117,20 @@ test(`DetailedOffer first render`, () => {
   const three = renderer
     .create(
         <Provider store={store}>
-          <DetailedOffer
-            offers = {offers}
-            loadOfferComments = {() => {}}
-            loadOffersNearby = {() => {}}
-            addNewOfferComment = {() => {}}
-            onClickFavorite = {() => {}}
-            isLoadingOffers = {false}
-            commentsOffer = {commentsOffer}
-            nearbyOffers = {offers}
-            authorizationStatus = {`USER_AUTH`}
-            match = {match}
-          />
+          <StaticRouter>
+            <DetailedOffer
+              offers = {offers}
+              userData = {userData}
+              onLoadOfferComments = {() => {}}
+              onLoadOffersNearby = {() => {}}
+              onClickFavorite = {() => {}}
+              isLoadingOffers = {false}
+              commentsOffer = {commentsOffer}
+              nearbyOffers = {offers}
+              authorizationStatus = {`USER_AUTH`}
+              match = {match}
+            />
+          </StaticRouter>
         </Provider>, {
           createNodeMock: () => {
             return {};
