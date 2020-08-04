@@ -138,9 +138,11 @@ const reducer = (store = initialState, action) => {
       });
     case ActionType.UPDATE_NEARBY_OFFERS:
       const indexNewNearbyOffer = store.nearbyOffers.findIndex((nearbyOffer) => nearbyOffer.id === action.payload.id);
-      return extend(store, {
-        nearbyOffers: [].concat(store.nearbyOffers.slice(0, indexNewNearbyOffer), action.payload, store.nearbyOffers.slice(indexNewNearbyOffer + 1)),
-      });
+      if (indexNewNearbyOffer !== -1) {
+        return extend(store, {
+          nearbyOffers: [].concat(store.nearbyOffers.slice(0, indexNewNearbyOffer), action.payload, store.nearbyOffers.slice(indexNewNearbyOffer + 1)),
+        });
+      }
   }
 
   return store;
