@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 
 const Error = {
   UNAUTHORIZED: 401
@@ -11,14 +12,28 @@ const createAPI = (onNoAuth, onInternetConnection) => {
     withCredentials: true,
   });
 
+  axiosRetry(axios, {
+    retries: 2,
+    retryDelay: (retryCount) => {
+      return retryCount * 1000;
+    },
+    retryCondition: axiosRetry.isRetryableError,
+  });
+
   const onSuccess = (response) => {
     return response;
   };
 
   const onError = (error) => {
     const {response} = error;
-    debugger;
-    onInternetConnection();
+
+    if (error.response) {
+      // client received an error response (5xx, 4xx)
+    } else if (error.request) {
+      onInternetConnection();
+    } else {
+      // anything else
+    }
 
     if (response.status === Error.UNAUTHORIZED) {
       onNoAuth();

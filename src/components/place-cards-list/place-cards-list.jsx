@@ -4,7 +4,7 @@ import PlaceCard from '../place-card/place-card.jsx';
 import PlaceCardFavorite from '../proxy/place-card/place-card-favorite.jsx';
 import PlaceCardNear from '../proxy/place-card/place-card-near.jsx';
 
-const PlaceCardsList = ({variant, offers, onChangeActiveElement}) => {
+const placeCardsList = ({variant, offers, onChangeActiveElement}) => {
   const getComponentByVariant = (variantCard, offer, key) => {
     switch (variantCard) {
       case VARIANT_CARD.CITIES:
@@ -25,4 +25,4 @@ const PlaceCardsList = ({variant, offers, onChangeActiveElement}) => {
 
 };
 
-export default PlaceCardsList;
+export default placeCardsList;

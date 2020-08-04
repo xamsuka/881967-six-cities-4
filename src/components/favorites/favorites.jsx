@@ -7,7 +7,7 @@ import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 import FavoriteItems from '../favorite-items/favorite-items.jsx';
 import {getUserData} from '../../reducers/user/selectors.js';
 import {getFavoriteOffers} from '../../reducers/data/selectors.js';
-import {getStatusLoadingFeatures} from '../../reducers/application/selectors.js';
+import {getStatusLoadingFavorite} from '../../reducers/application/selectors.js';
 
 const Favorite = (props) => {
   const {favoriteOffers, userData, isLoading} = props;
@@ -97,7 +97,7 @@ Favorite.propTypes = {
 const mapStateToProps = (state) => ({
   favoriteOffers: getFavoriteOffers(state),
   userData: getUserData(state),
-  isLoading: getStatusLoadingFeatures(state),
+  isLoading: getStatusLoadingFavorite(state),
 });
 
 

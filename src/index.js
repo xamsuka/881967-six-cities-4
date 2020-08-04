@@ -19,6 +19,7 @@ const onUnauthorized = () => {
 
 const noInternetConnection = () => {
   store.dispatch(ActionCreatorApplication.changeActivePreloaderOffers(true));
+  store.dispatch(ActionCreatorApplication.changeDisabledFeedbackForm(true));
 };
 
 const api = createAPI(onUnauthorized, noInternetConnection);
