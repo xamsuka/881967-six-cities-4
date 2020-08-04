@@ -7,9 +7,7 @@ const initialState = {
   currentSort: SortTypes.POPULAR,
   isLoadingOffers: false,
   isLoadingFavorite: false,
-  isLoadingComments: false,
-  isLoadingOffersNearby: false,
-  isLoadedOffersNearby: false,
+  isDisabledFeedbackForm: false,
 };
 
 const ActionType = {
@@ -17,8 +15,7 @@ const ActionType = {
   SORT_TYPE_CHANGE: `SORT_TYPE_CHANGE`,
   CHANGE_STATUS_LOADING_OFFERS: `CHANGE_STATUS_LOADING_OFFERS`,
   CHANGE_STATUS_LOADING_FAVORITE: `CHANGE_STATUS_LOADING_FAVORITE`,
-  CHANGE_STATUS_LOADING_COMMENTS: `CHANGE_STATUS_LOADING_COMMENTS`,
-  CHANGE_STATUS_LOADING_OFFERS_NEARY: `CHANGE_STATUS_LOADING_OFFERS_NEARY`,
+  CHANGE_DISABLED_FEEDBACK_FORM: `CHANGE_DISABLED_FEEDBACK_FORM`,
 };
 
 const ActionCreator = {
@@ -46,14 +43,10 @@ const ActionCreator = {
     type: ActionType.CHANGE_STATUS_LOADING_FAVORITE,
     payload: !isLoading,
   }),
-  changeActivePreloaderComments: (isLoading) => ({
-    type: ActionType.CHANGE_STATUS_LOADING_COMMENTS,
-    payload: !isLoading,
-  }),
-  changeActivePreloaderOffersNearby: (isLoading) => ({
-    type: ActionType.CHANGE_STATUS_LOADING_OFFERS_NEARY,
-    payload: !isLoading,
-  }),
+  changeDisabledFeedbackForm: (isDisabled) => ({
+    type: ActionType.CHANGE_DISABLED_FEEDBACK_FORM,
+    payload: !isDisabled,
+  })
 };
 
 const reducer = (store = initialState, action) => {
@@ -77,15 +70,9 @@ const reducer = (store = initialState, action) => {
       return extend(store, {
         isLoadingFavorite: action.payload
       });
-
-    case ActionType.CHANGE_STATUS_LOADING_COMMENTS:
+    case ActionType.CHANGE_DISABLED_FEEDBACK_FORM:
       return extend(store, {
-        isLoadingComments: action.payload
-      });
-
-    case ActionType.CHANGE_STATUS_LOADING_OFFERS_NEARY:
-      return extend(store, {
-        isLoadingOffersNearby: action.payload
+        isDisabledFeedbackForm: action.payload,
       });
   }
 

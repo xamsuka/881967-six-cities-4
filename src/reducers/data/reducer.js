@@ -84,28 +84,27 @@ const Operations = {
       });
   },
   loadOfferComments: (id) => (dispatch, getState, api) => {
-    dispatch(ActionCreatorApplication.changeActivePreloaderComments(getState().APPLICATION.isLoadingComments));
     return api.get(`comments/${id}`)
       .then((response) => {
         const comments = reviewsAdapter(response.data);
         dispatch(ActionCreator.loadOfferComments(comments));
-        dispatch(ActionCreatorApplication.changeActivePreloaderComments(getState().APPLICATION.isLoadingComments));
       });
   },
-  addNewOfferComment: (id, commentPost) => (dispatch, getState, api) => {
+  addNewOfferComment: (id, commentPost, formElement) => (dispatch, getState, api) => {
     return api.post(`comments/${id}`, commentPost)
       .then((response) => {
         const comments = reviewsAdapter(response.data);
+        const isDisabledFeedbackForm = getState().APPLICATION.isDisabledFeedbackForm;
         dispatch(ActionCreator.updateCommentsOffer(comments));
+        dispatch(ActionCreatorApplication.changeDisabledFeedbackForm(isDisabledFeedbackForm));
+        formElement.reset();
       });
   },
   loadNearbyOffers: (id) => (dispatch, getState, api) => {
-    dispatch(ActionCreatorApplication.changeActivePreloaderOffersNearby(getState().APPLICATION.isLoadingOffersNearby));
     return api.get(`/hotels/${id}/nearby`)
       .then((response) => {
         const nearbyOffers = hotelsAdapter(response.data);
         dispatch(ActionCreator.loadNearbyOffers(nearbyOffers));
-        dispatch(ActionCreatorApplication.changeActivePreloaderOffersNearby(getState().APPLICATION.isLoadingOffersNearby));
       });
   },
 };

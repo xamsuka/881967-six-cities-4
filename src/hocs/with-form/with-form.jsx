@@ -11,7 +11,7 @@ const withForm = (Component) => {
         isValid: false,
       };
 
-      this._onChangeFormValue = this._onChangeFormValue.bind(this);
+      this._changeFormValueHandler = this._changeFormValueHandler.bind(this);
     }
 
     _checkChangeRating(ratingsElements) {
@@ -24,7 +24,7 @@ const withForm = (Component) => {
       return false;
     }
 
-    _onChangeFormValue(evt) {
+    _changeFormValueHandler(evt) {
       const lengthComment = evt.currentTarget.review.value.length;
       const ratingsElements = evt.currentTarget.rating;
       const isChangeRating = this._checkChangeRating(ratingsElements);
@@ -44,7 +44,7 @@ const withForm = (Component) => {
       return <Component
         {...this.props}
         isValid = {this.state.isValid}
-        onChangeFormValue = {this._onChangeFormValue}
+        onChangeFormValue = {this._changeFormValueHandler}
       />;
     }
   };

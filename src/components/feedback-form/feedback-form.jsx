@@ -1,18 +1,53 @@
-import React, {PureComponent} from "react";
+import React from "react";
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {Operations as DataOperations} from '../../reducers/data/reducer.js';
+import {ActionCreator} from '../../reducers/application/reducer.js';
+import {getStatusFeedbackForm} from '../../reducers/application/selectors.js';
 
-class FeedbackForm extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const FeedbackForm = (props) => {
+  const {currentOfferId, onChangeFormValue, changeStatusForm, isValid, isDisabled, onSubmitForm} = props;
+  const disabledAttr = isValid ? `` : `disabled`;
+  const disabledFormAttr = isDisabled ? `disabled` : ``;
 
-  render() {
-    const {onSubmitButtonReviews, onChangeFormValue, isValid} = this.props;
+  const getRatingComments = (ratingsElements) => {
+    let ratingComment = 0;
 
-    const desabledAttr = isValid ? `` : `disabled`;
+    for (let rating of ratingsElements) {
+      if (rating.checked) {
+        ratingComment = rating.value;
+        break;
+      }
+    }
 
-    return (
-      <form className="reviews__form form" action="#" method="post" onSubmit = {onSubmitButtonReviews} onChange = {onChangeFormValue}>
+    return ratingComment;
+  };
+
+  const onSubmitButtonReviews = (evt) => {
+    evt.preventDefault();
+    const formElement = evt.currentTarget;
+    const ratingsElements = formElement.rating;
+    const rating = getRatingComments(ratingsElements);
+    const textComment = formElement.review.value;
+
+    const comment = {
+      comment: textComment,
+      rating,
+    };
+
+    changeStatusForm(isDisabled);
+    onSubmitForm(currentOfferId, comment, formElement);
+  };
+
+  return (
+    <form className="reviews__form form"
+      action="#"
+      method="post"
+      disabled = {disabledFormAttr}
+      onSubmit = {onSubmitButtonReviews}
+      onChange = {onChangeFormValue}
+    >
+      <fieldset disabled = {disabledFormAttr} style={{border: `none`}}>
         <label className="reviews__label form__label" htmlFor="review">
           Your review
         </label>
@@ -116,19 +151,36 @@ class FeedbackForm extends PureComponent {
           </p>
           <button
             className="reviews__submit form__submit button"
-            type="submit" disabled = {desabledAttr}>
+            type="submit" disabled = {disabledAttr} >
             Submit
           </button>
         </div>
-      </form>
-    );
-  }
-}
+      </fieldset>
+    </form>
+  );
+
+};
 
 FeedbackForm.propTypes = {
-  onSubmitButtonReviews: PropTypes.func.isRequired,
+  onSubmitForm: PropTypes.func.isRequired,
+  currentOfferId: PropTypes.number.isRequired,
   onChangeFormValue: PropTypes.func.isRequired,
+  changeStatusForm: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
   isValid: PropTypes.bool.isRequired,
 };
 
-export default FeedbackForm;
+const mapStateToProps = (state) => ({
+  isDisabled: getStatusFeedbackForm(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmitForm: (id, commentPost, formElement) => {
+    dispatch(DataOperations.addNewOfferComment(id, commentPost, formElement));
+  },
+  changeStatusForm: (isDisabled) => {
+    dispatch(ActionCreator.changeDisabledFeedbackForm(isDisabled));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedbackForm);

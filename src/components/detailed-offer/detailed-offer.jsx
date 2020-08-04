@@ -25,37 +25,8 @@ class DetailedOffer extends PureComponent {
     super(props);
     this.id = Number(this.props.match.params.id);
     this.offer = null;
-    this.onSubmit = this.props.addNewOfferComment;
     this.onClickFavorite = this.props.onClickFavorite;
-    this._onSubmitButtonReviews = this._onSubmitButtonReviews.bind(this);
     this._onChangeFavoriteStatus = this._onChangeFavoriteStatus.bind(this);
-  }
-
-  _getRatingComments(ratingsElements) {
-    let ratingComment = 0;
-
-    for (let rating of ratingsElements) {
-      if (rating.checked) {
-        ratingComment = rating.value;
-        break;
-      }
-    }
-
-    return ratingComment;
-  }
-
-  _onSubmitButtonReviews(evt) {
-    evt.preventDefault();
-    const ratingsElements = evt.currentTarget.rating;
-    const rating = this._getRatingComments(ratingsElements);
-    const textComment = evt.currentTarget.review.value;
-
-    const comment = {
-      comment: textComment,
-      rating,
-    };
-
-    this.onSubmit(this.id, comment);
   }
 
   _onChangeFavoriteStatus() {
@@ -65,7 +36,6 @@ class DetailedOffer extends PureComponent {
 
     this.onClickFavorite(this.id, Number(!this.offer.isFavorite));
   }
-
 
   componentDidMount() {
     this.props.loadOfferComments(this.id);
@@ -176,7 +146,7 @@ class DetailedOffer extends PureComponent {
               </div>
 
               <Reviews reviews = {commentsOffer} authorizationStatus = {authorizationStatus}>
-                <WithFeedBackForm onSubmitButtonReviews = {this._onSubmitButtonReviews} />
+                <WithFeedBackForm currentOfferId = {this.id} onSubmitButtonReviews = {this._onSubmitButtonReviews} />
               </Reviews>
 
             </div>

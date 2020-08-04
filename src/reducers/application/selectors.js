@@ -14,16 +14,8 @@ const getStatusLoadingFeatures = (state) => {
   return state[NAME_SPACE].isLoadingFeatures;
 };
 
-const getStatusLoadingComments = (state) => {
-  return state[NAME_SPACE].isLoadingComments;
-};
-
-const getStatusLoadingOffersNearby = (state) => {
-  return state[NAME_SPACE].isLoadingOffersNearby;
-};
-
-const getStatusLoadedOffersNearby = (state) => {
-  return state[NAME_SPACE].isLoadedOffersNearby;
+const getStatusFeedbackForm = (state) => {
+  return state[NAME_SPACE].isDisabledFeedbackForm;
 };
 
 const getCurrentSort = (state) => {
@@ -32,5 +24,4 @@ const getCurrentSort = (state) => {
 
 export {getCurrentCity, getCurrentSort,
   getStatusLoadingOffers, getStatusLoadingFeatures,
-  getStatusLoadingComments, getStatusLoadingOffersNearby,
-  getStatusLoadedOffersNearby};
+  getStatusFeedbackForm};
