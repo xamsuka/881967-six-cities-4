@@ -6,6 +6,10 @@ const getCurrentCity = (state) => {
   return state[NAME_SPACE].city;
 };
 
+const getCurrentSort = (state) => {
+  return state[NAME_SPACE].currentSort;
+};
+
 const getStatusLoadingOffers = (state) => {
   return state[NAME_SPACE].isLoadingOffers;
 };
@@ -16,10 +20,6 @@ const getStatusLoadingFavorite = (state) => {
 
 const getStatusFeedbackForm = (state) => {
   return state[NAME_SPACE].isDisabledFeedbackForm;
-};
-
-const getCurrentSort = (state) => {
-  return state[NAME_SPACE].currentSort;
 };
 
 export {getCurrentCity, getCurrentSort,

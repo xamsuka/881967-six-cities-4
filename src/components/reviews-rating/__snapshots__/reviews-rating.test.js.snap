@@ -2,7 +2,7 @@
 
 exports[`<ReviewsRating /> render 1`] = `
 <div
-  className="place-card__rating rating"
+  className="reviews__rating rating"
 >
   <div
     className="reviews__stars rating__stars"

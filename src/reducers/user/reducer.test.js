@@ -10,7 +10,7 @@ const userData = {
 };
 
 describe(`Тестирование функции reducer`, () => {
-  test(`Инициализация stor.`, () => {
+  test(`Инициализация store.`, () => {
     expect(reducer(void 0, {})).toEqual(
         {
           authorizationStatus: `USER_NOAUTH`,
@@ -36,7 +36,6 @@ describe(`Тестирование функции reducer`, () => {
 
   });
 });
-
 
 test(`Тестирование ActionCreator на возвращаемые action`, () => {
   expect(ActionCreator.authorizeUser(status, userData)).toEqual({

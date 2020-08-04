@@ -183,4 +183,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {FeedbackForm};
 export default connect(mapStateToProps, mapDispatchToProps)(FeedbackForm);

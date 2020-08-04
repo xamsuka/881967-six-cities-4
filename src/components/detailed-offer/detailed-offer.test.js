@@ -1,6 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import {DetailedOffer} from './detailed-offer.jsx';
+
+const mockStore = configureStore([]);
 
 const offers = [
   {
@@ -79,12 +83,48 @@ const match = {
   }
 };
 
+const commentsOffer = [{
+  comment: `Бла бла бла`,
+  date: new Date(`2020-08-04T10:53:33.549Z`),
+  id: 1,
+  rating: 5,
+  user: {
+    avatarUrl: `link`,
+    id: 1,
+    isPro: false,
+    name: `Vlad`,
+  },
+}];
+
 test(`DetailedOffer first render`, () => {
+  const store = mockStore({
+    "APPLICATION": {
+      isDisabledFeedbackForm: false,
+    },
+    "USER": {
+      authorizationStatus: `USER_AUTH`,
+    }
+  });
+
   const three = renderer
-    .create(<DetailedOffer
-      offers = {offers}
-      match = {match}
-    />).toJSON();
+    .create(
+        <Provider store={store}>
+          <DetailedOffer
+            offers = {offers}
+            loadOfferComments = {() => {}}
+            loadOffersNearby = {() => {}}
+            addNewOfferComment = {() => {}}
+            onClickFavorite = {() => {}}
+            isLoadingOffers = {false}
+            commentsOffer = {commentsOffer}
+            nearbyOffers = {offers}
+            authorizationStatus = {`USER_AUTH`}
+            match = {match}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }}).toJSON();
 
   expect(three).toMatchSnapshot();
 });

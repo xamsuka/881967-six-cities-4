@@ -9,7 +9,7 @@ import {getUserData} from '../../reducers/user/selectors.js';
 import {getFavoriteOffers} from '../../reducers/data/selectors.js';
 import {getStatusLoadingFavorite} from '../../reducers/application/selectors.js';
 
-const Favorite = (props) => {
+const Favorites = (props) => {
   const {favoriteOffers, userData, isLoading} = props;
   const isFeatues = !!favoriteOffers.length;
 
@@ -49,7 +49,7 @@ const Favorite = (props) => {
   );
 };
 
-Favorite.propTypes = {
+Favorites.propTypes = {
   favoriteOffers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.shape({
@@ -100,5 +100,5 @@ const mapStateToProps = (state) => ({
   isLoading: getStatusLoadingFavorite(state),
 });
 
-
-export default connect(mapStateToProps)(Favorite);
+export {Favorites};
+export default connect(mapStateToProps)(Favorites);

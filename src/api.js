@@ -28,11 +28,12 @@ const createAPI = (onNoAuth, onInternetConnection) => {
     const {response} = error;
 
     if (error.response) {
-      // client received an error response (5xx, 4xx)
+      const erroMessage = `Ошибка ответа от сервера или данной страницы не существует`;
+      throw erroMessage;
     } else if (error.request) {
       onInternetConnection();
-    } else {
-      // anything else
+      const erroMessage = `Отсуствует покдлючение к интернету. Проверьте подключение и попробуйте ещё раз.`;
+      throw erroMessage;
     }
 
     if (response.status === Error.UNAUTHORIZED) {

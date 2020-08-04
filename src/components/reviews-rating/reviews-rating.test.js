@@ -6,7 +6,7 @@ const rating = 5;
 
 test(`<ReviewsRating /> render`, () => {
   const three = renderer
-    .create(<ReviewsRating rating = {rating} variant = {`place-card__rating`} />).toJSON();
+    .create(<ReviewsRating rating = {rating} variant = {`reviews`} />).toJSON();
 
   expect(three).toMatchSnapshot();
 });

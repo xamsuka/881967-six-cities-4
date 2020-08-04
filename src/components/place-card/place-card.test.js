@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import PlaceCard from './place-card.jsx';
+import {PlaceCard} from './place-card.jsx';
 
 const offer = {
   id: 1,
@@ -39,7 +39,7 @@ const offer = {
 
 test(`<PlaceCard /> render`, () => {
   const three = renderer
-    .create(<PlaceCard offer = {offer} onMouseOver = {() => {}} variant = {`cities`} />).toJSON();
+    .create(<PlaceCard offer = {offer} onMouseOver = {() => {}} variant = {`cities`} onClickFavorite = {() => {}} />).toJSON();
 
   expect(three).toMatchSnapshot();
 });

@@ -1,6 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Main from './main';
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 jest.mock(`leaflet`);
 
@@ -76,8 +80,25 @@ const offers = [
 ];
 
 test(`<Main /> render`, () => {
+  const store = mockStore({
+    "APPLICATION": {
+      currentSort: `Popular`,
+    },
+    "USER": {
+      authorizationStatus: `USER_AUTH`,
+    }
+  });
+
   const three = renderer
-    .create(<Main offers = {offers} currentCity = {`Paris`} onChangeCurrentCity = {() => {}} isLoading = {false} userData = {{}} />).toJSON();
+    .create(<Provider store={store}>
+      <Main offers = {offers}
+        currentCity = {`Paris`}
+        onChangeCurrentCity = {() => {}}
+        isLoading = {false} userData = {{}} />
+    </Provider>, {
+      createNodeMock: () => {
+        return {};
+      }}).toJSON();
 
   expect(three).toMatchSnapshot();
 });

@@ -5,12 +5,12 @@ import {Route, Router, Switch, Redirect} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import PrivateRoute from '../private-route/private-route.jsx';
-import Favorite from '../favorites/favorites.jsx';
+import Favorites from '../favorites/favorites.jsx';
 import DetailedOffer from '../detailed-offer/detailed-offer.jsx';
 import {ActionCreator as ActionCreatorApplication} from '../../reducers/application/reducer.js';
 import {getSortedOffers} from '../../reducers/data/selectors.js';
 import {getStatusLoadingOffers} from '../../reducers/application/selectors.js';
-import {getCurrentCity, getCurrentSort} from '../../reducers/application/selectors.js';
+import {getCurrentCity} from '../../reducers/application/selectors.js';
 import {Operations as UserOperations} from '../../reducers/user/reducer.js';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
 import {getUserData} from '../../reducers/user/selectors.js';
@@ -43,7 +43,17 @@ class App extends PureComponent {
           <Route exact path='/login' >
             {Object.keys(userData).length ? <Redirect to="/" /> : <SignIn onSubmit = {login} history={history} /> }
           </Route>
-          <PrivateRoute exact path="/favorites" component = {Favorite} userData = {userData} />
+          <PrivateRoute
+            exact
+            path='/favorites'
+            render={() => {
+              return (
+                <Favorites
+                  userData = {userData}
+                />
+              );
+            }}
+          />
         </Switch>
       </Router>
     );
@@ -100,7 +110,6 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   offers: getSortedOffers(state),
   currentCity: getCurrentCity(state),
-  currentSort: getCurrentSort(state),
   isLoading: getStatusLoadingOffers(state),
   userData: getUserData(state),
 });

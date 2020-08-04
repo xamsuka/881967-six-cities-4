@@ -4,162 +4,176 @@ exports[`<FeedbackForm /> render 1`] = `
 <form
   action="#"
   className="reviews__form form"
+  disabled=""
   method="post"
+  onChange={[Function]}
+  onSubmit={[Function]}
 >
-  <label
-    className="reviews__label form__label"
-    htmlFor="review"
+  <fieldset
+    disabled=""
+    style={
+      Object {
+        "border": "none",
+      }
+    }
   >
-    Your review
-  </label>
-  <div
-    className="reviews__rating-form form__rating"
-  >
-    <input
-      className="form__rating-input visually-hidden"
-      defaultValue={5}
-      id="5-stars"
-      name="rating"
-      type="radio"
-    />
     <label
-      className="reviews__rating-label form__rating-label"
-      htmlFor="5-stars"
-      title="perfect"
+      className="reviews__label form__label"
+      htmlFor="review"
     >
-      <svg
-        className="form__star-image"
-        height={33}
-        width={37}
-      >
-        <use
-          xlinkHref="#icon-star"
-        />
-      </svg>
+      Your review
     </label>
-    <input
-      className="form__rating-input visually-hidden"
-      defaultValue={4}
-      id="4-stars"
-      name="rating"
-      type="radio"
+    <div
+      className="reviews__rating-form form__rating"
+    >
+      <input
+        className="form__rating-input visually-hidden"
+        defaultValue={5}
+        id="5-stars"
+        name="rating"
+        type="radio"
+      />
+      <label
+        className="reviews__rating-label form__rating-label"
+        htmlFor="5-stars"
+        title="perfect"
+      >
+        <svg
+          className="form__star-image"
+          height={33}
+          width={37}
+        >
+          <use
+            xlinkHref="#icon-star"
+          />
+        </svg>
+      </label>
+      <input
+        className="form__rating-input visually-hidden"
+        defaultValue={4}
+        id="4-stars"
+        name="rating"
+        type="radio"
+      />
+      <label
+        className="reviews__rating-label form__rating-label"
+        htmlFor="4-stars"
+        title="good"
+      >
+        <svg
+          className="form__star-image"
+          height={33}
+          width={37}
+        >
+          <use
+            xlinkHref="#icon-star"
+          />
+        </svg>
+      </label>
+      <input
+        className="form__rating-input visually-hidden"
+        defaultValue={3}
+        id="3-stars"
+        name="rating"
+        type="radio"
+      />
+      <label
+        className="reviews__rating-label form__rating-label"
+        htmlFor="3-stars"
+        title="not bad"
+      >
+        <svg
+          className="form__star-image"
+          height={33}
+          width={37}
+        >
+          <use
+            xlinkHref="#icon-star"
+          />
+        </svg>
+      </label>
+      <input
+        className="form__rating-input visually-hidden"
+        defaultValue={2}
+        id="2-stars"
+        name="rating"
+        type="radio"
+      />
+      <label
+        className="reviews__rating-label form__rating-label"
+        htmlFor="2-stars"
+        title="badly"
+      >
+        <svg
+          className="form__star-image"
+          height={33}
+          width={37}
+        >
+          <use
+            xlinkHref="#icon-star"
+          />
+        </svg>
+      </label>
+      <input
+        className="form__rating-input visually-hidden"
+        defaultValue={1}
+        id="1-star"
+        name="rating"
+        type="radio"
+      />
+      <label
+        className="reviews__rating-label form__rating-label"
+        htmlFor="1-star"
+        title="terribly"
+      >
+        <svg
+          className="form__star-image"
+          height={33}
+          width={37}
+        >
+          <use
+            xlinkHref="#icon-star"
+          />
+        </svg>
+      </label>
+    </div>
+    <textarea
+      className="reviews__textarea form__textarea"
+      defaultValue=""
+      id="review"
+      maxLength={300}
+      minLength={50}
+      name="review"
+      placeholder="Tell how was your stay, what you like and what can be improved"
     />
-    <label
-      className="reviews__rating-label form__rating-label"
-      htmlFor="4-stars"
-      title="good"
+    <div
+      className="reviews__button-wrapper"
     >
-      <svg
-        className="form__star-image"
-        height={33}
-        width={37}
+      <p
+        className="reviews__help"
       >
-        <use
-          xlinkHref="#icon-star"
-        />
-      </svg>
-    </label>
-    <input
-      className="form__rating-input visually-hidden"
-      defaultValue={3}
-      id="3-stars"
-      name="rating"
-      type="radio"
-    />
-    <label
-      className="reviews__rating-label form__rating-label"
-      htmlFor="3-stars"
-      title="not bad"
-    >
-      <svg
-        className="form__star-image"
-        height={33}
-        width={37}
+        To submit review please make sure to set
+        <span
+          className="reviews__star"
+        >
+          rating
+        </span>
+         and describe your stay with at least
+        <b
+          className="reviews__text-amount"
+        >
+          50 characters
+        </b>
+        .
+      </p>
+      <button
+        className="reviews__submit form__submit button"
+        disabled="disabled"
+        type="submit"
       >
-        <use
-          xlinkHref="#icon-star"
-        />
-      </svg>
-    </label>
-    <input
-      className="form__rating-input visually-hidden"
-      defaultValue={2}
-      id="2-stars"
-      name="rating"
-      type="radio"
-    />
-    <label
-      className="reviews__rating-label form__rating-label"
-      htmlFor="2-stars"
-      title="badly"
-    >
-      <svg
-        className="form__star-image"
-        height={33}
-        width={37}
-      >
-        <use
-          xlinkHref="#icon-star"
-        />
-      </svg>
-    </label>
-    <input
-      className="form__rating-input visually-hidden"
-      defaultValue={1}
-      id="1-star"
-      name="rating"
-      type="radio"
-    />
-    <label
-      className="reviews__rating-label form__rating-label"
-      htmlFor="1-star"
-      title="terribly"
-    >
-      <svg
-        className="form__star-image"
-        height={33}
-        width={37}
-      >
-        <use
-          xlinkHref="#icon-star"
-        />
-      </svg>
-    </label>
-  </div>
-  <textarea
-    className="reviews__textarea form__textarea"
-    defaultValue=""
-    id="review"
-    name="review"
-    placeholder="Tell how was your stay, what you like and what can be improved"
-  />
-  <div
-    className="reviews__button-wrapper"
-  >
-    <p
-      className="reviews__help"
-    >
-      To submit review please make sure to set
-      <span
-        className="reviews__star"
-      >
-        rating
-      </span>
-       and describe your stay with at least
-      <b
-        className="reviews__text-amount"
-      >
-        50 characters
-      </b>
-      .
-    </p>
-    <button
-      className="reviews__submit form__submit button"
-      disabled={true}
-      type="submit"
-    >
-      Submit
-    </button>
-  </div>
+        Submit
+      </button>
+    </div>
+  </fieldset>
 </form>
 `;

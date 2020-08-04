@@ -2,35 +2,37 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Reviews from './reviews.jsx';
 
-const reviews = [
+const commentsOffer = [
   {
+    comment: `Бла бла бла`,
+    date: new Date(`2020-08-04T10:53:33.549Z`),
     id: 1,
-    user: {
-      id: 1,
-      userAvatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
-      userName: `Vlad`,
-    },
     rating: 5,
-    text: `Всё очень круть!`,
-    date: `April 2020`,
+    user: {
+      avatarUrl: `link`,
+      id: 1,
+      isPro: false,
+      name: `Vlad`,
+    },
   },
   {
-    id: 2,
+    comment: `Бла бла бла`,
+    date: new Date(`2020-08-04T10:53:33.549Z`),
+    id: 1,
+    rating: 5,
     user: {
-      id: 2,
-      userAvatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
-      userName: `Viktor`,
+      avatarUrl: `link`,
+      id: 1,
+      isPro: false,
+      name: `Vlad`,
     },
-    rating: 4,
-    text: `Пойдёт!`,
-    date: `April 2021`,
   }
 ];
 
 
 test(`<Reviews /> render`, () => {
   const three = renderer
-    .create(<Reviews reviews = {reviews} />).toJSON();
+    .create(<Reviews reviews = {commentsOffer} />).toJSON();
 
   expect(three).toMatchSnapshot();
 });

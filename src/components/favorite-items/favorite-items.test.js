@@ -1,6 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import FavoriteItems from './favorite-items.jsx';
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 const favoriteOffers = [
   {
@@ -74,8 +78,20 @@ const favoriteOffers = [
 ];
 
 test(`<FavoriteItems /> render`, () => {
+  const store = mockStore({
+    "APPLICATION": {
+      isDisabledFeedbackForm: false,
+    },
+    "USER": {
+      authorizationStatus: `USER_AUTH`,
+    }
+  });
+
   const three = renderer
-    .create(<FavoriteItems favoriteOffers = {favoriteOffers} />).toJSON();
+    .create(
+        <Provider store={store}>
+          <FavoriteItems favoriteOffers = {favoriteOffers} />
+        </Provider>).toJSON();
 
   expect(three).toMatchSnapshot();
 });

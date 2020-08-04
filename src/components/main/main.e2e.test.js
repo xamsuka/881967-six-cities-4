@@ -2,6 +2,10 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Main from './main';
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 Enzyme.configure({
   Adapter: new Adapter(),
@@ -81,16 +85,28 @@ const offers = [
 Enzyme.configure({adapter: new Adapter()});
 
 describe(`<MainComponent />`, () => {
+  const store = mockStore({
+    "APPLICATION": {
+      currentSort: `Popular`,
+    },
+    "USER": {
+      authorizationStatus: `USER_AUTH`,
+    }
+  });
+
   test(`simulate click evets`, () => {
     const onChangeCurrentCity = jest.fn();
 
-    const three = mount(<Main
-      offers = {offers}
-      currentCity = {`Paris`}
-      onChangeCurrentCity = {onChangeCurrentCity}
-      isLoading = {false}
-      userData = {{}}
-    />);
+    const three = mount(
+        <Provider store={store}>
+          <Main
+            offers = {offers}
+            currentCity = {`Paris`}
+            onChangeCurrentCity = {onChangeCurrentCity}
+            isLoading = {false}
+            userData = {{}}
+          />
+        </Provider>);
 
     const sectionTypesElement = three.find(`.locations__item-link`).at(1);
 

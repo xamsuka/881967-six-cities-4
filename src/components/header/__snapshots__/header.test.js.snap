@@ -36,7 +36,8 @@ exports[`<Header /> render 1`] = `
           >
             <a
               className="header__nav-link header__nav-link--profile"
-              href="/favorite"
+              href="/favorites"
+              onClick={[Function]}
             >
               <div
                 className="header__avatar-wrapper user__avatar-wrapper"

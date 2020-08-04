@@ -79,16 +79,23 @@ const offers = [
 
 test(`App render`, () => {
   const store = mockStore({
-    city: `Paris`,
-    currentSort: `Popular`,
-    offers,
+    "APPLICATION": {
+      city: `Paris`,
+      currentSort: `Popular`,
+    },
+    "DATA": {
+      offers
+    },
+    "USER": {
+      authorizationStatus: `USER_AUTH`,
+    }
   });
 
   const app = renderer
     .create(
         <Provider store={store}>
           <App
-            citiesPlaces = {offers}
+            offers = {offers}
             currentCity = {`Paris`}
             onChangeCurrentCity = {() => {}}
             login = {() => {}}

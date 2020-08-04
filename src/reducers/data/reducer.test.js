@@ -71,31 +71,97 @@ const offers = [
   },
 ];
 
+const commentsMock = [{
+  comment: `Бла бла бла`,
+  date: `Ap 20`,
+  id: 1,
+  rating: 5,
+  user: {
+    avatarUrl: `link`,
+    id: 1,
+    isPro: false,
+    name: `Vlad`,
+  },
+}];
+
 describe(`Тестирование функции reducer`, () => {
   test(`Инициализация store. Offers ещё не загруженны`, () => {
     expect(reducer(void 0, {}))
       .toEqual({
         offers: [],
+        favoriteOffers: [],
+        commentsOffer: [],
+        nearbyOffers: [],
       });
   });
 
   test(`Получение списка предложений`, () => {
     expect(reducer({
       offers: [],
+      favoriteOffers: [],
+      commentsOffer: [],
+      nearbyOffers: [],
     }, {
       type: `GET_OFFERS`,
       payload: offers
     }))
       .toEqual({
         offers,
+        favoriteOffers: [],
+        commentsOffer: [],
+        nearbyOffers: [],
       });
   });
 
 });
 
-test(`ActionCreator loadOffers() `, () => {
-  expect(ActionCreator.loadOffers(offers)).toEqual({
-    type: `GET_OFFERS`,
-    payload: offers
+describe(`Тестирование ActionCreator`, () => {
+  test(`ActionCreator loadOffers() `, () => {
+    expect(ActionCreator.loadOffers(offers)).toEqual({
+      type: `GET_OFFERS`,
+      payload: offers
+    });
+  });
+
+  test(`ActionCreator loadFavoriteOffers() `, () => {
+    expect(ActionCreator.loadFavoriteOffers(offers)).toEqual({
+      type: `GET_FAVORITE_OFFERS`,
+      payload: offers
+    });
+  });
+
+  test(`ActionCreator updateOffers() `, () => {
+    expect(ActionCreator.updateOffers(offers[0])).toEqual({
+      type: `UPDATE_OFFERS`,
+      payload: offers[0]
+    });
+  });
+
+  test(`ActionCreator loadOfferComments() `, () => {
+    expect(ActionCreator.loadOfferComments(commentsMock)).toEqual({
+      type: `GET_COMMENTS_OFFER`,
+      payload: commentsMock
+    });
+  });
+
+  test(`ActionCreator updateCommentsOffer() `, () => {
+    expect(ActionCreator.updateCommentsOffer(commentsMock)).toEqual({
+      type: `UPDATE_COMMENTS_OFFER`,
+      payload: commentsMock
+    });
+  });
+
+  test(`ActionCreator loadNearbyOffers() `, () => {
+    expect(ActionCreator.loadNearbyOffers(offers)).toEqual({
+      type: `GET_NEARBY_OFFERS`,
+      payload: offers
+    });
+  });
+
+  test(`ActionCreator updateNearbyOffers() `, () => {
+    expect(ActionCreator.updateNearbyOffers(offers[0])).toEqual({
+      type: `UPDATE_NEARBY_OFFERS`,
+      payload: offers[0]
+    });
   });
 });

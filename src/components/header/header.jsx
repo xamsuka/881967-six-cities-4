@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {Route, Link} from "react-router-dom";
+import {Router, Link} from "react-router-dom";
+import {history} from '../app/app.jsx';
 
 const Header = (props) => {
   const {userData} = props;
@@ -27,7 +28,7 @@ const Header = (props) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <Route>
+                <Router history = {history}>
                   <Link className="header__nav-link header__nav-link--profile"
                     to={userLink}>
 
@@ -36,7 +37,7 @@ const Header = (props) => {
                       {emailProfile}
                     </span>
                   </Link>
-                </Route>
+                </Router>
               </li>
             </ul>
           </nav>

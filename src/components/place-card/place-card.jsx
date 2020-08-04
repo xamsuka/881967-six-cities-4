@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Link, Route} from 'react-router-dom';
+import {Link, Router} from 'react-router-dom';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
@@ -71,9 +71,9 @@ class PlaceCard extends PureComponent {
           <ReviewsRating rating = {rating} variant = {`reviews`} />
 
           <h2 className="place-card__name">
-            <Route>
+            <Router history = {history}>
               <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
-            </Route>
+            </Router>
           </h2>
           <p className="place-card__type">{type}</p>
         </div>
@@ -139,4 +139,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {PlaceCard};
 export default connect(mapStateToProps, mapDispatchToProps)(PlaceCard);

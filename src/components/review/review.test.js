@@ -2,21 +2,22 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Review from './review.jsx';
 
-const review = {
+const commentsOffer = {
+  comment: `Бла бла бла`,
+  date: new Date(`2020-08-04T10:53:33.549Z`),
   id: 1,
-  user: {
-    id: 1,
-    userAvatar: `https://api.adorable.io/avatars/285/abott@adorable.png`,
-    userName: `Vlad`,
-  },
   rating: 5,
-  text: `Всё очень круть!`,
-  date: `April 2020`,
+  user: {
+    avatarUrl: `link`,
+    id: 1,
+    isPro: false,
+    name: `Vlad`,
+  },
 };
 
 test(`<Review /> render`, () => {
   const three = renderer
-    .create(<Review review = {review} />).toJSON();
+    .create(<Review review = {commentsOffer} />).toJSON();
 
   expect(three).toMatchSnapshot();
 });

@@ -8,7 +8,7 @@ exports[`<PlaceCard /> render 1`] = `
 >
   
   <div
-    className="place-card__image-wrapper"
+    className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
       href="#"
@@ -45,6 +45,7 @@ exports[`<PlaceCard /> render 1`] = `
       </div>
       <button
         className="place-card__bookmark-button  button"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -64,7 +65,7 @@ exports[`<PlaceCard /> render 1`] = `
       </button>
     </div>
     <div
-      className="place-card__rating rating"
+      className="reviews__rating rating"
     >
       <div
         className="reviews__stars rating__stars"

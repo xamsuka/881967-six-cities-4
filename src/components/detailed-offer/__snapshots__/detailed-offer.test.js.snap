@@ -57,27 +57,22 @@ exports[`DetailedOffer first render 1`] = `
       <div
         className="property__wrapper"
       >
-        <div
-          className="property__mark"
-        >
-          <span>
-            Premium
-          </span>
-        </div>
+        
         <div
           className="property__name-wrapper"
         >
           <h1
             className="property__name"
           >
-            Просто хорошее место
+            Очень красивый и уютный дом
           </h1>
           <button
             className="property__bookmark-button  button"
+            onClick={[Function]}
             type="button"
           >
             <svg
-              className="property__bookmark-icon"
+              className="place-card__bookmark-icon"
               height={33}
               width={31}
             >
@@ -114,7 +109,7 @@ exports[`DetailedOffer first render 1`] = `
           <span
             className="property__rating-value rating__value"
           >
-            5
+            4
           </span>
         </div>
         <ul
@@ -128,14 +123,14 @@ exports[`DetailedOffer first render 1`] = `
           <li
             className="property__feature property__feature--bedrooms"
           >
-            4
+            3
              Bedrooms
           </li>
           <li
             className="property__feature property__feature--adults"
           >
             Max 
-            2
+            3
              adults
           </li>
         </ul>
@@ -146,7 +141,7 @@ exports[`DetailedOffer first render 1`] = `
             className="property__price-value"
           >
             €
-            200
+            500
           </b>
           <span
             className="property__price-text"
@@ -204,20 +199,20 @@ exports[`DetailedOffer first render 1`] = `
             className="property__host-user user"
           >
             <div
-              className="roperty__avatar-wrapper  user__avatar-wrapper"
+              className="roperty__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
             >
               <img
                 alt="Host avatar"
                 className="property__avatar user__avatar"
                 height={74}
-                src="https://api.adorable.io/avatars/285/abott@adorable.png"
+                src="/https://api.adorable.io/avatars/285/abott@adorable.png"
                 width={74}
               />
             </div>
             <span
               className="property__user-name"
             >
-              Vladislav Petrov
+              Vladislav Kozlovsky
             </span>
           </div>
           <div
@@ -240,172 +235,246 @@ exports[`DetailedOffer first render 1`] = `
             <span
               className="reviews__amount"
             >
-              0
+              1
             </span>
           </h2>
           <ul
             className="reviews__list"
-          />
+          >
+            <li
+              className="reviews__item"
+            >
+              <div
+                className="reviews__user user"
+              >
+                <div
+                  className="reviews__avatar-wrapper user__avatar-wrapper"
+                >
+                  <img
+                    alt="Reviews avatar"
+                    className="reviews__avatar user__avatar"
+                    height={54}
+                    src="link"
+                    width={54}
+                  />
+                </div>
+                <span
+                  className="reviews__user-name"
+                >
+                  Vlad
+                </span>
+              </div>
+              <div
+                className="reviews__info"
+              >
+                <div
+                  className="reviews__rating rating"
+                >
+                  <div
+                    className="reviews__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <p
+                  className="reviews__text"
+                >
+                  Бла бла бла
+                </p>
+                <time
+                  className="reviews__time"
+                  dateTime={2020-08-04T10:53:33.549Z}
+                >
+                  August 2020
+                </time>
+              </div>
+            </li>
+          </ul>
           <form
             action="#"
             className="reviews__form form"
+            disabled=""
             method="post"
+            onChange={[Function]}
+            onSubmit={[Function]}
           >
-            <label
-              className="reviews__label form__label"
-              htmlFor="review"
+            <fieldset
+              disabled=""
+              style={
+                Object {
+                  "border": "none",
+                }
+              }
             >
-              Your review
-            </label>
-            <div
-              className="reviews__rating-form form__rating"
-            >
-              <input
-                className="form__rating-input visually-hidden"
-                defaultValue={5}
-                id="5-stars"
-                name="rating"
-                type="radio"
-              />
               <label
-                className="reviews__rating-label form__rating-label"
-                htmlFor="5-stars"
-                title="perfect"
+                className="reviews__label form__label"
+                htmlFor="review"
               >
-                <svg
-                  className="form__star-image"
-                  height={33}
-                  width={37}
-                >
-                  <use
-                    xlinkHref="#icon-star"
-                  />
-                </svg>
+                Your review
               </label>
-              <input
-                className="form__rating-input visually-hidden"
-                defaultValue={4}
-                id="4-stars"
-                name="rating"
-                type="radio"
+              <div
+                className="reviews__rating-form form__rating"
+              >
+                <input
+                  className="form__rating-input visually-hidden"
+                  defaultValue={5}
+                  id="5-stars"
+                  name="rating"
+                  type="radio"
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="5-stars"
+                  title="perfect"
+                >
+                  <svg
+                    className="form__star-image"
+                    height={33}
+                    width={37}
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  className="form__rating-input visually-hidden"
+                  defaultValue={4}
+                  id="4-stars"
+                  name="rating"
+                  type="radio"
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="4-stars"
+                  title="good"
+                >
+                  <svg
+                    className="form__star-image"
+                    height={33}
+                    width={37}
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  className="form__rating-input visually-hidden"
+                  defaultValue={3}
+                  id="3-stars"
+                  name="rating"
+                  type="radio"
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="3-stars"
+                  title="not bad"
+                >
+                  <svg
+                    className="form__star-image"
+                    height={33}
+                    width={37}
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  className="form__rating-input visually-hidden"
+                  defaultValue={2}
+                  id="2-stars"
+                  name="rating"
+                  type="radio"
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="2-stars"
+                  title="badly"
+                >
+                  <svg
+                    className="form__star-image"
+                    height={33}
+                    width={37}
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  className="form__rating-input visually-hidden"
+                  defaultValue={1}
+                  id="1-star"
+                  name="rating"
+                  type="radio"
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="1-star"
+                  title="terribly"
+                >
+                  <svg
+                    className="form__star-image"
+                    height={33}
+                    width={37}
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+              </div>
+              <textarea
+                className="reviews__textarea form__textarea"
+                defaultValue=""
+                id="review"
+                maxLength={300}
+                minLength={50}
+                name="review"
+                placeholder="Tell how was your stay, what you like and what can be improved"
               />
-              <label
-                className="reviews__rating-label form__rating-label"
-                htmlFor="4-stars"
-                title="good"
+              <div
+                className="reviews__button-wrapper"
               >
-                <svg
-                  className="form__star-image"
-                  height={33}
-                  width={37}
+                <p
+                  className="reviews__help"
                 >
-                  <use
-                    xlinkHref="#icon-star"
-                  />
-                </svg>
-              </label>
-              <input
-                className="form__rating-input visually-hidden"
-                defaultValue={3}
-                id="3-stars"
-                name="rating"
-                type="radio"
-              />
-              <label
-                className="reviews__rating-label form__rating-label"
-                htmlFor="3-stars"
-                title="not bad"
-              >
-                <svg
-                  className="form__star-image"
-                  height={33}
-                  width={37}
+                  To submit review please make sure to set
+                  <span
+                    className="reviews__star"
+                  >
+                    rating
+                  </span>
+                   and describe your stay with at least
+                  <b
+                    className="reviews__text-amount"
+                  >
+                    50 characters
+                  </b>
+                  .
+                </p>
+                <button
+                  className="reviews__submit form__submit button"
+                  disabled="disabled"
+                  type="submit"
                 >
-                  <use
-                    xlinkHref="#icon-star"
-                  />
-                </svg>
-              </label>
-              <input
-                className="form__rating-input visually-hidden"
-                defaultValue={2}
-                id="2-stars"
-                name="rating"
-                type="radio"
-              />
-              <label
-                className="reviews__rating-label form__rating-label"
-                htmlFor="2-stars"
-                title="badly"
-              >
-                <svg
-                  className="form__star-image"
-                  height={33}
-                  width={37}
-                >
-                  <use
-                    xlinkHref="#icon-star"
-                  />
-                </svg>
-              </label>
-              <input
-                className="form__rating-input visually-hidden"
-                defaultValue={1}
-                id="1-star"
-                name="rating"
-                type="radio"
-              />
-              <label
-                className="reviews__rating-label form__rating-label"
-                htmlFor="1-star"
-                title="terribly"
-              >
-                <svg
-                  className="form__star-image"
-                  height={33}
-                  width={37}
-                >
-                  <use
-                    xlinkHref="#icon-star"
-                  />
-                </svg>
-              </label>
-            </div>
-            <textarea
-              className="reviews__textarea form__textarea"
-              defaultValue=""
-              id="review"
-              name="review"
-              placeholder="Tell how was your stay, what you like and what can be improved"
-            />
-            <div
-              className="reviews__button-wrapper"
-            >
-              <p
-                className="reviews__help"
-              >
-                To submit review please make sure to set
-                <span
-                  className="reviews__star"
-                >
-                  rating
-                </span>
-                 and describe your stay with at least
-                <b
-                  className="reviews__text-amount"
-                >
-                  50 characters
-                </b>
-                .
-              </p>
-              <button
-                className="reviews__submit form__submit button"
-                disabled={true}
-                type="submit"
-              >
-                Submit
-              </button>
-            </div>
+                  Submit
+                </button>
+              </div>
+            </fieldset>
           </form>
         </section>
       </div>
@@ -434,18 +503,12 @@ exports[`DetailedOffer first render 1`] = `
       >
         <article
           className="near-places__card place-card"
-          data-id={2}
+          data-id={1}
           onMouseOver={[Function]}
         >
+          
           <div
-            className="place-card__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
-          <div
-            className="place-card__image-wrapper"
+            className="near-places__image-wrapper place-card__image-wrapper"
           >
             <a
               href="#"
@@ -472,7 +535,7 @@ exports[`DetailedOffer first render 1`] = `
                   className="place-card__price-value"
                 >
                   €
-                  200
+                  500
                 </b>
                 <span
                   className="place-card__price-text"
@@ -482,6 +545,7 @@ exports[`DetailedOffer first render 1`] = `
               </div>
               <button
                 className="place-card__bookmark-button  button"
+                onClick={[Function]}
                 type="button"
               >
                 <svg
@@ -501,7 +565,7 @@ exports[`DetailedOffer first render 1`] = `
               </button>
             </div>
             <div
-              className="place-card__rating rating"
+              className="reviews__rating rating"
             >
               <div
                 className="reviews__stars rating__stars"
@@ -509,7 +573,7 @@ exports[`DetailedOffer first render 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "100%",
+                      "width": "80%",
                     }
                   }
                 />
@@ -524,10 +588,10 @@ exports[`DetailedOffer first render 1`] = `
               className="place-card__name"
             >
               <a
-                href="/offer/2"
+                href="/offer/1"
                 onClick={[Function]}
               >
-                Просто хорошее место
+                Очень красивый и уютный дом
               </a>
             </h2>
             <p
@@ -550,7 +614,7 @@ exports[`DetailedOffer first render 1`] = `
             </span>
           </div>
           <div
-            className="place-card__image-wrapper"
+            className="near-places__image-wrapper place-card__image-wrapper"
           >
             <a
               href="#"
@@ -587,6 +651,7 @@ exports[`DetailedOffer first render 1`] = `
               </div>
               <button
                 className="place-card__bookmark-button  button"
+                onClick={[Function]}
                 type="button"
               >
                 <svg
@@ -606,7 +671,7 @@ exports[`DetailedOffer first render 1`] = `
               </button>
             </div>
             <div
-              className="place-card__rating rating"
+              className="reviews__rating rating"
             >
               <div
                 className="reviews__stars rating__stars"
