@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CitiesPlaces from '../cities-places/cities-places.jsx';
-import Cities from '../city/cities.jsx';
+import Cities from '../cities/cities.jsx';
 import withCities from '../../hocs/with-cities/with-cities.jsx';
 import Header from '../header/header.jsx';
 import NoPlaces from '../no-places/no-places.jsx';
