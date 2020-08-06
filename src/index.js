@@ -14,7 +14,7 @@ import {ActionCreator as ActionCreatorUser, AuthorizationStatus, Operations as U
 const rootElement = document.querySelector(`#root`);
 
 const onUnauthorized = () => {
-  store.dispatch(ActionCreatorUser.authorizeUser(AuthorizationStatus.USER_NOAUTH));
+  store.dispatch(ActionCreatorUser.authorizeUser(AuthorizationStatus.USER_NOAUTH, {}));
 };
 
 const noInternetConnection = () => {

@@ -5,7 +5,8 @@ import {toast} from 'react-toastify';
 toast.configure();
 
 const Error = {
-  UNAUTHORIZED: 401
+  UNAUTHORIZED: 401,
+  BADREQUEST: 400,
 };
 
 const createAPI = (onNoAuth, onInternetConnection) => {
@@ -30,21 +31,27 @@ const createAPI = (onNoAuth, onInternetConnection) => {
   const onError = (error) => {
     const {response} = error;
     if (error.response) {
-      toast.error(`Wow so easy!`, {
-        position: `top-right`,
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      if (response.status === Error.UNAUTHORIZED) {
+        onNoAuth();
 
-      toast(`Wow so easy !`);
+        throw error;
+      } else if (response.status === Error.BADREQUEST) {
+        toast.error(`"email" должен быть действительным адресом электронной почты`, {
+          position: `top-right`,
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        throw error;
+      }
     } else if (error.request) {
       onInternetConnection();
 
-      toast.error(`Wow so easy!`, {
+      toast.error(`Не удалось выполнить запрос. Проверьте подключение к интернету`, {
         position: `top-right`,
         autoClose: 5000,
         hideProgressBar: false,
@@ -53,12 +60,21 @@ const createAPI = (onNoAuth, onInternetConnection) => {
         draggable: true,
         progress: undefined,
       });
+      throw error;
     }
 
-    if (response.status === Error.UNAUTHORIZED) {
-      onNoAuth();
+    if (error.request) {
+      onInternetConnection();
 
-      throw error;
+      toast.error(`Отсутствует интернет соединение, попробуйте ещё раз!`, {
+        position: `top-right`,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
 
     throw error;
