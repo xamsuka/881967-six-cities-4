@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 import {DetailedOffer} from './detailed-offer.jsx';
 import {StaticRouter} from 'react-router-dom';
 

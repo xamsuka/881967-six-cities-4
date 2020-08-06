@@ -35,6 +35,13 @@ class DetailedOffer extends PureComponent {
     this.props.onLoadOffersNearby(this.id);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.onLoadOfferComments(this.id);
+      this.props.onLoadOffersNearby(this.id);
+    }
+  }
+
   _onChangeFavoriteStatus() {
     if (this.props.authorizationStatus === AuthorizationStatus.USER_NOAUTH) {
       history.push(`/login`);
@@ -54,6 +61,7 @@ class DetailedOffer extends PureComponent {
       return <Loading />;
     }
 
+    this.id = Number(this.props.match.params.id);
     const offerIndex = offers.findIndex((it) => it.id === this.id);
     this.offer = offers[offerIndex];
 
