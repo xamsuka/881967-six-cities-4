@@ -32,7 +32,11 @@ const commentsOffer = [
 
 test(`<Reviews /> render`, () => {
   const three = renderer
-    .create(<Reviews reviews = {commentsOffer} ><div></div></Reviews>).toJSON();
+    .create(
+        <Reviews reviews = {commentsOffer}>
+          <div></div>
+        </Reviews>
+    ).toJSON();
 
   expect(three).toMatchSnapshot();
 });

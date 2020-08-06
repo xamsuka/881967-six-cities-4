@@ -81,11 +81,13 @@ test(`<Map /> render`, () => {
 
   global.document.body.appendChild(div);
 
-  const app = mount(<Map
-    offers = {offers}
-    idPlaceActive = {0}
-    coordsCity = {[50, 4]}
-    zoom = {12}/>, {attachTo: div});
+  const app = mount(
+      <Map
+        offers = {offers}
+        idPlaceActive = {0}
+        coordsCity = {[50, 4]}
+        zoom = {12}
+      />, {attachTo: div});
 
   expect(app).toMatchSnapshot();
 });

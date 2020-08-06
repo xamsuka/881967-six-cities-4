@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Main from './main';
-import {Provider} from "react-redux";
+import {Provider} from 'react-redux';
 import {StaticRouter} from 'react-router-dom';
-import configureStore from "redux-mock-store";
+import configureStore from 'redux-mock-store';
 
 const mockStore = configureStore([]);
 
@@ -91,7 +91,7 @@ test(`<Main /> render`, () => {
   });
 
   const three = renderer
-    .create(<Provider store={store}>
+    .create(<Provider store = {store}>
       <StaticRouter>
         <Main offers = {offers}
           currentCity = {`Paris`}

@@ -1,4 +1,5 @@
 import React from 'react';
+import {StaticRouter} from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import {PlaceCard} from './place-card.jsx';
 
@@ -39,7 +40,11 @@ const offer = {
 
 test(`<PlaceCard /> render`, () => {
   const three = renderer
-    .create(<PlaceCard offer = {offer} onMouseOver = {() => {}} variant = {`cities`} onClickFavorite = {() => {}} />).toJSON();
+    .create(
+        <StaticRouter>
+          <PlaceCard offer = {offer} onMouseOver = {() => {}} variant = {`cities`} onClickFavorite = {() => {}} />
+        </StaticRouter>
+    ).toJSON();
 
   expect(three).toMatchSnapshot();
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {StaticRouter} from 'react-router-dom';
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import CitiesPlaces from './cities-places.jsx';
@@ -95,8 +96,11 @@ test(`<CitiesPlaces /> render`, () => {
 
   const three = renderer
     .create(<Provider store = {store}>
-      <CitiesPlaces offers = {offers} cityName = {cityName} onChangeActiveElement = {() => {}} activeElement = {1} />
-    </Provider>).toJSON();
+      <StaticRouter>
+        <CitiesPlaces offers = {offers} cityName = {cityName} onChangeActiveElement = {() => {}} activeElement = {1} />
+      </StaticRouter>
+    </Provider>
+    ).toJSON();
 
   expect(three).toMatchSnapshot();
 });

@@ -12,7 +12,11 @@ const userData = {
 
 test(`<Header /> render`, () => {
   const three = renderer
-    .create(<StaticRouter><Header userData = {userData} /></StaticRouter>).toJSON();
+    .create(
+        <StaticRouter>
+          <Header userData = {userData} />
+        </StaticRouter>
+    ).toJSON();
 
   expect(three).toMatchSnapshot();
 });

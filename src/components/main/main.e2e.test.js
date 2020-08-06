@@ -3,8 +3,8 @@ import Enzyme, {mount} from 'enzyme';
 import {StaticRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
 import Main from './main';
-import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 
 const mockStore = configureStore([]);
 
@@ -99,7 +99,7 @@ describe(`<MainComponent />`, () => {
     const onChangeCurrentCity = jest.fn();
 
     const three = mount(
-        <Provider store={store}>
+        <Provider store = {store}>
           <StaticRouter>
             <Main
               offers = {offers}
