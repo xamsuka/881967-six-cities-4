@@ -1,8 +1,8 @@
 import React from 'react';
 import {VARIANT_CARD} from '../../const.js';
 import PlaceCard from '../place-card/place-card.jsx';
-import PlaceCardFavorite from '../proxy/place-card/place-card-favorite.jsx';
-import PlaceCardNear from '../proxy/place-card/place-card-near.jsx';
+import PlaceCardFavorite from '../place-card-favorite/place-card-favorite.jsx';
+import PlaceCardNear from '../place-card-near/place-card-near.jsx';
 
 const PlaceCardsList = ({variant, offers, onChangeActiveElement}) => {
   const getComponentByVariant = (variantCard, offer, key) => {

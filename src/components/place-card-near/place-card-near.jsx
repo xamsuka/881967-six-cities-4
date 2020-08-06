@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaceCard from '../../place-card/place-card.jsx';
+import PlaceCard from '../place-card/place-card.jsx';
 
 const PlaceCardNear = (props) => {
   const classNameCard = `near-places__card`;

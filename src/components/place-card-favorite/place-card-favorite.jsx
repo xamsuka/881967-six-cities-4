@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaceCard from '../../place-card/place-card.jsx';
+import PlaceCard from '../place-card/place-card.jsx';
 
 const PlaceCardFavorite = (props) => {
   const classNameCard = `favorites__card`;
