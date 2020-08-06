@@ -18,17 +18,17 @@ class VariantSort extends PureComponent {
     return (
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by </span>
-        <span className="places__sorting-type" tabIndex={0} onClick = {onSortBlockClick}>
+        <span className="places__sorting-type" tabIndex={0} onClick={onSortBlockClick}>
           {currentSort}
           <svg className="places__sorting-arrow" width={7} height={4}>
             <use xlinkHref="#icon-arrow-select" />
           </svg>
         </span>
-        <ul className={`places__options places__options--custom ${classSort}`} onClick = {onSortTypeChange}>
+        <ul className={`places__options places__options--custom ${classSort}`} onClick={onSortTypeChange}>
           {sortTypes.map((sortType) => {
             const classActive = currentSort === sortType ? ` places__option--active` : ``;
             return (
-              <li className={`places__option${classActive}`} tabIndex={0} key = {sortType}>
+              <li className={`places__option${classActive}`} tabIndex={0} key={sortType}>
                 {sortType}
               </li>
             );

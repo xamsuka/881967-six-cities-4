@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
@@ -47,11 +47,11 @@ const FeedbackForm = (props) => {
     <form className="reviews__form form"
       action="#"
       method="post"
-      disabled = {disabledFormAttr}
-      onSubmit = {onSubmitButtonReviews}
-      onChange = {onChangeFormValue}
+      disabled={disabledFormAttr}
+      onSubmit={onSubmitButtonReviews}
+      onChange={onChangeFormValue}
     >
-      <fieldset disabled = {disabledFormAttr} style={{border: `none`}}>
+      <fieldset disabled={disabledFormAttr} style={{border: `none`}}>
         <label className="reviews__label form__label" htmlFor="review">
           Your review
         </label>

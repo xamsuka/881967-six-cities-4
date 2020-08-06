@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {AuthorizationStatus} from '../../const.js';
@@ -9,7 +9,7 @@ import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
 import Map from '../map/map.jsx';
 import Loading from '../loading/loading.jsx';
 import withForm from '../../hocs/with-form/with-form.jsx';
-import FeedbackForm from "../feedback-form/feedback-form.jsx";
+import FeedbackForm from '../feedback-form/feedback-form.jsx';
 import {getStatusLoadingOffers} from '../../reducers/application/selectors.js';
 import {getCommentsOffer, getNearbyOffers} from '../../reducers/data/selectors.js';
 import PlaceCardsList from '../place-cards-list/place-cards-list.jsx';
@@ -157,7 +157,7 @@ class DetailedOffer extends PureComponent {
             <section className="property__map map">
 
               {isNearbyOffer
-                ? <Map offers = {nearbyOffersOnMap} idPlaceActive = {this.id} coordsCity = {getCityLocation(this.offer)} zoom = {12 }/>
+                ? <Map offers = {nearbyOffersOnMap} idPlaceActive = {this.id} coordsCity = {getCityLocation(this.offer)} zoom = {12} />
                 : ``
               }
 

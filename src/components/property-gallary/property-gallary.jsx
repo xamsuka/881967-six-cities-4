@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
 class PropertyGallary extends PureComponent {
@@ -14,7 +14,7 @@ class PropertyGallary extends PureComponent {
         <div className="property__gallery">
           {photos.map((photo, index) => {
             return (
-              <div className="property__image-wrapper" key = {`${photo} ${index}`}>
+              <div className="property__image-wrapper" key={`${photo} ${index}`}>
                 <img
                   className="property__image"
                   src={photo}

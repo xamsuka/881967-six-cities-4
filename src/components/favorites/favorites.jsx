@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Header from "../header/header.jsx";
+import Header from '../header/header.jsx';
 import Loading from '../loading/loading.jsx';
 import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 import FavoriteItems from '../favorite-items/favorite-items.jsx';
@@ -34,7 +35,7 @@ const Favorites = (props) => {
           : favoritesComponent}
 
         <footer className="footer container">
-          <a className="footer__logo-link" href="main.html">
+          <Link to = "/" className="footer__logo-link">
             <img
               className="footer__logo"
               src="img/logo.svg"
@@ -42,7 +43,7 @@ const Favorites = (props) => {
               width={64}
               height={33}
             />
-          </a>
+          </Link>
         </footer>
       </div>
     </React.Fragment>

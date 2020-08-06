@@ -1,7 +1,7 @@
-import React, {PureComponent} from "react";
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Link, Router} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import ReviewsRating from '../reviews-rating/reviews-rating.jsx';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {Operations as DataOperations} from '../../reducers/data/reducer.js';
@@ -38,7 +38,7 @@ class PlaceCard extends PureComponent {
     const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
 
     return (
-      <article className= {`${classNameCard} place-card`} onMouseOver={onMouseOver} data-id={id} key = {key} >
+      <article className= {`${classNameCard} place-card`} onMouseOver={onMouseOver} data-id={id} key={key} >
         {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ``}
         <div className={`${classNameImgWrapper} place-card__image-wrapper`}>
           <a href="#">
@@ -71,9 +71,7 @@ class PlaceCard extends PureComponent {
           <ReviewsRating rating = {rating} variant = {`reviews`} />
 
           <h2 className="place-card__name">
-            <Router history = {history}>
-              <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
-            </Router>
+            <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
           </h2>
           <p className="place-card__type">{type}</p>
         </div>

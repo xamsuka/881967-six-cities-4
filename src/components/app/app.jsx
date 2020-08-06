@@ -33,19 +33,19 @@ class App extends PureComponent {
     } = this.props;
 
     return (
-      <Router history={history}>
+      <Router history = {history}>
         <Switch>
-          <Route exact path="/">
+          <Route exact path = "/">
             <Main offers = {offers} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} isLoading = {isLoading} userData = {userData} />;
           </Route>
-          <Route exact path='/offer/:id' component={DetailedOffer}/>
-          <Route exact path='/login' >
-            {Object.keys(userData).length ? <Redirect to="/" /> : <SignIn onSubmit = {onLogin} history={history} /> }
+          <Route exact path = '/offer/:id' component = {DetailedOffer}/>
+          <Route exact path = '/login' >
+            {Object.keys(userData).length ? <Redirect to = "/" /> : <SignIn onSubmit = {onLogin} history = {history} /> }
           </Route>
           <PrivateRoute
             exact
-            path='/favorites'
-            render={() => {
+            path = '/favorites'
+            render = {() => {
               return (
                 <Favorites
                   userData = {userData}

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardsList from '../place-cards-list/place-cards-list.jsx';
 import {VARIANT_CARD} from '../../const.js';
@@ -15,7 +15,7 @@ const FavoriteItems = (props) => {
         const favoriteOffersInCity = favoriteOffers.filter((offer) => offer.city.name === city);
 
         return (
-          <li className="favorites__locations-items" key = {`${city} ${index}`}>
+          <li className="favorites__locations-items" key={`${city} ${index}`}>
             <div className="favorites__locations locations locations--current">
               <div className="locations__item">
                 <a className="locations__item-link" href="#">
