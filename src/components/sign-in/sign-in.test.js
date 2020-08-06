@@ -7,7 +7,7 @@ test(`<SignIn /> render`, () => {
   const three = renderer
     .create(
         <StaticRouter>
-          <SignIn onSubmit = {() => {}} history={{}} />
+          <SignIn onSubmitFrom = {() => {}} history={{}} />
         </StaticRouter>
     ).toJSON();
 

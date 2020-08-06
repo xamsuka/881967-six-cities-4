@@ -31,6 +31,7 @@ const store = createStore(reducer, composeWithDevTools(
 store.dispatch(DataOperations.loadOffers());
 store.dispatch(UserOperations.checkAuth());
 
+
 ReactDom.render(
     <Provider store = {store}>
       <App />

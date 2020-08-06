@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 
 const withSort = (Component) => {
-  return class WidthSort extends PureComponent {
+  return class WithSort extends PureComponent {
     constructor(props) {
       super(props);
 

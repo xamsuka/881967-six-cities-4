@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Route, Router, Switch, Redirect} from 'react-router-dom';
@@ -17,47 +17,45 @@ import {createBrowserHistory} from 'history';
 
 export const history = createBrowserHistory();
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
+const App = (props) => {
+  const {
+    offers,
+    currentCity,
+    onChangeCurrentCity,
+    onLogin,
+    userData,
+    isLoading,
+  } = props;
+
+  if (!Object.keys(userData).length) {
+    return null;
   }
 
-  render() {
-    const {
-      offers,
-      currentCity,
-      onChangeCurrentCity,
-      onLogin,
-      userData,
-      isLoading,
-    } = this.props;
-
-    return (
-      <Router history = {history}>
-        <Switch>
-          <Route exact path = "/">
-            <Main offers = {offers} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} isLoading = {isLoading} userData = {userData} />;
-          </Route>
-          <Route exact path = '/offer/:id' component = {DetailedOffer}/>
-          <Route exact path = '/login' >
-            {Object.keys(userData).length ? <Redirect to = "/" /> : <SignIn onSubmit = {onLogin} history = {history} /> }
-          </Route>
-          <PrivateRoute
-            exact
-            path = '/favorites'
-            render = {() => {
-              return (
-                <Favorites
-                  userData = {userData}
-                />
-              );
-            }}
-          />
-        </Switch>
-      </Router>
-    );
-  }
-}
+  return (
+    <Router history = {history}>
+      <Switch>
+        <Route exact path = "/">
+          <Main offers = {offers} currentCity = {currentCity} onChangeCurrentCity = {onChangeCurrentCity} isLoading = {isLoading} userData = {userData} />;
+        </Route>
+        <Route exact path = '/offer/:id' component = {DetailedOffer}/>
+        <Route exact path = '/login' >
+          {Object.keys(userData).length ? <Redirect to = "/" /> : <SignIn onSubmitFrom = {onLogin} history = {history} /> }
+        </Route>
+        <PrivateRoute
+          exact
+          path = '/favorites'
+          render = {() => {
+            return (
+              <Favorites
+                userData = {userData}
+              />
+            );
+          }}
+        />
+      </Switch>
+    </Router>
+  );
+};
 
 App.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({

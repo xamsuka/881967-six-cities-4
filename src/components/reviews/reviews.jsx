@@ -10,14 +10,14 @@ class Reviews extends PureComponent {
     super(props);
   }
 
-  _sortingReviews(reviews) {
+  sortingReviews(reviews) {
     return reviews.sort((a, b) => b.date - a.date);
   }
 
   render() {
     const {reviews, authorizationStatus, children} = this.props;
 
-    const reviewsAfterSorting = this._sortingReviews(reviews);
+    const reviewsAfterSorting = this.sortingReviews(reviews);
 
     const reviewComponents = reviewsAfterSorting.map((review, index) => {
       if (index < MAX_REVIEWS) {

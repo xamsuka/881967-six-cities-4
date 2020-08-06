@@ -11,16 +11,15 @@ import {history} from '../app/app.jsx';
 class PlaceCard extends PureComponent {
   constructor(props) {
     super(props);
-    this._onChangeFavoriteStatus = this._onChangeFavoriteStatus.bind(this);
-    this.onClickFavorite = this.props.onClickFavorite;
+    this.handleChangeFavoriteStatus = this.handleChangeFavoriteStatus.bind(this);
   }
 
-  _onChangeFavoriteStatus() {
+  handleChangeFavoriteStatus() {
     if (this.props.authorizationStatus === AuthorizationStatus.USER_NOAUTH) {
       history.push(`/login`);
     }
 
-    this.onClickFavorite(this.props.offer.id, Number(!this.props.offer.isFavorite));
+    this.props.onClickFavorite(this.props.offer.id, Number(!this.props.offer.isFavorite));
   }
 
   render() {
@@ -59,7 +58,7 @@ class PlaceCard extends PureComponent {
             </div>
             <button
               className={`place-card__bookmark-button ${favoriteClass} button`}
-              type="button" onClick = {this._onChangeFavoriteStatus}
+              type="button" onClick = {this.handleChangeFavoriteStatus}
             >
               <svg className="place-card__bookmark-icon" width={18} height={19}>
                 <use xlinkHref="#icon-bookmark" />

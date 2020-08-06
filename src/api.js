@@ -1,5 +1,8 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
+import {toast} from 'react-toastify';
+
+toast.configure();
 
 const Error = {
   UNAUTHORIZED: 401
@@ -26,14 +29,30 @@ const createAPI = (onNoAuth, onInternetConnection) => {
 
   const onError = (error) => {
     const {response} = error;
-
     if (error.response) {
-      const erroMessage = `Ошибка ответа от сервера или данной страницы не существует`;
-      throw erroMessage;
+      toast.error(`Wow so easy!`, {
+        position: `top-right`,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      toast(`Wow so easy !`);
     } else if (error.request) {
       onInternetConnection();
-      const erroMessage = `Отсуствует покдлючение к интернету. Проверьте подключение и попробуйте ещё раз.`;
-      throw erroMessage;
+
+      toast.error(`Wow so easy!`, {
+        position: `top-right`,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
 
     if (response.status === Error.UNAUTHORIZED) {

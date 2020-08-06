@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {AuthorizationStatus} from '../../const.js';
+import {history} from '../app/app.jsx';
 import Header from '../header/header.jsx';
 import PropertyGallary from '../property-gallary/property-gallary.jsx';
 import Reviews from '../reviews/reviews.jsx';
@@ -26,8 +27,7 @@ class DetailedOffer extends PureComponent {
     super(props);
     this.id = Number(this.props.match.params.id);
     this.offer = null;
-    this.onClickFavorite = this.props.onClickFavorite;
-    this._onChangeFavoriteStatus = this._onChangeFavoriteStatus.bind(this);
+    this.handleChangeFavoriteStatus = this.handleChangeFavoriteStatus.bind(this);
   }
 
   componentDidMount() {
@@ -42,12 +42,12 @@ class DetailedOffer extends PureComponent {
     }
   }
 
-  _onChangeFavoriteStatus() {
+  handleChangeFavoriteStatus() {
     if (this.props.authorizationStatus === AuthorizationStatus.USER_NOAUTH) {
       history.push(`/login`);
     }
 
-    this.onClickFavorite(this.id, Number(!this.offer.isFavorite));
+    this.props.onClickFavorite(this.id, Number(!this.offer.isFavorite));
   }
 
   render() {
@@ -92,7 +92,7 @@ class DetailedOffer extends PureComponent {
                   <button
                     className={`property__bookmark-button ${favoriteClass} button`}
                     type="button"
-                    onClick={this._onChangeFavoriteStatus}
+                    onClick={this.handleChangeFavoriteStatus}
                   >
                     <svg
                       className="place-card__bookmark-icon"
