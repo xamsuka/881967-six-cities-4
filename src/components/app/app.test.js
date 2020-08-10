@@ -100,7 +100,9 @@ test(`App render`, () => {
             onChangeCurrentCity = {() => {}}
             onLogin = {() => {}}
             userData = {{}}
-            isLoading = {false} />
+            isLoading = {false}
+            isLodedUserAuth = {true}
+          />
         </Provider>
         , {
           createNodeMock: () => {

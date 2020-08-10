@@ -15,6 +15,7 @@ describe(`Тестирование функции reducer`, () => {
         {
           authorizationStatus: `USER_NOAUTH`,
           userData: {},
+          isLoadedUserAuth: false,
         }
     );
   });
@@ -22,7 +23,8 @@ describe(`Тестирование функции reducer`, () => {
   test(`Авторизация пользователя на сайте`, () => {
     expect(reducer({
       authorizationStatus: `USER_NOAUTH`,
-      userData: {}
+      userData: {},
+      isLoadedUserAuth: false,
     }, {
       type: `REQUIRED_AUTH`,
       payload: AuthorizationStatus.USER_AUTH,
@@ -31,6 +33,7 @@ describe(`Тестирование функции reducer`, () => {
         {
           authorizationStatus: `USER_AUTH`,
           userData,
+          isLoadedUserAuth: false,
         }
     );
 
@@ -42,5 +45,9 @@ test(`Тестирование ActionCreator на возвращаемые actio
     type: `REQUIRED_AUTH`,
     payload: status,
     payloadData: userData,
+  });
+  expect(ActionCreator.changeStatusLoadedUserAuth(true)).toEqual({
+    type: `CHANGE_STATUS_LOADED_USER_AUTH`,
+    payload: true,
   });
 });

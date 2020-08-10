@@ -15,6 +15,7 @@ const rootElement = document.querySelector(`#root`);
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreatorUser.authorizeUser(AuthorizationStatus.USER_NOAUTH, {}));
+  store.dispatch(ActionCreatorUser.changeStatusLoadedUserAuth(true));
 };
 
 const noInternetConnection = () => {

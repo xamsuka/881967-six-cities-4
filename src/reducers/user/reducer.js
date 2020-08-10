@@ -10,10 +10,12 @@ const AuthorizationStatus = {
 const initialState = {
   authorizationStatus: AuthorizationStatus.USER_NOAUTH,
   userData: {},
+  isLoadedUserAuth: false,
 };
 
 const ActionType = {
   REQUIRED_AUTH: `REQUIRED_AUTH`,
+  CHANGE_STATUS_LOADED_USER_AUTH: `CHANGE_STATUS_LOADED_USER_AUTH`,
 };
 
 const ActionCreator = {
@@ -21,6 +23,10 @@ const ActionCreator = {
     type: ActionType.REQUIRED_AUTH,
     payload: status,
     payloadData: userData,
+  }),
+  changeStatusLoadedUserAuth: (isLoaded) => ({
+    type: ActionType.CHANGE_STATUS_LOADED_USER_AUTH,
+    payload: isLoaded,
   }),
 };
 
@@ -30,6 +36,7 @@ const Operations = {
       .then((response) => {
         dispatch(ActionCreator.authorizeUser(AuthorizationStatus.USER_AUTH, userAdapter(response.data)));
         dispatch(DataOperations.loadFavoriteOffers());
+        dispatch(ActionCreator.changeStatusLoadedUserAuth(true));
         history.push(`/`);
       });
   },
@@ -38,6 +45,7 @@ const Operations = {
       .then((response) => {
         dispatch(ActionCreator.authorizeUser(AuthorizationStatus.USER_AUTH, userAdapter(response.data)));
         dispatch(DataOperations.loadFavoriteOffers());
+        dispatch(ActionCreator.changeStatusLoadedUserAuth(true));
       });
   }
 };
@@ -48,6 +56,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         authorizationStatus: action.payload,
         userData: action.payloadData,
+      });
+    case ActionType.CHANGE_STATUS_LOADED_USER_AUTH:
+      return extend(state, {
+        isLoadedUserAuth: action.payload,
       });
   }
 

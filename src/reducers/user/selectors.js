@@ -10,4 +10,8 @@ const getUserData = (state) => {
   return state[NAME_SPACE].userData;
 };
 
-export {getAuthorizationStatus, getUserData};
+const getStatusLoadedUserAuth = (state) => {
+  return state[NAME_SPACE].isLoadedUserAuth;
+};
+
+export {getAuthorizationStatus, getUserData, getStatusLoadedUserAuth};

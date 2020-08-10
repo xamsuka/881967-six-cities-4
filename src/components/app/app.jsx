@@ -12,7 +12,7 @@ import {getSortedOffers} from '../../reducers/data/selectors.js';
 import {getStatusLoadingOffers} from '../../reducers/application/selectors.js';
 import {getCurrentCity} from '../../reducers/application/selectors.js';
 import {Operations as UserOperations} from '../../reducers/user/reducer.js';
-import {getUserData} from '../../reducers/user/selectors.js';
+import {getUserData, getStatusLoadedUserAuth} from '../../reducers/user/selectors.js';
 import {createBrowserHistory} from 'history';
 
 export const history = createBrowserHistory();
@@ -25,9 +25,10 @@ const App = (props) => {
     onLogin,
     userData,
     isLoading,
+    isLodedUserAuth
   } = props;
 
-  if (!Object.keys(userData).length) {
+  if (!isLodedUserAuth) {
     return null;
   }
 
@@ -102,12 +103,14 @@ App.propTypes = {
     isPro: PropTypes.bool,
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isLodedUserAuth: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: getSortedOffers(state),
   currentCity: getCurrentCity(state),
   isLoading: getStatusLoadingOffers(state),
+  isLodedUserAuth: getStatusLoadedUserAuth(state),
   userData: getUserData(state),
 });
 
